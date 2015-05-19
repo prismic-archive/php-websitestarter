@@ -13,7 +13,7 @@ This application is a "batteries included", ready to use blog engine. It is desi
 To run it on your local machine, 2 possibilities:
 
 * With PHP in command line: `serve.sh`
-* With [MAMP](https://www.mamp.info/): point the Document Root configuration to the `public` folder of your Webkit Starter installation
+* With [MAMP](https://www.mamp.info/): point the Document Root configuration to the `public` folder of your Website Starter installation
 
 Some remarks:
 
