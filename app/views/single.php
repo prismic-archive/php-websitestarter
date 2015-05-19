@@ -28,7 +28,7 @@
 
     <?php include('prismic.php') ?>
 
-    <?php include('theme/blog.php') ?>
+    <?php include('skin/blog.php') ?>
 
 </head>
 

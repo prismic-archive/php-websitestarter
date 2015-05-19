@@ -10,7 +10,7 @@
 
     <?php include('prismic.php') ?>
 
-    <?php include('theme/errorpage.php') ?>
+    <?php include('skin/errorpage.php') ?>
 
 </head>
 

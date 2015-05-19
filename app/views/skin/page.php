@@ -1,37 +1,37 @@
 
-<?php $theme = the_theme(); ?>
+<?php $skin = the_skin(); ?>
 
-<?php if($theme) : ?>
+<?php if($skin) : ?>
 
 <?php include('fonts.php') ?>
 
 <?php
 
-  $faviconImage = $theme->getImage('theme.favicon-image');
+  $faviconImage = $skin->getImage('skin.favicon-image');
 
-  $textColor = $theme->getColor('theme.page-text-color');
+  $textColor = $skin->getColor('skin.page-text-color');
 
-  $backgroundColor = $theme->getColor('theme.page-background-color');
+  $backgroundColor = $skin->getColor('skin.page-background-color');
 
-  $titleColor = $theme->getColor('theme.page-title-color');
+  $titleColor = $skin->getColor('skin.page-title-color');
 
-  $textFont = $theme->getText('theme.page-text-font');
+  $textFont = $skin->getText('skin.page-text-font');
 
-  $titleFont = $theme->getText('theme.page-title-font');
+  $titleFont = $skin->getText('skin.page-title-font');
 
-  $themeColor = $theme->getColor('theme.page-main-color');
+  $skinColor = $skin->getColor('skin.page-main-color');
 
-  $themeAlternateColor = $theme->getColor('theme.page-alternate-color');
+  $skinAlternateColor = $skin->getColor('skin.page-alternate-color');
 
-  $slideTextColor = $theme->getColor('theme.page-slide-text-color');
+  $slideTextColor = $skin->getColor('skin.page-slide-text-color');
 
-  $faqSeparationColor = $theme->getColor('theme.page-faq-separation-color');
+  $faqSeparationColor = $skin->getColor('skin.page-faq-separation-color');
 
-  $slideHeight = $theme->getNumber('theme.page-slide-height');
+  $slideHeight = $skin->getNumber('skin.page-slide-height');
 
-  $slideHomeButtonBackgroundFirstColor = $theme->getColor('theme.page-slide-home-button-background-first-color');
+  $slideHomeButtonBackgroundFirstColor = $skin->getColor('skin.page-slide-home-button-background-first-color');
 
-  $slideHomeButtonBackgroundSecondColor = $theme->getColor('theme.page-slide-home-button-background-second-color');
+  $slideHomeButtonBackgroundSecondColor = $skin->getColor('skin.page-slide-home-button-background-second-color');
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
@@ -93,27 +93,27 @@ h2, h3 {
 }
 
 .round-image {
-  <?= $themeColor ? 'background-color:'.$themeColor->asText() : ''; ?>;
+  <?= $skinColor ? 'background-color:'.$skinColor->asText() : ''; ?>;
 }
 
 .featured-preview {
-  <?= $themeAlternateColor ? 'background-color:'.$themeAlternateColor->asText() : ''; ?>;
+  <?= $skinAlternateColor ? 'background-color:'.$skinAlternateColor->asText() : ''; ?>;
 }
 
 .alternated-items > div {
-  <?= $themeColor ? 'background: '.$themeColor->asText() : ''; ?>;
+  <?= $skinColor ? 'background: '.$skinColor->asText() : ''; ?>;
 }
 
 .alternated-items .alternate {
-  <?= $themeAlternateColor ? 'background-color: '.$themeAlternateColor->asText() : ''; ?>;
+  <?= $skinAlternateColor ? 'background-color: '.$skinAlternateColor->asText() : ''; ?>;
 }
 
 .featured-items-simple .illustration {
-  <?= $themeColor ? 'background-color: '.$themeColor->asText() : ''; ?>;
+  <?= $skinColor ? 'background-color: '.$skinColor->asText() : ''; ?>;
 }
 
 .featured-preview li:hover {
-  <?= $themeColor ? 'background-color: '.$themeColor->asText() : ''; ?>;
+  <?= $skinColor ? 'background-color: '.$skinColor->asText() : ''; ?>;
 }
 
 .slides .slide h2 {

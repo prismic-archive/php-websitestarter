@@ -1,8 +1,8 @@
 <?php
 
-  $sidebarTextColor = $theme->getColor('theme.sidebar-text-color');
+  $sidebarTextColor = $skin->getColor('skin.sidebar-text-color');
 
-  $sidebarBackgroundColor = $theme->getColor('theme.sidebar-background-color');
+  $sidebarBackgroundColor = $skin->getColor('skin.sidebar-background-color');
 
 ?>
 

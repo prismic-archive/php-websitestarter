@@ -357,15 +357,15 @@ class PrismicHelper
         return $calendar;
     }
 
-    public function get_theme()
+    public function get_skin()
     {
-        $themeId = $this->get_api()->bookmark('theme');
+        $skinId = $this->get_api()->bookmark('skin');
 
-        if (!$themeId) {
+        if (!$skinId) {
             return null;
         }
 
-        return $this->get_document($themeId);
+        return $this->get_document($skinId);
     }
 
     public function get_404()

@@ -46,9 +46,9 @@ $app->get('/', function () use ($app, $prismic) {
         return;
     }
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'page', array('single_post' => $home, 'theme' => $theme));
+    render($app, 'page', array('single_post' => $home, 'skin' => $skin));
 });
 
 // Author
@@ -77,9 +77,9 @@ $app->get('/author/:id/:slug', function ($id, $slug) use ($app,$prismic) {
         ->page(current_page($app))
         ->submit();
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'author', array('posts' => $posts, 'author' => $author, 'theme' => $theme));
+    render($app, 'author', array('posts' => $posts, 'author' => $author, 'skin' => $skin));
 });
 
 // Search results
@@ -102,9 +102,9 @@ $app->get('/search', function () use ($app,$prismic) {
         ->page(current_page($app))
         ->submit();
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'search', array('posts' => $posts, 'theme' => $theme));
+    render($app, 'search', array('posts' => $posts, 'skin' => $skin));
 });
 
 // Category
@@ -133,9 +133,9 @@ $app->get('/category/:uid', function ($uid) use ($app,$prismic) {
         ->page(current_page($app))
         ->submit();
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'category', array('category' => $cat, 'posts' => $posts, 'theme' => $theme));
+    render($app, 'category', array('category' => $cat, 'posts' => $posts, 'skin' => $skin));
 });
 
 // Tag
@@ -156,9 +156,9 @@ $app->get('/tag/:tag', function ($tag) use ($app,$prismic) {
         ->page(current_page($app))
         ->submit();
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'tag', array('posts' => $posts, 'tag' => $tag, 'theme' => $theme));
+    render($app, 'tag', array('posts' => $posts, 'tag' => $tag, 'skin' => $skin));
 });
 
 // Archive
@@ -173,9 +173,9 @@ $app->get('/archive/:year(/:month(/:day))', function ($year, $month = null, $day
 
     $date = array('year' => $year, 'month' => $month, 'day' => $day);
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'archive', array('posts' => $posts, 'date' => $date, 'theme' => $theme));
+    render($app, 'archive', array('posts' => $posts, 'date' => $date, 'skin' => $skin));
 });
 
 // Previews
@@ -299,9 +299,9 @@ $app->get('/blog', function () use ($app, $prismic) {
         ->orderings('my.post.date desc')
         ->submit();
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'homeblog', array('homeblog' => $homeblog, 'posts' => $posts, 'theme' => $theme));
+    render($app, 'homeblog', array('homeblog' => $homeblog, 'posts' => $posts, 'skin' => $skin));
 });
 
 // Post
@@ -333,9 +333,9 @@ $app->get('/blog/:year/:month/:day/:uid', function ($year, $month, $day, $uid) u
         return;
     }
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'single', array('single_post' => $doc, 'theme' => $theme));
+    render($app, 'single', array('single_post' => $doc, 'skin' => $skin));
 });
 
 // Contact
@@ -390,9 +390,9 @@ $app->get('/document/:id/:slug', function ($id, $slug) use($app, $prismic) {
         return;
     }
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
-    render($app, 'document', array('single_post' => $doc, 'theme' => $theme));
+    render($app, 'document', array('single_post' => $doc, 'skin' => $skin));
 });
 
 // Page
@@ -400,16 +400,16 @@ $app->get('/document/:id/:slug', function ($id, $slug) use($app, $prismic) {
 $app->get('/:path+', function ($path) use($app, $prismic) {
     $page_uid = check_page_path($path, $prismic, $app);
 
-    $theme = $prismic->get_theme();
+    $skin = $prismic->get_skin();
 
     if ($page_uid) {
         $page = $prismic->by_uid('page', $page_uid);
         if (!$page) {
-            not_found($app, $theme);
+            not_found($app, $skin);
 
             return;
         }
 
-        render($app, 'page', array('single_post' => $page, 'theme' => $theme));
+        render($app, 'page', array('single_post' => $page, 'skin' => $skin));
     }
 });

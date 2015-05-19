@@ -20,7 +20,7 @@
 
     <?php include('prismic.php') ?>
 
-    <?php include('theme/page.php') ?>
+    <?php include('skin/page.php') ?>
 
 </head>
 

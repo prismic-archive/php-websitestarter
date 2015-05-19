@@ -1,32 +1,32 @@
-<?php $theme = the_theme(); ?>
+<?php $skin = the_skin(); ?>
 
-<?php if($theme) : ?>
+<?php if($skin) : ?>
 
 <?php include('fonts.php') ?>
 
 <?php
 
-  $faviconImage = $theme->getImage('theme.favicon-image');
+  $faviconImage = $skin->getImage('skin.favicon-image');
 
-  $textColor = $theme->getColor('theme.blog-text-color');
+  $textColor = $skin->getColor('skin.blog-text-color');
 
-  $backgroundColor = $theme->getColor('theme.blog-background-color');
+  $backgroundColor = $skin->getColor('skin.blog-background-color');
 
-  $footerBackgroundColor = $theme->getColor('theme.blog-footer-background-color');
+  $footerBackgroundColor = $skin->getColor('skin.blog-footer-background-color');
 
-  $footerTextColor = $theme->getColor('theme.blog-footer-text-color');
+  $footerTextColor = $skin->getColor('skin.blog-footer-text-color');
 
-  $titleColor = $theme->getColor('theme.blog-title-color');
+  $titleColor = $skin->getColor('skin.blog-title-color');
 
-  $textFont = $theme->getText('theme.blog-text-font');
+  $textFont = $skin->getText('skin.blog-text-font');
 
-  $titleFont = $theme->getText('theme.blog-title-font');
+  $titleFont = $skin->getText('skin.blog-title-font');
 
-  $metaTextColor = $theme->getColor('theme.blog-meta-text-color');
+  $metaTextColor = $skin->getColor('skin.blog-meta-text-color');
 
-  $headerTextColor = $theme->getColor('theme.blog-header-text-color');
+  $headerTextColor = $skin->getColor('skin.blog-header-text-color');
 
-  $imageLabelTextColor = $theme->getColor('theme.blog-imagelabel-text-color');
+  $imageLabelTextColor = $skin->getColor('skin.blog-imagelabel-text-color');
 
 ?>
 

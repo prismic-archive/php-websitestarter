@@ -1,9 +1,9 @@
 
-<?php $theme = the_theme(); ?>
+<?php $skin = the_skin(); ?>
 
-<?php if($theme) : ?>
+<?php if($skin) : ?>
 
-<?php foreach($theme->getGroup('theme.fonts')->getArray() as $item) { ?>
+<?php foreach($skin->getGroup('skin.fonts')->getArray() as $item) { ?>
 
   <link href='<?= $item->getLink("font")->getUrl() ?>' rel='stylesheet' type='text/css'>
 

@@ -1,16 +1,16 @@
-<?php $theme = the_theme(); ?>
+<?php $skin = the_skin(); ?>
 
-<?php if($theme) : ?>
+<?php if($skin) : ?>
 
 <?php include('fonts.php') ?>
 
 <?php
 
-  $faviconImage = $theme->getImage('theme.favicon-image');
+  $faviconImage = $skin->getImage('skin.favicon-image');
 
-  $textColor = $theme->getColor('theme.errorpage-text-color');
+  $textColor = $skin->getColor('skin.errorpage-text-color');
 
-  $titleColor = $theme->getColor('theme.errorpage-title-color');
+  $titleColor = $skin->getColor('skin.errorpage-title-color');
 
 ?>
 

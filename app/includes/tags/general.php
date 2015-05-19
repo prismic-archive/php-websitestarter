@@ -53,22 +53,6 @@ function wp_title()
     echo site_title();
 }
 
-function get_template_directory_uri()
-{
-    global $WPGLOBAL;
-    $app = $WPGLOBAL['app'];
-
-    return '/app/themes/'.$app->config('theme');
-}
-
-function get_template_directory()
-{
-    global $WPGLOBAL;
-    $app = $WPGLOBAL['app'];
-
-    return __DIR__.'/../../themes/'.$app->config('theme');
-}
-
 function site_description()
 {
     global $WPGLOBAL;
@@ -175,8 +159,8 @@ function is_singular()
 
 function the_blankimage()
 {
-    if (the_theme() == null) return null;
-    return the_theme()->getImage('theme.blank-image') ? the_theme()->getImage('theme.blank-image')->getMain() : null;
+    if (the_skin() == null) return null;
+    return the_skin()->getImage('skin.blank-image') ? the_skin()->getImage('skin.blank-image')->getMain() : null;
 }
 
 function the_wio_attributes()
@@ -192,11 +176,11 @@ function the_wio_attributes()
 
 // Pismic helper
 
-function the_theme()
+function the_skin()
 {
     global $WPGLOBAL;
-    if (isset($WPGLOBAL['theme'])) {
-        return $WPGLOBAL['theme'];
+    if (isset($WPGLOBAL['skin'])) {
+        return $WPGLOBAL['skin'];
     }
 
     return null;

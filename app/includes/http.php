@@ -48,22 +48,22 @@ function current_page($app)
     return $pageQuery == null ? '1' : $pageQuery;
 }
 
-function not_found($app, $theme = null)
+function not_found($app, $skin = null)
 {
     global $WPGLOBAL;
     $prismic = $WPGLOBAL['prismic'];
     $notfound = $prismic->get_404();
     $app->response->setStatus(404);
     $ctx = array('notfound' => $notfound);
-    if ($theme) {
-        $ctx['theme'] = $theme;
+    if ($skin) {
+        $ctx['skin'] = $skin;
     }
     $file_path = views_dir().'/404.php';
     if (file_exists($file_path)) { // Avoid an infinite loop
        render($app, '404', $ctx);
     } else {
        echo '<h1>404 Not found</h1>';
-       echo 'Additionnaly the 404 template seems to be missing from the theme.';
+       echo 'Additionnaly the 404 template seems to be missing from the skin.';
     }
 }
 

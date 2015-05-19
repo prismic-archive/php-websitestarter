@@ -1,6 +1,6 @@
 <?php
 
-class WPTest extends LocalWebTestCase
+class IntegrationTest extends LocalWebTestCase
 {
 
     public function testBlogHome()
