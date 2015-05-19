@@ -22,6 +22,8 @@
 
   $titleFont = $skin->getText('skin.blog-title-font');
 
+  $monospaceFont = $skin->getText('skin.blog-monospace-font');
+
   $metaTextColor = $skin->getColor('skin.blog-meta-text-color');
 
   $headerTextColor = $skin->getColor('skin.blog-header-text-color');
@@ -131,6 +133,10 @@ h6, .h6 {
 
   <?= $imageLabelTextColor ? 'border-right-color:'.$imageLabelTextColor->asText() : '' ?>;
 }
+
+.blog-main.single span.monospace {
+  <?= $monospaceFont ? 'font-family:'.$monospaceFont : ''; ?>;
+ }
 
 .blog-main.single .block-citation {
   <?= $imageLabelTextColor ? 'border-left-color:'.$imageLabelTextColor->asText() : '' ?>;
