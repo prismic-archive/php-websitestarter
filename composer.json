@@ -1,0 +1,15 @@
+{
+    "name": "Blog Template",
+    "version": "0.5",
+    "require": {
+        "slim/slim": "2.*",
+        "suin/php-rss-writer": ">=1.0",
+        "prismic/php-sdk": "1.5.4",
+        "mailgun/mailgun-php": "1.7.2"
+    },
+    "require-dev": {
+      "codegyre/robo": "*",
+      "there4/slim-test-helpers": "dev-master",
+      "phpunit/phpunit": "4.*"
+    }
+}
