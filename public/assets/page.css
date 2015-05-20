@@ -19,36 +19,36 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3 {
+#main h1, #main h2, #main h3 {
   font-weight: normal;
 }
 
-h2, h3 {
+#main h2, #main h3 {
   color: #0C0E57;
 }
 
-h1 {
+#main h1 {
   font-size: 52px;
   font-weight: 300;
 }
 
-h2 {
+#main h2 {
   font-size: 26px;
   font-weight: 300;
 }
 
-h3 {
+#main h3 {
   margin: 16px 0;
   font-size: 16px;
 }
 
-h3.title {
+#main h3.title {
   margin-top: 2em;
   padding-bottom: 1em;
   border-bottom: 1px solid #D6D6D6;
 }
 
-p {
+#main p {
   line-height: 22px;
   font-size: 14px;
   margin: 15px 0 20px 0;

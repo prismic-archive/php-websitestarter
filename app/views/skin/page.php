@@ -6,63 +6,49 @@
 <?php include('fonts.php') ?>
 
 <?php
-
   $faviconImage = $skin->getImage('skin.favicon-image');
+  $sidebarTextColor = $skin->getColor('skin.sidebar-text-color');
+  $sidebarBackgroundColor = $skin->getColor('skin.sidebar-background-color');
 
   $textColor = $skin->getColor('skin.page-text-color');
-
-  $backgroundColor = $skin->getColor('skin.page-background-color');
-
-  $titleColor = $skin->getColor('skin.page-title-color');
-
   $textFont = $skin->getText('skin.page-text-font');
-
+  $backgroundColor = $skin->getColor('skin.page-background-color');
+  $titleColor = $skin->getColor('skin.page-title-color');
   $titleFont = $skin->getText('skin.page-title-font');
-
   $skinColor = $skin->getColor('skin.page-main-color');
-
   $skinAlternateColor = $skin->getColor('skin.page-alternate-color');
-
   $slideTextColor = $skin->getColor('skin.page-slide-text-color');
-
   $faqSeparationColor = $skin->getColor('skin.page-faq-separation-color');
-
   $slideHeight = $skin->getNumber('skin.page-slide-height');
 
   $slideHomeButtonBackgroundFirstColor = $skin->getColor('skin.page-slide-home-button-background-first-color');
-
   $slideHomeButtonBackgroundSecondColor = $skin->getColor('skin.page-slide-home-button-background-second-color');
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
-
   <link rel="icon" type="image/png" href="<?=$faviconImage->getMain()->getUrl()?>">
-
 <?php else: ?>
-
   <link rel="icon" type="image/png" href="/app/static/favicon.png">
-
 <?php endif ?>
 
 <style>
 
 body {
-
   <?= $textFont ? 'font-family:'.$textFont : '' ?>;
-
   <?= $textColor ? 'color:'.$textColor->asText() : '' ?>;
-
   <?= $backgroundColor ? 'background-color:'.$backgroundColor->asText() : ''; ?>;
 }
 
+#right-panel, #right-panel h3, #right-panel a, #right-panel .search, #right-panel .search input {
+  <?= $sidebarTextColor ? 'color:'.$sidebarTextColor->asText() : '' ?>;
+  <?= $sidebarBackgroundColor ? 'background-color:'.$sidebarBackgroundColor->asText() : '' ?>;
+}
 
-h1, h2, h3 {
-
+#main h1, #main h2, #main h3 {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>
 }
 
-h2, h3 {
-
+#main h2, #main h3 {
   <?= $titleColor ? 'color:'.$titleColor->asText() : '' ?>;
 }
 
@@ -116,15 +102,15 @@ h2, h3 {
   <?= $skinColor ? 'background-color: '.$skinColor->asText() : ''; ?>;
 }
 
-.slides .slide h2 {
+#main .slides #main .slide h2 {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>;
 }
 
-.slides, .slides h2, .slide-arrows a {
+#main .slides, #main .slides h2, #main .slide-arrows a {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
 }
 
-.slides .arrow-prev, .slides .arrow-next {
+#main .slides .arrow-prev, #main .slides .arrow-next {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
 }
 

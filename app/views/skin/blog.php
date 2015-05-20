@@ -8,6 +8,9 @@
 
   $faviconImage = $skin->getImage('skin.favicon-image');
 
+  $sidebarTextColor = $skin->getColor('skin.sidebar-text-color');
+  $sidebarBackgroundColor = $skin->getColor('skin.sidebar-background-color');
+
   $textColor = $skin->getColor('skin.blog-text-color');
 
   $backgroundColor = $skin->getColor('skin.blog-background-color');
@@ -51,6 +54,11 @@ body {
   <?= $textFont ? 'font-family:'.$textFont : '' ?>;
 
   <?= $textColor ? 'color:'.$textColor->asText() : '' ?>;
+}
+
+#right-panel, #right-panel h3, #right-panel a, #right-panel .search, #right-panel .search input {
+  <?= $sidebarTextColor ? 'color:'.$sidebarTextColor->asText() : '' ?>;
+  <?= $sidebarBackgroundColor ? 'background-color:'.$sidebarBackgroundColor->asText() : '' ?>;
 }
 
 a {
