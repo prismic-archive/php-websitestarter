@@ -25,7 +25,7 @@
 
     </div>
 
-    <div id="main" <?= the_wio_attributes(); ?>>
+    <div class="main" <?= the_wio_attributes(); ?>>
 
         <a id="menu-hamburger" href="#right-panel"></a>
 

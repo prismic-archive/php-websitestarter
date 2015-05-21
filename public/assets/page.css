@@ -2,7 +2,7 @@ html {
   overflow-x: hidden;
 }
 
-#main {
+.main {
   width: 100%;
   overflow-x: hidden;
 }
@@ -19,36 +19,36 @@ body {
   box-sizing: border-box;
 }
 
-#main h1, #main h2, #main h3 {
+.main h1, .main h2, .main h3 {
   font-weight: normal;
 }
 
-#main h2, #main h3 {
+.main h2, .main h3 {
   color: #0C0E57;
 }
 
-#main h1 {
+.main h1 {
   font-size: 52px;
   font-weight: 300;
 }
 
-#main h2 {
+.main h2 {
   font-size: 26px;
   font-weight: 300;
 }
 
-#main h3 {
+.main h3 {
   margin: 16px 0;
   font-size: 16px;
 }
 
-#main h3.title {
+.main h3.title {
   margin-top: 2em;
   padding-bottom: 1em;
   border-bottom: 1px solid #D6D6D6;
 }
 
-#main p {
+.main p {
   line-height: 22px;
   font-size: 14px;
   margin: 15px 0 20px 0;

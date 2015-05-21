@@ -44,11 +44,11 @@ body {
   <?= $sidebarBackgroundColor ? 'background-color:'.$sidebarBackgroundColor->asText() : '' ?>;
 }
 
-#main h1, #main h2, #main h3 {
+.main h1, .main h2, .main h3 {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>
 }
 
-#main h2, #main h3 {
+.main h2, .main h3 {
   <?= $titleColor ? 'color:'.$titleColor->asText() : '' ?>;
 }
 
@@ -102,15 +102,15 @@ body {
   <?= $skinColor ? 'background-color: '.$skinColor->asText() : ''; ?>;
 }
 
-#main .slides #main .slide h2 {
+.main .slides .main .slide h2 {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>;
 }
 
-#main .slides, #main .slides h2, #main .slide-arrows a {
+.main .slides, .main .slides h2, .main .slide-arrows a {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
 }
 
-#main .slides .arrow-prev, #main .slides .arrow-next {
+.main .slides .arrow-prev, .main .slides .arrow-next {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
 }
 
