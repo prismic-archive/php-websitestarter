@@ -184,6 +184,22 @@ li p {
     height: 300px;
   }
 }
+.section-header.section-header-col-2 p{
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+}
+.section-header.section-header-centered p,.section-header.section-header-centered h2{
+  text-align: center;
+}
+.section-header.section-header-col-2-centered p{
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+}
+.section-header.section-header-col-2-centered h2,.section-header.section-header-col-2-centered p{
+  text-align: center;
+}
 
 @media (max-width: 767px) {
 
@@ -439,7 +455,9 @@ li p {
   margin-top: 2em;
   padding-bottom: 1em;
 }
-
+.faq .col-2:nth-child(odd){
+  padding-right: 30px!important;
+}
 /*
  * Slides
  */

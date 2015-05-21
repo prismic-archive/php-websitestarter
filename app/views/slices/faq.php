@@ -6,7 +6,7 @@
 
   <?php foreach($items as $item) { ?>
 
-    <div class="col-2">
+    <div class="<?= $slice->getLabel() ?>">
 
       <h3><?= $item->get('question') ? $item->get('question')->asText() : 'Empty'; ?></h3>
 
