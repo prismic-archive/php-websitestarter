@@ -38,7 +38,7 @@
         </p>
         <div>
             <ul>
-                <li>If you haven't done it yet, clone the Blog Template repository on <a href="prismic.io">Prismic.io</a></li>
+                <li>If you haven't done it yet, clone the Blog Template repository on <a href="https://prismic.io">Prismic.io</a></li>
                 <li>Go to your project directory</li>
                 <li class="code">cp config-sample.php config.php</li>
                 <li>Edit <span class="code">config.php</span> and configure your API endpoint</li>
