@@ -10,6 +10,7 @@
 
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
     <script src="/assets/slices.js"></script>
+    <script src="/assets/starterkit.js"></script>
 
     <?php include('prismic.php') ?>
 
