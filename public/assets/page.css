@@ -247,6 +247,13 @@ li p {
   column-count: 3;
 }
 
+.imageFull{
+  height: auto;
+}
+.imageFull img{
+  width: 100%;
+}
+
 @media (max-width: 767px) {
 
   .row-centered-separate {
