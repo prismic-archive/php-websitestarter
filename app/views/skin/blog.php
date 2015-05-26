@@ -132,21 +132,21 @@ h6, .h6 {
   <?= $metaTextColor ? 'color:'.$metaTextColor->asText() : '' ?>;
 }
 
-.blog-main.single .image-label {
+.recent-posts.single .image-label {
 
   <?= $imageLabelTextColor ? 'color:'.$imageLabelTextColor->asText() : '' ?>;
 }
 
-.blog-main.single .image-left + .image-label, .blog-main.single .image-full-column + .image-label {
+.recent-posts.single .image-left + .image-label, .recent-posts.single .image-full-column + .image-label {
 
   <?= $imageLabelTextColor ? 'border-right-color:'.$imageLabelTextColor->asText() : '' ?>;
 }
 
-.blog-main.single span.monospace {
+.recent-posts.single span.monospace {
   <?= $monospaceFont ? 'font-family:'.$monospaceFont : ''; ?>;
  }
 
-.blog-main.single .block-citation {
+.recent-posts.single .block-citation {
   <?= $imageLabelTextColor ? 'border-left-color:'.$imageLabelTextColor->asText() : '' ?>;
 }
 

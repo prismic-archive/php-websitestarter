@@ -283,36 +283,6 @@ $app->post('/disqus/threads/create', function () use ($app) {
     }
 });
 
-// Blog home: list of the post most recent first.
-$app->get('/blog', function () use ($app, $prismic) {
-
-    $homeblogId = $prismic->get_api()->bookmark('homeblog');
-
-    if (!$homeblogId) {
-        not_found($app);
-        return;
-    }
-
-    $homeblog = $prismic->get_document($homeblogId);
-
-    $posts = $prismic->form()
-        ->page(current_page($app))
-        ->query(Predicates::at('document.type', 'post'))
-        ->fetchLinks(
-            'post.date',
-            'category.name',
-            'author.full_name',
-            'author.first_name',
-            'author.surname',
-            'author.company'
-        )
-        ->orderings('my.post.date desc')
-        ->submit();
-
-    $skin = $prismic->get_skin();
-
-    render($app, 'homeblog', array('homeblog' => $homeblog, 'posts' => $posts, 'skin' => $skin));
-});
 
 // Post
 $app->get('/blog/:year/:month/:day/:uid', function ($year, $month, $day, $uid) use ($app,$prismic) {

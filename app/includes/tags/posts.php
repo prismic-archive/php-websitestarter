@@ -1,5 +1,7 @@
 <?php
 
+use Prismic\Predicates;
+
 /**
  * Most of these functions accept a $document as parameter.
  * For the single page, the document can be omitted.
@@ -9,6 +11,33 @@
  * The way the tags are written can lead to the same request being done several times,
  * but it's OK because the Prismic kit has a built-in cache (APC).
  */
+
+// Fetch the most recent posts and put them in the loop
+
+function recent_posts($pageSize)
+{
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+
+    if (!$pageSize) {
+        $pageSize = 5;
+    }
+
+    $posts = $prismic->form()
+        ->query(Predicates::at('document.type', 'post'))
+        ->fetchLinks(
+            'post.date',
+            'category.name',
+            'author.full_name',
+            'author.first_name',
+            'author.surname',
+            'author.company'
+        )
+        ->orderings('my.post.date desc')
+        ->submit();
+
+    $loop->setPosts($posts->getResults());
+}
 
 // Loop management
 
