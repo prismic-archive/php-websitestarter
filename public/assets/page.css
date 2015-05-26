@@ -95,15 +95,17 @@ li p {
   }
 
   .col-3 {
+    margin-left: 1em;
     width: calc((100% / 3) - (1em - 1em / 3));
   }
 
   .col-4 {
+    margin-left: 1em;
     width: calc((100% / 4) - (1em - 1em / 4));
   }
 
-  .col-3 + .col-3,.col-4 + .col-4 {
-    margin-left: 1em;
+  .col-3:nth-child(3n),.col-4:nth-child(4n) {
+    margin-left: 0;
   }
 
   .alternated-highlights-full .col-text {
