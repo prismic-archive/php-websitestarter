@@ -6,6 +6,7 @@
  */
 class Loop
 {
+    // Start at -1 because we increment before getting the first item
     public $loop_index = -1;
     private $posts;
 
@@ -26,6 +27,7 @@ class Loop
     public function setPosts($posts)
     {
         $this->posts = $posts;
+        $this->reset();
     }
 
     public function reset()

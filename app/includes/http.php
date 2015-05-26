@@ -12,7 +12,7 @@ function render_include($page)
 
 function render($app, $page, $data = array())
 {
-    global $wp_query, $loop, $WPGLOBAL;
+    global $loop, $WPGLOBAL;
     $loop = new Loop();
 
     foreach ($data as $key => $value) {
@@ -27,7 +27,6 @@ function render($app, $page, $data = array())
         }
     }
 
-    $wp_query = new WP_Query();
     // Optional helpers that theme developers can provide
     try {
         include_once views_dir().'/functions.php';

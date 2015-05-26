@@ -25,6 +25,7 @@ function recent_posts($pageSize)
 
     $posts = $prismic->form()
         ->query(Predicates::at('document.type', 'post'))
+        ->pageSize($pageSize)
         ->fetchLinks(
             'post.date',
             'category.name',
@@ -36,7 +37,7 @@ function recent_posts($pageSize)
         ->orderings('my.post.date desc')
         ->submit();
 
-    $loop->setPosts($posts->getResults());
+    $loop->setResponse($posts);
 }
 
 // Loop management

@@ -12,7 +12,6 @@ require_once 'includes/tags/author.php';
 require_once 'includes/tags/archive.php';
 require_once 'includes/tags/categories.php';
 require_once 'includes/tags/stubs.php';
-require_once 'includes/tags/WP_Query.php';
 
 require_once 'includes/contact.php';
 require_once 'includes/errorpage.php';
