@@ -40,17 +40,21 @@ function recent_posts($pageSize)
 
 // Loop management
 
+function full_articles($value)
+{
+    global $loop;
+    return $loop->fullArticles = $value;
+}
+
 function have_posts()
 {
     global $loop;
-
     return $loop->has_more();
 }
 
 function count_posts()
 {
     global $loop;
-
     return $loop->size();
 }
 
@@ -151,6 +155,7 @@ function the_content()
     if (!$doc) {
         return;
     }
+    if ($loop->fullArticles) {
     $body = $doc->getStructuredText($doc->getType().'.body');
     if ($body) {
         $htmlSerializer = function ($element, $content) use (&$doc) {
@@ -168,6 +173,9 @@ function the_content()
             return;
         };
         echo $body->asHtml($prismic->linkResolver, $htmlSerializer);
+    }
+    } else {
+        the_excerpt();
     }
 }
 

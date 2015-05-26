@@ -12,6 +12,7 @@ class Loop
 
     public $page = 1;
     public $totalPages = 1;
+    public $fullArticles = false;
 
     public function __construct()
     {

@@ -44,7 +44,7 @@
 
         <a id="menu-hamburger" href="#right-panel"></a>
 
-
+<?php full_articles(true) ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php

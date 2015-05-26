@@ -19,6 +19,6 @@
 
     </p>
 
-    <?php the_excerpt() ?>
+    <?php the_content() ?>
 
 </div>
