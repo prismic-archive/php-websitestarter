@@ -87,6 +87,8 @@ class PrismicHelper
     {
         $this->app = $app;
         $this->linkResolver = new StarterKitLinkResolver($this);
+        // We keep that here as an optimization
+        $this->allPages = null;
     }
 
     private $api = null;
@@ -231,10 +233,7 @@ class PrismicHelper
     {
         $homeId = $this->get_api()->bookmark('home');
 
-        $pages = $this->form()
-          ->query(Predicates::at('document.type', 'page'))
-          ->submit()
-          ->getResults();
+        $pages = $this->get_all_pages();
 
         $parents = array();
         foreach ($pages as $p) {
@@ -332,7 +331,7 @@ class PrismicHelper
         $calendar = array();
         $page = 1;
         do {
-            $posts = $this->form(100)
+            $posts = $this->form()
                 ->page($page)
                 ->query(Predicates::at('document.type', 'post'))
                 ->orderings('my.post.date desc')
@@ -379,14 +378,38 @@ class PrismicHelper
         return $this->get_document($notfoundId);
     }
 
+    public function get_all_pages()
+    {
+        if ($this->allPages == null) {
+            $has_more = true;
+            $this->allPages = array();
+            while ($has_more) {
+                $response = $this->form()
+                          ->query(Predicates::at('document.type', 'page'))
+                          ->submit();
+                foreach ($response->getResults() as $page) {
+                    $this->allPages[$page->getId()] = $page;
+                }
+                $has_more = ($response->getNextPage() != null);
+            }
+        }
+        return $this->allPages;
+    }
+
+    public function get_page($id)
+    {
+        $pages = $this->get_all_pages();
+        return $pages[$id];
+    }
+
     public function home()
     {
         $homeId = $this->get_api()->bookmark('home');
         if (!$homeId) {
             return array();
         }
-
-        $home = $this->get_document($homeId);
+        $pages = $this->get_all_pages();
+        $home = $pages[$homeId];
 
         if (!$home || $home->getType() != 'page') {
             return array();
@@ -402,6 +425,8 @@ class PrismicHelper
 
     private function getPageChildren($page)
     {
+        $pages = $this->get_all_pages();
+
         $result = array();
         if (!$page) {
             return $result;
@@ -410,19 +435,15 @@ class PrismicHelper
         if (!$group) {
             return $result;
         }
-        $children_ids = array();
+        $children_by_id = array();
         foreach ($group->getArray() as $item) {
             if (!isset($item['label']) || !isset($item['link'])) {
                 continue;
             }
             $link = $item->getLink('link');
             if ($link instanceof \Prismic\Fragment\Link\DocumentLink) {
-                array_push($children_ids, $link->getId());
+                $children_by_id[$link->getId()] = $pages[$link->getId()];
             }
-        }
-        $children_by_id = array();
-        foreach ($this->from_ids($children_ids)->getResults() as $page) {
-            $children_by_id[$page->getId()] = $page;
         }
         foreach ($group->getArray() as $item) {
             if (!isset($item['label']) || !isset($item['link'])) {

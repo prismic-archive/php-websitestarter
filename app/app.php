@@ -37,29 +37,11 @@ $app->get('/', function () use ($app, $prismic) {
         return;
     }
 
-    $home = $prismic->get_document($homeId);
+    $home = $prismic->get_page($homeId);
 
     if ($home && $home->getType() == 'page') {
         $skin = $prismic->get_skin();
         render($app, 'page', array('single_post' => $home, 'skin' => $skin));
-    } else if ($home && $home->getType() == 'homeblog') {
-        $posts = $prismic->form()
-            ->page(current_page($app))
-            ->query(Predicates::at('document.type', 'post'))
-            ->fetchLinks(
-                'post.date',
-                'category.name',
-                'author.full_name',
-                'author.first_name',
-                'author.surname',
-                'author.company'
-            )
-            ->orderings('my.post.date desc')
-            ->submit();
-
-        $skin = $prismic->get_skin();
-
-        render($app, 'homeblog', array('homeblog' => $home, 'posts' => $posts, 'skin' => $skin));
     } else {
         not_found($app);
     }
