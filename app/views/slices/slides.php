@@ -12,7 +12,7 @@
 
       $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null;
 
-      $blankImage = the_skin()->getImage('skin.blank-image') ? the_skin()->getImage('skin.blank-image')->getMain() : null;
+      $blankImage = the_skin() && the_skin()->getImage('skin.blank-image') ? the_skin()->getImage('skin.blank-image')->getMain() : null;
 
       $illustrationUrl = $illustration ? $illustration->getUrl() : ($blankImage ? $blankImage->getUrl() : '');
 
