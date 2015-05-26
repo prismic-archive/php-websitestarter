@@ -19,9 +19,7 @@ function recent_posts($pageSize)
     global $WPGLOBAL, $loop;
     $prismic = $WPGLOBAL['prismic'];
 
-    if (!$pageSize) {
-        $pageSize = 5;
-    }
+    $pageSize = $pageSize ? $pageSize->getValue() : 5;
 
     $posts = $prismic->form()
         ->query(Predicates::at('document.type', 'post'))
