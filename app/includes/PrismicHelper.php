@@ -442,7 +442,9 @@ class PrismicHelper
             }
             $link = $item->getLink('link');
             if ($link instanceof \Prismic\Fragment\Link\DocumentLink) {
-                $children_by_id[$link->getId()] = $pages[$link->getId()];
+                if(isset($children_by_id[$link->getId()])) {
+                    $children_by_id[$link->getId()] = $pages[$link->getId()];
+                }
             }
         }
         foreach ($group->getArray() as $item) {
@@ -453,11 +455,13 @@ class PrismicHelper
             $link = $item->getLink('link');
             $children = array();
             if ($link instanceof \Prismic\Fragment\Link\DocumentLink && !$link->isBroken()) {
-                $doc = $children_by_id[$link->getId()];
-                if (!$label) {
-                    $label = 'No label';
+                if(isset($children_by_id[$link->getId()])) {
+                    $doc = $children_by_id[$link->getId()];
+                    if (!$label) {
+                        $label = 'No label';
+                    }
+                    $children = $this->getPageChildren($doc);
                 }
-                $children = $this->getPageChildren($doc);
             }
             array_push($result, array(
                 'label' => $label,
