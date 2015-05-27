@@ -1,5 +1,16 @@
 $(function(){
 
+  (function SlideOverlay() {
+    if (!Modernizr.pointerevents) {
+      $(".slides-overlay").on('click', function(e) {
+        // Forward clicks from the overlay to the underlying elements
+        $(this).hide();
+        $(document.elementFromPoint(e.clientX,e.clientY)).trigger("click");
+        $(this).show();
+      });
+    }
+  }());
+
   (function Slider() {
 
     if(window.Zanimo) {

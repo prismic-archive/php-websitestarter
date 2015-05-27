@@ -288,14 +288,6 @@ li p {
     text-align: center;
   }
 
-  .slides .arrow-next {
-    right: 0;
-  }
-
-  .slides .arrow-prev::before, .slides .arrow-next::before {
-    font-size: 30px;
-  }
-
   .alternated-highlights-full .col-illustration {
     display: none;
   }
@@ -522,8 +514,25 @@ li p {
   position: relative;
 }
 
+.slides-overlay {
+  height: 100%;
+  width: 100%;
+  float: left;
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
 .slides, .slides h2, .slide-arrows a {
   color: white;
+}
+
+.slides .arrow-next {
+  right: 0;
+}
+
+.slides .arrow-prev::before, .slides .arrow-next::before {
+  font-size: 30px;
 }
 
 .slides .slide {

@@ -17,10 +17,12 @@
   $titleFont = $skin->getText('skin.page-title-font');
   $skinColor = $skin->getColor('skin.page-main-color');
   $skinAlternateColor = $skin->getColor('skin.page-alternate-color');
-  $slideTextColor = $skin->getColor('skin.page-slide-text-color');
   $faqSeparationColor = $skin->getColor('skin.page-faq-separation-color');
-  $slideHeight = $skin->getNumber('skin.page-slide-height');
 
+  $slideTextColor = $skin->getColor('skin.page-slide-text-color');
+  $slideHeight = $skin->getNumber('skin.page-slide-height');
+  $slideOverlayColor = $skin->getColor('skin.page-slide-overlay-color');
+  $slideOverlayOpacity = $skin->getNumber('skin.page-slide-overlay-opacity');
   $slideHomeButtonBackgroundFirstColor = $skin->getColor('skin.page-slide-home-button-background-first-color');
   $slideHomeButtonBackgroundSecondColor = $skin->getColor('skin.page-slide-home-button-background-second-color');
 ?>
@@ -134,6 +136,11 @@ body {
 .slides {
   <?= $slideHeight ? 'height:'.$slideHeight->asText().'vh' : ''; ?>;
 }
+
+.slides-overlay {
+  <?= $slideOverlayColor ? 'background-color:'.$slideOverlayColor->asText() : ''; ?>;
+  <?= $slideOverlayOpacity ? 'opacity:'.$slideOverlayOpacity->asText() : ''; ?>;
+ }
 
 </style>
 
