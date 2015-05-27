@@ -169,6 +169,10 @@ h1, h2 {
   font-size: 28px;
 }
 
+.wio-link ~ .blog-post-title {
+  padding-right: 30px;
+}
+
 .blog-post-title a, .blog-post-meta a {
   font-family: 'Lato', sans-serif;
 }
