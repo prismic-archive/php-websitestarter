@@ -334,6 +334,7 @@ class PrismicHelper
             $posts = $this->form()
                 ->page($page)
                 ->query(Predicates::at('document.type', 'post'))
+                ->fetch('post.date')
                 ->orderings('my.post.date desc')
                 ->submit();
             foreach ($posts->getResults() as $post) {
