@@ -106,19 +106,14 @@ $(function(){
   (function FeaturedItemPreview() {
 
     function select() {
+      var paneId = $(this).attr('data-paneid');
       var $previewPane = $(this).parents('.featured-preview').find('.preview-pane');
-      var url = $(this).data('illustration');
-      $previewPane.css('background', 'url('+url+') no-repeat center center');
+      $previewPane.find('.preview-image').css('opacity', 0);
+      $previewPane.find('.preview-image[data-paneid="' + paneId + '"]').css('opacity', 1);
     }
 
-    $('.featured-preview [data-illustration]:not(:first-child)').each(function() {
-      var url = $(this).data('illustration');
-      var image = new Image();
-      image.src = url;
-    });
-
-    $('.featured-preview [data-illustration]').on('mouseenter', select);
-    $('.featured-preview [data-illustration]').first().map(select);
+    $('.featured-preview [data-paneid]').on('mouseenter', select);
+    $('.featured-preview [data-paneid]').first().map(select);
 
   })();
 

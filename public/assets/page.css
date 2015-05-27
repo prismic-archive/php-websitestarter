@@ -424,8 +424,19 @@ li p {
   bottom: 0;
   right: 0;
   padding: 0;
-  background-size: cover !important;
   background: url(/assets/blank.png) no-repeat center center;
+}
+
+.featured-preview .preview-pane .preview-image {
+  transition: opacity .3s ease-in-out;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  background-size: cover !important;
+  height: 100%;
+  width: 100%;
 }
 
 /* Featured item */
