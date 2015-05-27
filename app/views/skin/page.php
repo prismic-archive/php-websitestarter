@@ -137,10 +137,10 @@ body {
   <?= $slideHeight ? 'height:'.$slideHeight->asText().'vh' : ''; ?>;
 }
 
-.slides-overlay {
+.slide::before {
   <?= $slideOverlayColor ? 'background-color:'.$slideOverlayColor->asText() : ''; ?>;
   <?= $slideOverlayOpacity ? 'opacity:'.$slideOverlayOpacity->asText() : ''; ?>;
- }
+}
 
 </style>
 
