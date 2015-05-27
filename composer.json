@@ -4,7 +4,7 @@
     "require": {
         "slim/slim": "2.*",
         "suin/php-rss-writer": ">=1.0",
-        "prismic/php-sdk": "1.5.4",
+        "prismic/php-sdk": "1.5.9",
         "mailgun/mailgun-php": "1.7.2"
     },
     "require-dev": {
