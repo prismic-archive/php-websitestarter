@@ -35,10 +35,12 @@ body {
 .main h2 {
   font-size: 26px;
   font-weight: 300;
+  margin-bottom: 15px
 }
 
 .main h3 {
-  margin: 16px 0;
+  margin: 0 0 16px 0;
+  line-height: 26px;
   font-size: 16px;
 }
 
@@ -51,7 +53,7 @@ body {
 .main p {
   line-height: 22px;
   font-size: 14px;
-  margin: 15px 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 li.col-2, li.col-3 {
@@ -108,12 +110,8 @@ li p {
     margin-left: 0;
   }
 
-  .alternated-highlights-full .col-text {
-    width: 60%;
-  }
-
-  .alternated-highlights-full .col-illustration {
-    width: 40%;
+  .alternated-highlights-full .col-illustration, .alternated-highlights-full .col-text {
+    width: 50%;
   }
 
   .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
@@ -124,17 +122,12 @@ li p {
     padding-right: 100px;
   }
 
-  .featured-items > div {
-    position: relative;
+  .featured-items .col-3 {
+      padding: 0 10px;
   }
 
-  .featured-items .button {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
+  .featured-items > div {
+    position: relative;
   }
 
   .slides .arrow-prev {
@@ -401,21 +394,25 @@ li p {
 .featured-preview li {
   min-height: 120px;
   position: relative;
-  padding: 30px 50px 30px 100px;
+  padding: 30px 50px 30px 120px;
 }
 
 .featured-preview li:hover {
-  background: #FFF;
+  background: #e9e9f5;
+}
+
+.featured-preview li:hover .illustration {
+  border: none;
 }
 
 .featured-preview .illustration {
   position: absolute;
-  left: 1em;
+  left: 30px;
   background-size: cover;
   width: 60px;
   height: 60px;
   border-radius: 6px;
-  border: 1px solid #fff;
+  border: 1px solid;
 }
 
 .featured-preview .preview-pane {
@@ -445,11 +442,13 @@ li p {
   margin: 0 auto;
   width: 120px;
   height: 120px;
+  margin-bottom: 15px;
 }
 
 /* Featured item mini */
 
 .featured-mini .illustration {
+  margin-bottom: 10px;
   width: 60px;
   height: 60px;
 }
@@ -537,12 +536,8 @@ li p {
   z-index: 1
 }
 
-.slides, .slides h2, .slide-arrows a {
+.slides, .slides h1, .slide-arrows a {
   color: white;
-}
-
-.slides .arrow-next {
-  right: 0;
 }
 
 .slides .arrow-prev::before, .slides .arrow-next::before {
@@ -626,18 +621,6 @@ li p {
   font-family: 'Lato', sans-serif;
   font-size: 20px;
   line-height: 30px;
-}
-
-.button.home {
-  background: #5154AB;
-  color: #FFF;
-  border: none;
-  text-transform: uppercase;
-  font-size: 17px;
-  border-radius: 60px;
-  box-shadow: 0px 3px #412F8D;
-  cursor: pointer;
-  outline: none;
 }
 
 .slide-container {
