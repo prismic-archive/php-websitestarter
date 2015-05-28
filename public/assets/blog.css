@@ -12,12 +12,12 @@ a {
   background-position: 0 23px;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+.blog-main h1, .blog-main .h1,
+.blog-main h2, .blog-main .h2,
+.blog-main h3, .blog-main .h3,
+.blog-main h4, .blog-main .h4,
+.blog-main h5, .blog-main .h5,
+.blog-main h6, .blog-main .h6 {
   margin-top: 0;
   color: #2F3163;
 }
