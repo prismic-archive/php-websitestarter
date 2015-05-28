@@ -176,72 +176,72 @@ li p {
   }
 }
 
-.section-header.section-header-centered p,.section-header.section-header-centered h2{
+.section-header.section-header-centered p,.section-header.section-header-centered h2 {
   text-align: center;
 }
 
-.section-header.section-header-col-2 p{
+.section-header.section-header-col-2 p {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
 }
-.section-header.section-header-col-2-centered p{
+.section-header.section-header-col-2-centered p {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
 }
-.section-header.section-header-col-2-centered h2,.section-header.section-header-col-2-centered p{
+.section-header.section-header-col-2-centered h2,.section-header.section-header-col-2-centered p {
   text-align: center;
 }
 
-.section-header.section-header-col-3 p{
+.section-header.section-header-col-3 p {
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
 }
-.section-header.section-header-col-3-centered p{
+.section-header.section-header-col-3-centered p {
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
 }
-.section-header.section-header-col-3-centered h2,.section-header.section-header-col-3-centered p{
+.section-header.section-header-col-3-centered h2,.section-header.section-header-col-3-centered p {
   text-align: center;
 }
 
-.text.text-col-2 p{
+.text.text-col-2 p {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
 }
-.text.text-centered p,.text.text-centered h2{
+.text.text-centered p,.text.text-centered h2 {
   text-align: center;
 }
-.text.text-col-2-centered p{
+.text.text-col-2-centered p {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
 }
-.text.text-col-2-centered h2,.text.text-col-2-centered p{
+.text.text-col-2-centered h2,.text.text-col-2-centered p {
   text-align: center;
 }
-.text.text-col-3-centered p{
+.text.text-col-3-centered p {
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
 }
-.text.text-col-3-centered h2,.text.text-col-3-centered p{
+.text.text-col-3-centered h2,.text.text-col-3-centered p {
   text-align: center;
 }
-.text.text-col-3 p{
+.text.text-col-3 p {
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
 }
 
-.imageFull{
+.imageFull {
   height: auto;
 }
-.imageFull img{
+.imageFull img {
   width: 100%;
 }
 
@@ -526,8 +526,7 @@ li p {
 }
 
 .slides .slide {
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
+  transition: opacity 0.4s;
   background-size: cover;
   padding: 10px 20px;
   position: absolute;
@@ -536,6 +535,11 @@ li p {
   background-color: #201145;
   background: url(/assets/blank.png);
   background-size: cover;
+  opacity: 0;
+}
+
+.slides .slide.active {
+  opacity: 1;
 }
 
 .slides.medium {
@@ -557,16 +561,13 @@ li p {
   color: #FFF;
 }
 
-.slides .slide.active {
-  display: block;
-}
-
 .slides .arrow-prev, .slides .arrow-next {
   position: absolute;
   display: block;
-  z-index: 1;
+  z-index: 2;
   top: 50%;
   color: #FFF;
+  cursor: pointer;
 }
 
 .slides .arrow-prev {

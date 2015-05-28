@@ -1,7 +1,5 @@
 </div>
 
-<script src="/assets/vendor/Zanimo.js"></script>
-
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script src="/assets/vendor/mailgun-validator.min.js"></script>

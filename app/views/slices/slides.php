@@ -4,6 +4,8 @@
     <a href="#" class="arrow-prev">&nbsp;</a>
 <?php endif ?>
 
+<?php $index = 0; ?>
+
 <?php foreach($slice->getValue()->getArray() as $item) { ?>
 
     <?php
@@ -14,11 +16,12 @@
       $readMoreLabel = $item->get('read-more-label');
     ?>
 
-    <div class="slide" style="<?= $illustrationUrl ? 'background-image: url('.$illustrationUrl.')' : '' ?>">
+    <div data-illustration="<?= $illustrationUrl ? $illustrationUrl : '' ?>" class="slide <?= $index == 0 ? 'active' : '' ?>" style="<?= $illustrationUrl ? 'background-image: url('.$illustrationUrl.')' : '' ?>">
 
         <div class="slide-container">
 
             <?= $item->get('title') ? $item->get('title')->asHtml() : ''; ?>
+
             <?= $item->get('summary') ? $item->get('summary')->asHtml() : ''; ?>
 
             <?php if ($readMore && $readMoreLabel): ?>
@@ -34,6 +37,8 @@
         </div>
 
     </div>
+
+    <?php $index++; ?>
 
 <?php } ?>
 

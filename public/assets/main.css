@@ -107,7 +107,7 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   color: white;
   text-shadow: 0 0 2px black;
 }
@@ -221,7 +221,7 @@ a {
 .page > .main > .wio-link {
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
           transition: transform 0.2s ease-in-out;
-  z-index: 1;
+  z-index: 2;
   border-radius: 50%;
   background: #FFF !important;
   box-shadow: 0 0 2px black;
