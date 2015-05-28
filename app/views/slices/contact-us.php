@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="row-centered-separate contact-us">
+<div class="row-centered contact-us">
 
   <div class="col-2">
 

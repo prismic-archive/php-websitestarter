@@ -1,4 +1,4 @@
-<div class="row-centered-separate faq">
+<div class="row-centered faq">
 
   <?php $opentag = false; ?>
 

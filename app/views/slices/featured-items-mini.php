@@ -1,4 +1,4 @@
-<div class="row-centered-separate featured-mini">
+<div class="row-centered featured-mini">
 
   <?php foreach($slice->getValue()->getArray() as $item) { ?>
 

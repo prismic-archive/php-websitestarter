@@ -1,4 +1,4 @@
-<div class="row-centered-separate featured-items-simple">
+<div class="row-centered featured-items-simple">
 
     <ul>
 

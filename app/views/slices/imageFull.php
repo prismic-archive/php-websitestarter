@@ -1,4 +1,4 @@
-<div class="row-separate imageFull <?= $slice->getLabel() ?>">
+<div class="row imageFull <?= $slice->getLabel() ?>">
 <?php 
 	$items = $slice->getValue()->getArray();
 	$item = $items[0];

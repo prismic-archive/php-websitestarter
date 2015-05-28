@@ -1,4 +1,4 @@
-<div class="slides row-separate <?= $slice->getLabel() ?>">
+<div class="slides row <?= $slice->getLabel() ?>">
 
 <?php if(count($slice->getValue()->getArray()) > 1): ?>
     <a href="#" class="arrow-prev">&nbsp;</a>

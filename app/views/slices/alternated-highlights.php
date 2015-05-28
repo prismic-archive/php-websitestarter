@@ -1,4 +1,4 @@
-<div class="row-separate alternated-items">
+<div class="row alternated-items">
 
 <?php $index = 0; ?>
 

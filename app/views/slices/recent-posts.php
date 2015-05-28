@@ -1,4 +1,4 @@
-<div class="row-centered-separate container blog-main recent-posts <?= $slice->getLabel() ?>">
+<div class="row-centered container blog-main recent-posts <?= $slice->getLabel() ?>">
 
 <?php $arr = $slice->getValue()->getArray(); $params = $arr[0]; ?>
 
