@@ -412,7 +412,7 @@ class PrismicHelper
         $pages = $this->get_all_pages();
         $home = $pages[$homeId];
 
-        if (!$home || $home->getType() != 'page') {
+        if (!$home) {
             return array();
         }
 
