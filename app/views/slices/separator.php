@@ -1,1 +1,1 @@
-<hr class="separator" />
+<hr class="separator <?= $slice->getLabel() ?>" />

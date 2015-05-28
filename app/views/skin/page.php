@@ -25,6 +25,10 @@
   $slideOverlayOpacity = $skin->getNumber('skin.page-slide-overlay-opacity');
   $slideHomeButtonBackgroundFirstColor = $skin->getColor('skin.page-slide-home-button-background-first-color');
   $slideHomeButtonBackgroundSecondColor = $skin->getColor('skin.page-slide-home-button-background-second-color');
+
+  $separatorHeight = $skin->getNumber('skin.page-separator-height');
+  $separatorMediumHeight = $skin->getNumber('skin.page-separator-height-medium');
+  $separatorSmallHeight = $skin->getNumber('skin.page-separator-height-small');
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
@@ -140,6 +144,18 @@ body {
 .slide::before {
   <?= $slideOverlayColor ? 'background-color:'.$slideOverlayColor->asText() : ''; ?>;
   <?= $slideOverlayOpacity ? 'opacity:'.$slideOverlayOpacity->asText() : ''; ?>;
+}
+
+hr.separator {
+  <?= $separatorHeight ? 'height:'.$separatorHeight->asText().'px' : ''; ?>;
+}
+
+hr.separator.medium {
+  <?= $separatorMediumHeight ? 'height:'.$separatorMediumHeight->asText().'px' : ''; ?>;
+}
+
+hr.separator.small {
+  <?= $separatorSmallHeight ? 'height:'.$separatorSmallHeight->asText().'px' : ''; ?>;
 }
 
 </style>

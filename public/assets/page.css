@@ -662,3 +662,11 @@ hr.separator {
   padding: 0;
   margin: 0;
 }
+
+hr.separator.medium {
+  height: 50px;
+}
+
+hr.separator.small {
+  height: 35px;
+}
