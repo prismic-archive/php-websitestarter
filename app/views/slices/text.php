@@ -1,4 +1,4 @@
-<div class="row-centered text <?= $slice->getLabel() ?>">
+<div class="row-centered-aired text <?= $slice->getLabel() ?>">
 
   <?= $slice->getValue()->asHtml(); ?>
 
