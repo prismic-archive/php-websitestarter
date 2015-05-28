@@ -45,9 +45,15 @@ $app->get('/', function () use ($app, $prismic) {
     } else if ($home && $home->getType() == 'bloghome') {
         $skin = $prismic->get_skin();
         $posts = $prismic->form()
-               ->query(array(
-                   Predicates::at('document.type', 'post'),
-               ))
+               ->query(Predicates::at('document.type', 'post'))
+               ->fetchLinks(
+                   'post.date',
+                   'category.name',
+                   'author.full_name',
+                   'author.first_name',
+                   'author.surname',
+                   'author.company'
+               )
                ->page(current_page($app))
                ->orderings('[my.post.date desc]')
                ->submit();
@@ -188,6 +194,14 @@ $app->get('/blog', function () use ($app, $prismic) {
 
     $posts = $prismic->form()
            ->query(Predicates::at('document.type', 'post'))
+           ->fetchLinks(
+               'post.date',
+               'category.name',
+               'author.full_name',
+               'author.first_name',
+               'author.surname',
+               'author.company'
+           )
            ->page(current_page($app))
            ->orderings('[my.post.date desc]')
            ->submit();
