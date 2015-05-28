@@ -30,10 +30,11 @@ function get_previous_posts_link_url()
     if ($loop->page == 1) {
         return '';
     }
+    $p = $loop->page - 1;
     $qs = $app->request()->params();
-    $qs['page'] = ($loop->page - 1);
+    $qs['p'] = $p;
 
-    return $app->request->getPath().'?'.http_build_query($qs);
+    return $app->request->getPath() . ($p != 1 ? ('?' . http_build_query($qs)) : '');
 }
 
 function get_previous_posts_link($label = '« Previous Page')
@@ -58,7 +59,7 @@ function get_next_posts_link_url($label = 'Next Page »')
         return '';
     }
     $qs = $app->request()->params();
-    $qs['page'] = ($loop->page + 1);
+    $qs['p'] = ($loop->page + 1);
 
     return $app->request->getPath().'?'.http_build_query($qs);
 }

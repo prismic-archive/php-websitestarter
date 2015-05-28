@@ -43,7 +43,16 @@ $app->get('/', function () use ($app, $prismic) {
         $skin = $prismic->get_skin();
         render($app, 'page', array('single_post' => $home, 'skin' => $skin));
     } else if ($home && $home->getType() == 'bloghome') {
-        
+        $skin = $prismic->get_skin();
+        $posts = $prismic->form()
+               ->query(array(
+                   Predicates::at('document.type', 'post'),
+               ))
+               ->page(current_page($app))
+               ->orderings('[my.post.date desc]')
+               ->submit();
+
+        render($app, 'bloghome', array('bloghome' => $home, 'posts' => $posts, 'skin' => $skin));
     } else {
         not_found($app);
     }
@@ -178,9 +187,8 @@ $app->get('/blog', function () use ($app, $prismic) {
     }
 
     $posts = $prismic->form()
-           ->query(array(
-               Predicates::at('document.type', 'post'),
-           ))
+           ->query(Predicates::at('document.type', 'post'))
+           ->page(current_page($app))
            ->orderings('[my.post.date desc]')
            ->submit();
     $skin = $prismic->get_skin();

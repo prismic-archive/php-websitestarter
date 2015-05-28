@@ -382,9 +382,11 @@ class PrismicHelper
         if ($this->allPages == null) {
             $has_more = true;
             $this->allPages = array();
+            $p = 0;
             while ($has_more) {
-                $response = $this->form()
+                $response = $this->form(20)
                           ->query(Predicates::any('document.type', array('page', 'bloghome')))
+                          ->page($p++)
                           ->submit();
                 foreach ($response->getResults() as $page) {
                     $this->allPages[$page->getId()] = $page;

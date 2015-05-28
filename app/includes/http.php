@@ -42,7 +42,7 @@ function render($app, $page, $data = array())
 
 function current_page($app)
 {
-    $pageQuery = $app->request()->params('page');
+    $pageQuery = $app->request()->params('p');
 
     return $pageQuery == null ? '1' : $pageQuery;
 }
