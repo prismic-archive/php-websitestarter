@@ -42,6 +42,8 @@ $app->get('/', function () use ($app, $prismic) {
     if ($home && $home->getType() == 'page') {
         $skin = $prismic->get_skin();
         render($app, 'page', array('single_post' => $home, 'skin' => $skin));
+    } else if ($home && $home->getType() == 'bloghome') {
+        
     } else {
         not_found($app);
     }
@@ -157,8 +159,37 @@ $app->get('/tag/:tag', function ($tag) use ($app,$prismic) {
     render($app, 'tag', array('posts' => $posts, 'tag' => $tag, 'skin' => $skin));
 });
 
+// Blog
+$app->get('/blog', function () use ($app, $prismic) {
+    $homeId = $prismic->get_api()->bookmark('home');
+    $blogHomeId = $prismic->get_api()->bookmark('bloghome');
+
+    if ($blogHomeId == null) {
+        not_found($app);
+    } else if ($blogHomeId == $homeId) {
+        redirect('/');
+        return;
+    }
+
+    $blogHome = $prismic->get_page($blogHomeId);
+    if ($blogHome == null){
+        not_found($app);
+        return;
+    }
+
+    $posts = $prismic->form()
+           ->query(array(
+               Predicates::at('document.type', 'post'),
+           ))
+           ->orderings('[my.post.date desc]')
+           ->submit();
+    $skin = $prismic->get_skin();
+
+    render($app, 'bloghome', array('bloghome' => $blogHome, 'posts' => $posts, 'skin' => $skin));
+});
+
 // Archive
-$app->get('/archive/:year(/:month(/:day))', function ($year, $month = null, $day = null) use ($app,$prismic) {
+$app->get('/archive/:year(/:month(/:day))', function ($year, $month = null, $day = null) use ($app, $prismic) {
     global $WPGLOBAL;
 
     $posts = $prismic->archives(array(

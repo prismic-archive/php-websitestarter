@@ -26,6 +26,9 @@ class StarterKitLinkResolver extends LinkResolver
             if ($link->getId() == $id && $name == 'home') {
                 return '/';
             }
+            if ($link->getId() == $id && $name == 'bloghome') {
+                return '/blog';
+            }
         }
         if ($link->isBroken()) {
             return;
@@ -46,11 +49,6 @@ class StarterKitLinkResolver extends LinkResolver
             $day = $date ? $date->asDateTime()->format('d') : '0';
 
             return '/blog/'.$year.'/'.$month.'/'.$day.'/'.urlencode($link->getUid());
-        }
-
-        $homeblogId = $this->prismic->get_api()->bookmark('homeblog');
-        if ($link->getType() == 'homeblog' && $link->getId() == $homeblogId) {
-            return '/blog';
         }
 
         if ($link->getType() == 'page') {
@@ -386,7 +384,7 @@ class PrismicHelper
             $this->allPages = array();
             while ($has_more) {
                 $response = $this->form()
-                          ->query(Predicates::at('document.type', 'page'))
+                          ->query(Predicates::any('document.type', array('page', 'bloghome')))
                           ->submit();
                 foreach ($response->getResults() as $page) {
                     $this->allPages[$page->getId()] = $page;
@@ -432,7 +430,7 @@ class PrismicHelper
         if (!$page) {
             return $result;
         }
-        $group = $page->getGroup('page.children');
+        $group = $page->getGroup($page->getType() . '.children');
         if (!$group) {
             return $result;
         }
@@ -443,17 +441,17 @@ class PrismicHelper
             }
             $link = $item->getLink('link');
             if ($link instanceof \Prismic\Fragment\Link\DocumentLink) {
-                if(isset($children_by_id[$link->getId()])) {
+                if(isset($pages[$link->getId()])) {
                     $children_by_id[$link->getId()] = $pages[$link->getId()];
                 }
             }
         }
         foreach ($group->getArray() as $item) {
-            if (!isset($item['label']) || !isset($item['link'])) {
-                continue;
-            }
             $label = $item->getText('label');
             $link = $item->getLink('link');
+            if ($link == null) {
+                continue;
+            }
             $children = array();
             if ($link instanceof \Prismic\Fragment\Link\DocumentLink && !$link->isBroken()) {
                 if(isset($children_by_id[$link->getId()])) {

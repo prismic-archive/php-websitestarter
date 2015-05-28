@@ -233,8 +233,8 @@ function _make_link($url, $label, $attrs)
 function blog_home()
 {
     global $WPGLOBAL;
-    if (isset($WPGLOBAL['homeblog'])) {
-        return $WPGLOBAL['homeblog'];
+    if (isset($WPGLOBAL['bloghome'])) {
+        return $WPGLOBAL['bloghome'];
     }
 
     return;
@@ -248,7 +248,7 @@ function blog_home_title()
         return '';
     }
 
-    return blog_home()->getText('homeblog.headline');
+    return blog_home()->getText('bloghome.headline');
 }
 
 function blog_home_description()
@@ -259,7 +259,7 @@ function blog_home_description()
         return '';
     }
 
-    return blog_home()->getText('homeblog.description');
+    return blog_home()->getText('bloghome.description');
 }
 
 function blog_home_image_url()
@@ -269,7 +269,7 @@ function blog_home_image_url()
     if (!blog_home()) {
         return '';
     }
-    $image = blog_home()->getImage('homeblog.image');
+    $image = blog_home()->getImage('bloghome.image');
     if ($image) {
         return $image->getMain()->getUrl();
     }
