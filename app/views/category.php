@@ -10,15 +10,15 @@
 
     <div class="wrapper">
 
-        <h1 class="blog-title"><?= single_cat_title() ?></h1>
+        <h1><?= single_cat_title() ?></h1>
+
+        <?= category_description(); ?>
 
     </div>
 
 </div>
 
 <div class="blog-main category container">
-
-<?= category_description() ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

@@ -123,7 +123,7 @@ function category_description($uid = null)
     if ($category && $description) {
         $htmlSerializer = function ($element, $content) {
             if ($element instanceof \Prismic\Fragment\Block\ParagraphBlock) {
-                return '<p class="category-description">'.$content.'<p>';
+                return '<p class="description">'.$content.'</p>';
             }
         };
 

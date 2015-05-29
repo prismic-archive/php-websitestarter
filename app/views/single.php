@@ -58,13 +58,15 @@
 
     <div class="wrapper">
 
-       <?php single_post_date(); ?>
+       <h1><?= single_post_title(); ?></h1>
 
-       <?php single_post_author(); ?>
+       <p class="description">
+         <?php single_post_shortlede(); ?>
+       </p>
 
-       <h1 class="blog-title"><?= single_post_title(); ?></h1>
-
-       <?php single_post_shortlede(); ?>
+       <p class="meta">
+         <?php single_post_date(); ?><?php single_post_author(); ?>
+       </p>
 
     </div>
 </div>

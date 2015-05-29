@@ -346,7 +346,7 @@ function single_post_shortlede()
     $shortlede = single_post_shortlede_text();
     if ($shortlede) {
         $text = mb_strlen($shortlede) > 200 ? mb_substr($shortlede, 0, 200).'...' : $shortlede;
-        echo '<p class="shortlede">'.$text.'</p>';
+        echo $text ? '<span class="shortlede">'.$text.'</span>' : '';
     }
 }
 
@@ -366,7 +366,7 @@ function single_post_date($format = 'F, jS Y')
 {
     $date = single_post_date_text($format);
     if ($date) {
-        echo '<p class="date">'.$date.'</p>';
+        echo $date ? '<span class="date">'.$date.'</span>' : '';
     }
 }
 
@@ -389,7 +389,7 @@ function single_post_author()
 {
     $author = single_post_author_text();
 
-    echo '<p class="author">'.$author.'</p>';
+    echo $author ? '<span class="author">'.$author.'</span>' : '';
 }
 
 function get_html($field, $document = null)

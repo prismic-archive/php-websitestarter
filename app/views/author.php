@@ -4,17 +4,17 @@
 
     <div class="wrapper">
 
-        <div class="author-image" style="background-image: url(<?= single_author_image_url() ?>)"></div>
+        <div class="image" style="background-image: url(<?= single_author_image_url() ?>)"></div>
 
-        <h1 class="blog-title author-name"><?= single_author_name() ?></h1>
+        <h1><?= single_author_name() ?></h1>
 
-        <div class="author-bio">
+        <p class="description">
 
             <?= single_author_bio() ?>
 
-        </div>
+        </p>
 
-        <div class="author-sites">
+        <div class="meta">
 
             <?= single_author_links() ?>
 
