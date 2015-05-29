@@ -407,7 +407,11 @@ $app->get('/document/:id/:slug', function ($id, $slug) use($app, $prismic) {
 
     $skin = $prismic->get_skin();
 
-    render($app, 'document', array('single_post' => $doc, 'skin' => $skin));
+    // Do we have a template for this type?
+    $file_path = views_dir() . '/' . $doc->getType() . '.php';
+    $template = file_exists($file_path) ? $doc->getType() : 'document';
+
+    render($app, $template, array('single_post' => $doc, 'skin' => $skin));
 });
 
 // Page
