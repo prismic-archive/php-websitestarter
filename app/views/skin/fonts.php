@@ -1,7 +1,7 @@
 
 <?php $skin = the_skin(); ?>
 
-<?php if($skin) : ?>
+<?php if($skin && $skin->getGroup('skin.fonts')) : ?>
 
 <?php foreach($skin->getGroup('skin.fonts')->getArray() as $item) { ?>
 

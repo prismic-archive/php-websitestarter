@@ -318,7 +318,7 @@ function single_post_title($prefix = '', $display = true)
     if (!single_post()) {
         return;
     }
-    $result = $prefix.single_post()->getText('post.title');
+    $result = $prefix . single_post()->getText(single_post()->getType() . '.title');
     if ($display) {
         echo htmlentities($result);
     } else {

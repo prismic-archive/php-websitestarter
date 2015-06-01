@@ -6,7 +6,7 @@
 
       <?php $illustration = $item->get('illustration'); ?>
 
-      <li class="col-2" data-illustration="<?= $illustration->getMain()->getUrl(); ?>">
+      <li class="col-2" data-illustration="<?= $illustration ? $illustration->getMain()->getUrl() : ''; ?>">
 
       <div class="illustration" <?= $illustration ? 'style="background-image: url('.$illustration->getView("icon")->getUrl().')"' : '' ?>></div>
 
