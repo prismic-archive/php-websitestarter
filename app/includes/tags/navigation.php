@@ -51,6 +51,12 @@ function previous_posts_link($label = '« Previous Page')
 
 /////
 
+function current_page_number()
+{
+    global $loop;
+    return $loop->page;
+}
+
 function get_next_posts_link_url($label = 'Next Page »')
 {
     global $WPGLOBAL, $loop;

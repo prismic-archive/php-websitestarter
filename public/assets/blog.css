@@ -36,6 +36,7 @@ h1, h2 {
   font-size: 20px;
   line-height: 1.5;
   position: relative;
+  margin-bottom: 70px;
 }
 
 .blog-main .value {
@@ -225,10 +226,6 @@ h1, h2 {
 /*
  * Blog posts
  */
-
-.blog-main.single {
-  margin-bottom: 70px;
-}
 
 .blog-main pre, .blog-main .monospace {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
