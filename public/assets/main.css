@@ -2,6 +2,14 @@
  * Globals
  */
 
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
 @font-face {
     font-family: 'StarterKit';
     src: url('fonts/starterkit.eot') format('eot');
