@@ -89,12 +89,13 @@ a {
 
   .blog-main.single .wio-link, .page .wio-link {
     width: 30px !important;
+    height: 30px;
     top: 60px;
     right: 18px;
   }
 
-  .blog-main.single .wio-link img, .page .wio-link img {
-    width: 18px;
+  .blog-main.single .wio-link img, .page > .main > .wio-link img {
+    width: 10px !important;
   }
 }
 
@@ -203,8 +204,8 @@ a {
     right: 28px;
   }
 
-  .blog-main.single .wio-link img, .page > .main > .wio-link img {
-    width: 24px;
+  .blog-main:not(.single) .wio-link img {
+    width: 20px !important;
   }
 }
 
@@ -237,7 +238,7 @@ a {
 }
 
 .blog-main.single .wio-link img, .page > .main > .wio-link img {
-  padding: 6px;
+  padding: 10px;
 }
 
 [data-wio-id]:hover .wio-link {
