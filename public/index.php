@@ -1,6 +1,7 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once '../app/LinkResolver.php';
 require_once '../app/includes/PrismicHelper.php';
 
 // config.php is not present by default, so we show a message explaining to create one

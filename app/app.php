@@ -17,15 +17,29 @@ use Prismic\Api;
 use Prismic\LinkResolver;
 use Prismic\Predicates;
 
-date_default_timezone_set('UTC');
-
-require_once __DIR__.'/includes.php';
-
 use Suin\RSSWriter\Channel;
 use Suin\RSSWriter\Feed;
 use Suin\RSSWriter\Item;
 
 use Mailgun\Mailgun;
+
+date_default_timezone_set('UTC');
+
+require 'includes/Loop.php';
+require 'includes/http.php';
+
+// Template tags
+require_once 'includes/tags/general.php';
+require_once 'includes/tags/navigation.php';
+require_once 'includes/tags/posts.php';
+require_once 'includes/tags/pages.php';
+require_once 'includes/tags/author.php';
+require_once 'includes/tags/archive.php';
+require_once 'includes/tags/categories.php';
+require_once 'includes/tags/stubs.php';
+
+require_once 'includes/contact.php';
+require_once 'includes/errorpage.php';
 
 // Index page, built from the "home" bookmark from your repository
 $app->get('/', function () use ($app, $prismic) {
