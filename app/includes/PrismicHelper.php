@@ -170,7 +170,7 @@ class PrismicHelper
             if ($p->getId() == $homeId) {
                 continue;
             }
-            $cs = $p->getGroup('page.children');
+            $cs = $p->getGroup($p->getType() . '.children');
             if ($cs) {
                 foreach ($cs->getArray() as $child) {
                     $link = $child->getLink('link');
