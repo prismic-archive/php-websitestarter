@@ -69,7 +69,7 @@ a {
   cursor: default;
 }
 
-.button:not([disabled]):not(.home):hover {
+.button:not([disabled]):hover {
   border: 1px solid #0C0E57;
   background: #0C0E57;
   color: #fff;

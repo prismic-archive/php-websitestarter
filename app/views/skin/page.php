@@ -23,8 +23,11 @@
   $slideHeight = $skin->getNumber('skin.page-slide-height');
   $slideOverlayColor = $skin->getColor('skin.page-slide-overlay-color');
   $slideOverlayOpacity = $skin->getNumber('skin.page-slide-overlay-opacity');
-  $slideHomeButtonBackgroundFirstColor = $skin->getColor('skin.page-slide-home-button-background-first-color');
-  $slideHomeButtonBackgroundSecondColor = $skin->getColor('skin.page-slide-home-button-background-second-color');
+  $slideButtonBackgroundColor = $skin->getColor('skin.page-slide-button-background-color');
+  $slideButtonBorderColor = $skin->getColor('skin.page-slide-button-border-color');
+
+  $slideButtonHoverBackgroundColor = $skin->getColor('skin.page-slide-button-hover-background-color');
+  $slideButtonHoverBorderColor = $skin->getColor('skin.page-slide-button-hover-border-color');
 
   $separatorHeight = $skin->getNumber('skin.page-separator-height');
   $separatorMediumHeight = $skin->getNumber('skin.page-separator-height-medium');
@@ -78,10 +81,15 @@ body {
   <?= $backgroundColor ? 'background-color:'.$backgroundColor->asText() : ''; ?>;
 }
 
-.button.home {
+.slides .button {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : ''; ?>;
-  <?= $slideHomeButtonBackgroundFirstColor ? 'background-color:'.$slideHomeButtonBackgroundFirstColor->asText() : ''; ?>;
-  <?= $slideHomeButtonBackgroundSecondColor ? 'box-shadow: 0px 3px '.$slideHomeButtonBackgroundSecondColor->asText() : ''; ?>;
+  <?= $slideButtonBackgroundColor ? 'background-color:'.$slideButtonBackgroundColor->asText() : ''; ?>;
+  <?= $slideButtonBorderColor ? 'box-shadow: 0px 3px '.$slideButtonBorderColor->asText() : ''; ?>;
+}
+
+.slides .button:hover {
+  <?= $slideButtonHoverBackgroundColor ? 'background-color:'.$slideButtonHoverBackgroundColor->asText() : ''; ?>;
+  <?= $slideButtonHoverBorderColor ? 'box-shadow: 0 3px '.$slideButtonHoverBorderColor->asText() : ''; ?>;
 }
 
 .round-image {
@@ -120,17 +128,8 @@ body {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
 }
 
-.slides .button {
-  <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : '' ?>;
-}
-
 .slides p {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>;
-}
-
-.slides .button:not(.home):hover {
-  <?= $slideTextColor ? 'background:'.$slideTextColor->asText() : ''; ?>;
-  <?= $titleColor ? 'color:'.$titleColor->asText() : '' ?>;
 }
 
 .contact-us form[name=contact-form] .form-group label {
