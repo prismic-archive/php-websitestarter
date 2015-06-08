@@ -162,6 +162,7 @@ class PrismicHelper
     public function page_path($uid)
     {
         $homeId = $this->get_api()->bookmark('home');
+        $blogId = $this->get_api()->bookmark('bloghome');
 
         $pages = $this->get_all_pages();
 
@@ -175,7 +176,7 @@ class PrismicHelper
                 foreach ($cs->getArray() as $child) {
                     $link = $child->getLink('link');
                     if ($link instanceof \Prismic\Fragment\Link\DocumentLink) {
-                        $parent_title = $p->getUid();
+                        $parent_title = ($p->getId() == $blogId) ? 'blog' : $p->getUid();
                         $parents[$link->getUid()] = $parent_title;
                     }
                 }
