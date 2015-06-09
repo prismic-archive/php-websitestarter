@@ -16,7 +16,7 @@
 
     <div class="col-illustration">
 
-      <div class="illustration" <?= $illustration ? 'style="background-image: url('.$illustration->getUrl().')"' : '' ?>></div>
+      <div class="illustration squared-image" <?= $illustration ? 'style="background-image: url('.$illustration->getUrl().')"' : '' ?>></div>
 
     </div>
 
@@ -37,7 +37,7 @@
 
     <div class="col-illustration">
 
-      <div class="illustration" <?= $illustration ? 'style="background-image: url('.$illustration->getUrl().')"' : '' ?>></div>
+      <div class="illustration squared-image" <?= $illustration ? 'style="background-image: url('.$illustration->getUrl().')"' : '' ?>></div>
 
     </div>
 

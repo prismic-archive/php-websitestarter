@@ -313,15 +313,22 @@ li p {
   margin-right: auto;
   overflow: hidden;
 }
-.row-centered-aired{
+
+.row-centered-aired {
   max-width: 1100px;
   overflow: hidden;
   margin: 20px auto;
 }
+
 .round-image {
   background-size: cover;
   border-radius: 50%;
   background-color: #F3F3F9;
+}
+
+.squared-image {
+  background-size: cover;
+  border-radius: 6px;
 }
 
 /*
@@ -393,10 +400,8 @@ li p {
 .featured-preview .illustration {
   position: absolute;
   left: 30px;
-  background-size: cover;
   width: 60px;
   height: 60px;
-  border-radius: 6px;
   border: 1px solid;
 }
 
@@ -483,11 +488,9 @@ li p {
 .featured-items-simple .illustration {
   width: 60px;
   height: 60px;
-  border-radius: 6px;
   position: absolute;
   left: 1em;
   background-color: #F3F3F9;
-  background-size: cover;
 }
 
 /* faq */
