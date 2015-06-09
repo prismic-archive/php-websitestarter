@@ -333,7 +333,7 @@ class PrismicHelper
     public function get_page($id)
     {
         $pages = $this->get_all_pages();
-        return $pages[$id];
+        return array_key_exists($id, $pages) ? $pages[$id] : null;
     }
 
     public function home()

@@ -25,8 +25,8 @@ use Mailgun\Mailgun;
 
 date_default_timezone_set('UTC');
 
-require 'includes/Loop.php';
-require 'includes/http.php';
+require_once 'includes/Loop.php';
+require_once 'includes/http.php';
 
 // Template tags
 require_once 'includes/tags/general.php';
