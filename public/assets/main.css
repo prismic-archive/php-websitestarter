@@ -20,13 +20,17 @@ em {
     font-style: normal;
 }
 
+html {
+  font-size: 100%;
+}
+
 body {
   font-family: 'PT Serif', serif;
-  font-size: 12px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   padding: 0;
   margin: 0;
+  font-size: 0.75em;
 }
 
 li, ul {
@@ -84,7 +88,7 @@ a {
 
   #menu-hamburger {
     padding: 15px 20px;
-    font-size: 18px;
+    font-size: 1.5em;
   }
 
   .blog-main.single .wio-link, .page .wio-link {
@@ -148,7 +152,7 @@ a {
   border: 0;
   background: #181818;
   color: #FFF;
-  font-size: 16px;
+  font-size: 1.33em;
   max-width: 130px;
 }
 
@@ -166,7 +170,7 @@ a {
 
 #right-panel .sidebar-section h3 {
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 1.33em;
   margin: 0;
 }
 
@@ -179,7 +183,7 @@ a {
 }
 
 #right-panel .sidebar-section li a {
-  font-size: 14px;
+  font-size: 1.17em;
 }
 
 /*
@@ -190,11 +194,10 @@ a {
 
   #menu-hamburger {
     padding: 30px;
-    font-size: 22px;
   }
 
   #menu-hamburger::before {
-    font-size: 22px;
+    font-size: 1.83em;
   }
 
   .blog-main.single .wio-link, .page > .main > .wio-link {
