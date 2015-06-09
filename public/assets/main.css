@@ -65,7 +65,7 @@ a {
   letter-spacing: 1px;
   display: inline-block;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 0.84em;
   background: none;
 }
 
@@ -175,7 +175,7 @@ a {
 }
 
 #right-panel .sidebar-section ul {
-  margin-top: 8px;
+  margin-top: 0.67em;
 }
 
 #right-panel .sidebar-section li {

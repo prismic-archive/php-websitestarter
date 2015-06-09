@@ -35,12 +35,12 @@ body {
 .main h2 {
   font-size:  2.17em;
   font-weight: 300;
-  margin-bottom: 15px
+  margin-bottom: 1.25em
 }
 
 .main h3 {
-  margin: 0 0 16px 0;
-  line-height: 26px;
+  margin: 0 0 1.33em 0;
+  line-height: 2.17em;
   font-size: 1.33em;
 }
 
@@ -51,18 +51,18 @@ body {
 }
 
 .main p {
-  line-height: 22px;
+  line-height: 1.83em;
   font-size: 1.17em;
-  margin: 0 0 20px 0;
+  margin: 0 0 1.67em 0;
 }
 
 li.col-2, li.col-3 {
   border: none;
-  padding: 0 30px 30px 100px;
+  padding: 0 2.5em 2.5em 8.33em;
 }
 
 li h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 0.84em 0;
 }
 
 li p {
@@ -110,11 +110,11 @@ li p {
   }
 
   .featured-mini p, .featured-items-simple p {
-    padding-right: 100px;
+    padding-right: 8.33em;
   }
 
   .featured-items .col-3 {
-      padding: 0 10px;
+      padding: 0 0.84em;
   }
 
   .featured-items > div {
@@ -122,16 +122,16 @@ li p {
   }
 
   .slides .button {
-    padding: 27px 105px;
-    margin-top: 44px;
+    padding: 2.25em 8.75em;
+    margin-top: 3.67em;
   }
 
   .slides .arrow-prev {
-    left: 28px;
+    left: 2.33em;
   }
 
   .slides .arrow-next {
-    right: 28px;
+    right: 2.33em;
   }
 
   .slides .arrow-prev::before, .slides .arrow-next::before {
@@ -163,7 +163,7 @@ li p {
   }
 
   .contact-us form[name=contact-form] {
-    width: 400px;
+    width: 33.33em;
   }
 
   .contact-us .address {
@@ -171,8 +171,8 @@ li p {
   }
 
   .contact-us .map {
-    width: 400px;
-    height: 300px;
+    width: 33.33em;
+    height: 25em;
   }
 }
 
@@ -256,12 +256,12 @@ li p {
   }
 
   .col-1, .col-2, .col-3, .col-4, .col-text, .col-illustration {
-    padding: 40px;
+    padding: 3.33em;
   }
 
   .section-header {
     text-align: center;
-    padding: 20px !important;
+    padding: 1.67em !important;/*TODO*/
   }
 
   .faq {
@@ -289,13 +289,13 @@ li p {
   }
 
   .slides .button {
-    padding: 20px;
+    padding: 1.67em;
     width: 100%;
   }
 
   .contact-us .map {
     width: 100%;
-    height: 300px;
+    height: 25em;
   }
 
   .contact-us .address {
@@ -308,15 +308,15 @@ li p {
 }
 
 .row-centered {
-  max-width: 1100px;
+  max-width: 91.67em;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
 .row-centered-aired{
-  max-width: 1100px;
+  max-width: 91.67em;
   overflow: hidden;
-  margin: 20px auto;
+  margin: 1.67em auto;
 }
 .round-image {
   background-size: cover;
@@ -329,8 +329,8 @@ li p {
  */
 
 .slice {
-  max-width: 1100px;
-  padding: 26px;
+  max-width: 91.67em;
+  padding: 2.17em;
   margin-right: auto;
   margin-left: auto;
 }
@@ -351,20 +351,20 @@ li p {
 .slice-featured h3 {
   font-size: 1.33em;
   font-weight: bold;
-  margin: 16px 0;
+  margin: 1.33em 0;
 }
 
 .slice-featured p {
-  line-height: 22px;
+  line-height: 1.83em;
   font-size: 1.17em;
-  margin: 15px 0 20px 0;
+  margin: 1.25em 0 1.67em 0;
 }
 
 .slice-featured .illustration {
   display: block;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 10em;
+  height: 10em;
   margin: 0 auto;
   background-size: cover;
 }
@@ -377,9 +377,9 @@ li p {
 }
 
 .featured-preview li {
-  min-height: 120px;
+  min-height: 10em;
   position: relative;
-  padding: 30px 50px 30px 120px;
+  padding: 2.5em 4.17em 2.5em 10em;
 }
 
 .featured-preview li:hover {
@@ -392,10 +392,10 @@ li p {
 
 .featured-preview .illustration {
   position: absolute;
-  left: 30px;
+  left: 2.5em;
   background-size: cover;
-  width: 60px;
-  height: 60px;
+  width: 5em;
+  height: 5em;
   border-radius: 6px;
   border: 1px solid;
 }
@@ -425,17 +425,17 @@ li p {
 
 .featured-items .illustration {
   margin: 0 auto;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 15px;
+  width: 10em;
+  height: 10em;
+  margin-bottom: 1.25em;
 }
 
 /* Featured item mini */
 
 .featured-mini .illustration {
-  margin-bottom: 10px;
-  width: 60px;
-  height: 60px;
+  margin-bottom: 0.84em;
+  width: 5em;
+  height: 5em;
 }
 
 /* Alternated highlights */
@@ -481,8 +481,8 @@ li p {
 }
 
 .featured-items-simple .illustration {
-  width: 60px;
-  height: 60px;
+  width: 5em;
+  height: 5em;
   border-radius: 6px;
   position: absolute;
   left: 1em;
@@ -498,7 +498,7 @@ li p {
   padding-bottom: 1em;
 }
 .faq .col-2:nth-child(odd){
-  padding-right: 30px!important;
+  padding-right: 2.5em!important;
 }
 /*
  * Slides
@@ -532,7 +532,7 @@ li p {
 .slides .slide {
   transition: opacity 0.4s;
   background-size: cover;
-  padding: 10px 20px;
+  padding: 0.84em 1.67em;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -617,7 +617,7 @@ li p {
 .slides p {
   font-family: 'Lato', sans-serif;
   font-size: 1.67em;
-  line-height: 30px;
+  line-height: 2.5em;
 }
 
 .slide-container {
@@ -634,29 +634,29 @@ li p {
 /* Contact us */
 
 .contact-us .feedback {
-  margin-left: 16px;
+  margin-left: 1.33em;
 }
 
 .contact-us form[name=contact-form] .form-group:not(:first-child) {
-  margin: 10px 0;
+  margin: 0.84em 0;
 }
 
 .contact-us form[name=contact-form] .form-group label {
   font-family: 'Lato', sans-serif;
   font-size: 1.5em;
   display: inline-block;
-  width: 100px;
+  width: 8.33em;
   vertical-align: top;
-  padding: 6px 0;
+  padding: 0.5em 0;
 }
 
 .contact-us form[name=contact-form] .form-group input, form[name=contact-form] .form-group textarea {
-  padding: 8px;
+  padding: 0.67em;
   box-sizing: border-box;
   border: 1px solid #D8D8D8;
   outline: none;
-  font-size: 1.17;
-  line-height: 14px;
+  font-size: 1.17em;
+  line-height: 1.17em;
   width: 100%;
 }
 
@@ -666,22 +666,22 @@ li p {
 
 .contact-us form[name=contact-form] .form-group textarea {
   resize: none;
-  min-height: 100px;
+  min-height: 8.33em;
 }
 
 /* Separator */
 
 hr.separator {
   border: none;
-  height: 70px;
+  height: 5.83em;
   padding: 0;
   margin: 0;
 }
 
 hr.separator.medium {
-  height: 50px;
+  height: 4.17em;
 }
 
 hr.separator.small {
-  height: 35px;
+  height: 2.92em;
 }
