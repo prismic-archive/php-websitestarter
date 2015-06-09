@@ -443,6 +443,39 @@ li p {
   height: 60px;
 }
 
+/* Featured item micro */
+
+.featured-micro {
+  overflow: hidden;
+}
+
+.featured-micro .illustration, .featured-micro .text {
+  float: left;
+}
+
+.featured-micro .text {
+  margin-left: 20px;
+  width: 60%;
+}
+
+.featured-micro .text h3 {
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.featured-micro .text p {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.featured-micro .illustration {
+  margin-bottom: 10px;
+  width: 66px;
+  height: 66px;
+  background-color: #F3F3F9;
+}
+
 /* Alternated highlights */
 
 .alternated-highlights .col-2, .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
