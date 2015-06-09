@@ -11,7 +11,7 @@ class IntegrationTest extends LocalWebTestCase
         $html = str_get_dom($this->client->response->body());
 
         // No errors, one blog post
-        $this->assertEquals(2, count($html('div.blog-post')));
+        $this->assertGreaterThan(5, count($html('div.blog-post')));
 
         // The sidebar is correct
         // $h3links = $html('.sidebar-section h3 a');
@@ -27,7 +27,7 @@ class IntegrationTest extends LocalWebTestCase
         $this->assertEquals(200, $this->client->response->status());
 
         $html = str_get_dom($this->client->response->body());
-        $this->assertEquals(1, count($html('h1.blog-title')));
+        $this->assertEquals(1, count($html('.blog-header h1')));
     }
 
     public function testArchive()
@@ -63,7 +63,7 @@ class IntegrationTest extends LocalWebTestCase
         $this->assertEquals(200, $this->client->response->status());
 
         $html = str_get_dom($this->client->response->body());
-        $this->assertEquals('Second Blog Post', trim($html('.blog-post-title', 0)->getPlainText()));
+        $this->assertEquals('Second Post', trim($html('.blog-post-title', 0)->getPlainText()));
     }
 
     public function testCategory()
@@ -72,7 +72,7 @@ class IntegrationTest extends LocalWebTestCase
         $this->assertEquals(200, $this->client->response->status());
 
         $html = str_get_dom($this->client->response->body());
-        $this->assertEquals(1, count($html('div.blog-post')));
+        $this->assertEquals(2, count($html('div.blog-post')));
     }
 
     public function testPage()
@@ -80,7 +80,7 @@ class IntegrationTest extends LocalWebTestCase
         $this->client->get('/sample-page');
         $this->assertEquals(200, $this->client->response->status());
         $html = str_get_dom($this->client->response->body());
-        $this->assertEquals('Website Starter Sample Page', trim($html('h2', 0)->getPlainText()));
+        $this->assertEquals("Here's a Section Header", trim($html('h2', 0)->getPlainText()));
     }
 
     public function testTag()

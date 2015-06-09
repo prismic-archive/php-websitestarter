@@ -26,7 +26,7 @@ class LocalWebTestCase extends WebTestCase
             'debug'          => false,
             'mode'           => 'testing',
             'site.title'     => 'Blog Template',
-            'prismic.url'    => 'https://blogtemplate.prismic.io/api',
+            'prismic.url'    => 'https://websitestartertest.prismic.io/api',
             'theme'          => 'bootstrap',
         );
     }
