@@ -456,6 +456,20 @@ li p {
   height: 60px;
 }
 
+/* People */
+
+.people .text {
+  padding: 10px;
+}
+
+.people p , .people h3 {
+  margin: 0;
+}
+
+.people .illustration {
+  height: 200px;
+}
+
 /* Alternated highlights */
 
 .alternated-highlights .col-2, .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
