@@ -87,18 +87,20 @@ li p {
     width: 50%;
   }
 
+  .col-3:not(:nth-child(3n)) {
+    margin-right: 1em;
+  }
+
   .col-3 {
-    margin-left: 1em;
-    width: calc((100% / 3) - (1em - 1em / 3));
+    width: calc((100% / 3) - 1em);
+  }
+
+  .col-4:not(:nth-child(4n)) {
+    margin-right: 1em;
   }
 
   .col-4 {
-    margin-left: 1em;
-    width: calc((100% / 4) - (1em - 1em / 4));
-  }
-
-  .col-3:nth-child(3n),.col-4:nth-child(4n) {
-    margin-left: 0;
+    width: calc((100% / 4) - 1em);
   }
 
   .alternated-highlights-full .col-illustration, .alternated-highlights-full .col-text {
