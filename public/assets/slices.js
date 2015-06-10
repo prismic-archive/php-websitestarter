@@ -46,12 +46,6 @@ $(function() {
 
       image.src = url;
 
-      image.onload = function() {
-
-        console.log('loaded');
-
-      };
-
     });
 
     $('.slides .arrow-prev').on('click', previous);

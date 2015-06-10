@@ -121,9 +121,16 @@ li p {
     position: relative;
   }
 
+  .slides h1 {
+    margin-bottom: 20px;
+  }
+
+  .slides .slide-container > p {
+    margin-bottom: 40px;
+  }
+
   .slides .button {
     padding: 27px 105px;
-    margin-top: 44px;
   }
 
   .slides .arrow-prev {
@@ -324,6 +331,10 @@ li p {
   background-size: cover;
   border-radius: 50%;
   background-color: #F3F3F9;
+}
+
+.image {
+  background-size: cover;
 }
 
 .squared-image {

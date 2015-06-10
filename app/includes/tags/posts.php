@@ -167,7 +167,7 @@ function the_content()
                 }
                 $class = !is_null($label) ? 'class="'.$label.'"' : '';
 
-                return '<p '.$class.'data-disqium-thread-id="'.$threadIdentifer.'">'.$content.'<p>';
+                return '<p '.$class.'data-disqium-thread-id="'.$threadIdentifer.'">'.$content.'</p>';
             }
 
             return;

@@ -16,7 +16,6 @@ a {
 .blog-main h4, .blog-main .h4,
 .blog-main h5, .blog-main .h5,
 .blog-main h6, .blog-main .h6 {
-  margin-top: 0;
   color: #2F3163;
   text-align: left;
 }
@@ -25,15 +24,22 @@ h1, h2 {
   font-weight: bold;
 }
 
+pre, ul {
+  margin-bottom: 20px;
+}
+
+.blog-main.single.container {
+  padding: 70px 26px 26px 26px;
+}
+
 .container {
   max-width: 700px;
   margin: auto;
-  padding: 26px;
+  padding: 70px 26px 0 26px;
 }
 
 .blog-main {
   text-align: justify;
-  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 70px;
 }
@@ -230,10 +236,6 @@ h1, h2 {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
-.blog-main pre {
-  font-size: 16px;
-}
-
 .blog-main.single a {
   text-decoration: none;
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 75%);
@@ -258,11 +260,6 @@ h1, h2 {
   margin-left: 20px;
 }
 
-.blog-post-title {
-  margin-bottom: 5px;
-  font-size: 28px;
-}
-
 .wio-link ~ .blog-post-title {
   padding-right: 30px;
 }
@@ -280,7 +277,7 @@ h1, h2 {
 }
 
 .blog-post-meta {
-  margin: 4px 0;
+  margin-bottom: 8px;
 }
 
 .blog-post-meta > *, .blog-post-meta .tags::before, .blog-post-meta .categories::before, .blog-post-meta .author::before {
@@ -373,7 +370,6 @@ h1, h2 {
 .blog-footer.single .previous .label::before {
   font-family: 'StarterKit';
   content: '\e001';
-  font-size: 10px;
 }
 
 .blog-footer.single .next {
@@ -384,7 +380,6 @@ h1, h2 {
 .blog-footer.single .next .label::after {
   font-family: 'StarterKit';
   content: '\e002';
-  font-size: 10px;
   margin-left: 15px;
 }
 
@@ -412,7 +407,7 @@ h1, h2 {
 }
 
 .blog-main.single p {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .blog-main.single li {
@@ -461,16 +456,26 @@ h1, h2 {
 
 @media (max-width: 767px) {
 
+  .blog-main {
+    font-size: 16px;
+  }
+
+  .blog-main pre {
+    font-size: 14px;
+  }
+
   h1 {
     font-size: 30px;
   }
 
   h2 {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 14px;
   }
 
   h3 {
-    font-size: 15px;
+    font-size: 18px;
+    margin-bottom: 14px;
   }
 
   .blog-header .wrapper {
@@ -510,7 +515,11 @@ h1, h2 {
   }
 
   .blog-footer .label {
-    font-size: 12px;
+    font-size: 10px;
+  }
+
+  .blog-footer .label::before {
+    font-size: 8px;
   }
 
   .blog-footer.single .title {
@@ -556,7 +565,9 @@ h1, h2 {
 
   h3 {
     font-size: 30px;
+    margin: 24px 0;
   }
+
 
   .blog-header.author {
     height: 60vh;
@@ -571,6 +582,22 @@ h1, h2 {
   .blog-header.author .image::before {
     width: 143px;
     height: 143px;
+  }
+
+  .blog-main {
+    font-size: 20px;
+  }
+
+  .blog-main pre {
+    font-size: 16px;
+  }
+
+  .blog-main h2 {
+    margin: 60px 0 8px 0;
+  }
+
+  .blog-main.single h2 {
+    margin: 60px 0 15px 0;
   }
 
   .blog-footer.single a {
