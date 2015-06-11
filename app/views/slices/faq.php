@@ -1,4 +1,4 @@
-<div class="row-centered-aired faq flex-container">
+<div class="row-centered-aired faq <?= $slice->getLabel() ? "flex-container" : "" ?>">
 
   <?php $opentag = false; ?>
 

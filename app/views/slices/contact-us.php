@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="row-centered-aired contact-us">
+<div class="row-centered-aired contact-us flex-container">
 
   <div class="col-2">
 
