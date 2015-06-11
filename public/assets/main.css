@@ -20,6 +20,11 @@ em {
     font-style: normal;
 }
 
+#main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'PT Serif', serif;
   font-size: 12px;
