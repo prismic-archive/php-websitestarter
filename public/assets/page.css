@@ -355,40 +355,6 @@ li p {
   margin-left: auto;
 }
 
-.slice-featured {
-  overflow: hidden;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-}
-
-.slice-featured > .group-doc {
-  float: left;
-  padding: 1em;
-  margin: 0;
-  width: calc((100% / 3) - 2em);
-}
-
-.slice-featured h3 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 16px 0;
-}
-
-.slice-featured p {
-  line-height: 22px;
-  font-size: 14px;
-  margin: 15px 0 20px 0;
-}
-
-.slice-featured .illustration {
-  display: block;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  margin: 0 auto;
-  background-size: cover;
-}
-
 /* Featured item preview */
 
 .featured-preview {
