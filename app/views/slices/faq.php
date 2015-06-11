@@ -1,4 +1,4 @@
-<div class="row-centered-aired faq">
+<div class="row-centered-aired faq flex-container">
 
   <?php $opentag = false; ?>
 

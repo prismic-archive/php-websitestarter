@@ -2,11 +2,6 @@ html {
   overflow-x: hidden;
 }
 
-.main {
-  width: 100%;
-  overflow-x: hidden;
-}
-
 img {
   display: block;
 }
@@ -17,6 +12,11 @@ body {
 
 #page-content * {
   box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .main h1, .main h2, .main h3 {
@@ -75,10 +75,6 @@ li p {
 
 @media (min-width: 768px) {
 
-  .col-1, .col-2, .col-3, .col-4 {
-    float: left;
-  }
-
   .col-1 {
     width: 100%;
   }
@@ -105,10 +101,6 @@ li p {
 
   .alternated-highlights-full .col-illustration, .alternated-highlights-full .col-text {
     width: 50%;
-  }
-
-  .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
-    float: left;
   }
 
   .featured-mini p, .featured-items-simple p {
@@ -312,20 +304,29 @@ li p {
   }
 }
 
-.row {
-  overflow: hidden;
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .row-centered {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-  overflow: hidden;
 }
 
 .row-centered-aired {
   max-width: 1100px;
-  overflow: hidden;
   margin: 20px auto;
 }
 
@@ -394,7 +395,8 @@ li p {
 }
 
 .featured-preview .preview-pane .preview-image {
-  transition: opacity .3s ease-in-out;
+  -webkit-transition: opacity .3s ease-in-out;
+          transition: opacity .3s ease-in-out;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -512,7 +514,8 @@ li p {
 }
 
 .slides .slide {
-  transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
+          transition: opacity 0.4s;
   background-size: cover;
   padding: 10px 20px;
   position: absolute;

@@ -1,4 +1,4 @@
-<div class="row alternated-items">
+<div class="alternated-items">
 
 <?php $index = 0; ?>
 
@@ -8,7 +8,7 @@
 
 <div class="<?= $odd ? "alternate" : ""; ?>">
 
-<div class="row alternated-highlights-full">
+<div class="alternated-highlights-full flex-container">
 
   <?php $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null; ?>
 

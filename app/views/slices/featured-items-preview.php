@@ -1,4 +1,4 @@
-<div class="row-centered-aired featured-preview">
+<div class="row-centered-aired featured-preview flex-container">
 
   <div class="col-2 list-pane">
 

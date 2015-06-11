@@ -1,6 +1,6 @@
 <div class="row-centered-aired featured-items-simple">
 
-    <ul>
+    <ul class="flex-container">
 
     <?php foreach($slice->getValue()->getArray() as $item) { ?>
 

@@ -1,4 +1,4 @@
-<div class="row-centered-aired featured-mini">
+<div class="row-centered-aired featured-mini flex-container">
 
   <?php foreach($slice->getValue()->getArray() as $item) { ?>
 

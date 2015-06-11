@@ -1,4 +1,4 @@
-<div class="row alternated-items">
+<div class="alternated-items">
 
 <?php $index = 0; ?>
 
@@ -10,7 +10,7 @@
 
 <div class="<?= $odd ? "alternate" : ""; ?>">
 
-<div class="row-centered alternated-highlights">
+<div class="row-centered alternated-highlights flex-container">
 
   <?php if(!$odd): ?>
 
