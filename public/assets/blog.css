@@ -344,6 +344,7 @@ pre, ul {
 }
 
 .blog-footer.single {
+  z-index: -1;
   text-align: center;
 }
 

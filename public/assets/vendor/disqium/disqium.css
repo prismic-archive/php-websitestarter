@@ -36,8 +36,8 @@
 }
 
 [data-disqium-thread-id] .disqium-wrapper.fade-in .disqium-panel {
-    -webkit-transform: translate3d(-62px, 0, 0);
-    transform: translate3d(-62px,0, 0);
+    -webkit-transform: translate3d(-40px, 0, 0);
+    transform: translate3d(-40px,0, 0);
 }
 
 [data-disqium-thread-id] .disqium-wrapper.hide-you {
@@ -138,13 +138,14 @@
 [data-disqium-thread-id] .disqium-wrapper .disqium-discussion {
     background: #FFF;
     left: 30px;
-    list-style: none;
     color: #444;
     display: none;
     margin: 0;
 }
 
 [data-disqium-thread-id] .disqium-wrapper .disqium-discussion .disqium-post {
+    list-style: none;
+    margin: 0;
     border-top: 1px solid rgb(246, 246, 246);
     padding: 10px 0;
 }

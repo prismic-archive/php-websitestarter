@@ -200,6 +200,7 @@ function Disqium(scope, disqus) {
         function onSubmit(e, $form) {
             e.preventDefault();
             e.stopPropagation();
+            var $disqiumToggle = $form.parent().siblings('.disqium-toggle-thread');
             var $textarea = $form.find('[name=disqium-new-post-text]');
             var text = $textarea.val();
             var $name = $form.find('[name=disqium-new-post-name]');
@@ -238,15 +239,22 @@ function Disqium(scope, disqus) {
                     $submit.text('Save');
                     $form.removeClass('locked');
                 }
+
+                function incrementPostCounter() {
+                    var counter = parseInt($disqiumToggle.text().trim(), 10);
+                    counter = counter ? counter : 0;
+                    $disqiumToggle.removeClass('empty').text(counter+1);
+                }
+
                 DisqusAPI.threads.details(identifier).then(function(response) {
                     var threadId = response.response.id;
-                    return createPost(threadId, text).always(resetForm);
+                    return createPost(threadId, text).then(incrementPostCounter).always(resetForm);
                 }).fail(function(response) {
                     if(response.responseJSON.code === 2) {
                       var title = $paragraph.text().substring(0, 100);
                       return DisqusAPI.threads.create(title, identifier).then(function(response) {
                         var threadId = response.id;
-                          return createPost(threadId, text);
+                          return createPost(threadId, text).then(incrementPostCounter);
                       }).always(resetForm);
                     }
                 });
