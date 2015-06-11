@@ -12,7 +12,6 @@
 [data-disqium-thread-id] {
     position: relative;
     box-sizing: border-box;
-    padding-right: 30px;
 }
 
 [data-disqium-thread-id] .disqium-wrapper {
@@ -33,11 +32,12 @@
     transition: transform 0.2s;
     -webkit-transition: -webkit-transform 0.2s;
     -moz-transition: transform 0.2s;
+    top: 5px;
 }
 
 [data-disqium-thread-id] .disqium-wrapper.fade-in .disqium-panel {
-    -webkit-transform: translate3d(-70px, 0, 0);
-    transform: translate3d(-70px,0, 0);
+    -webkit-transform: translate3d(-62px, 0, 0);
+    transform: translate3d(-62px,0, 0);
 }
 
 [data-disqium-thread-id] .disqium-wrapper.hide-you {
@@ -45,8 +45,8 @@
 }
 
 [data-disqium-thread-id] .disqium-wrapper:not(.fade-in) {
-    width: 40px;
-    right: -60px;
+    width: 80px;
+    right: -100px;
     height: 100%;
 }
 
@@ -120,12 +120,12 @@
     outline: none;
     border: none;
     cursor: pointer;
-    left: -16px;
+    left: 12px;
     background: url('bull.svg') no-repeat center 5px;
     background-size: 100%;
     color: #FFF;
     font-size: 12px;
-    top: -5px;
+    top: 0;
     width: 27px;
     height: 27px;
     text-align: center;
@@ -141,6 +141,7 @@
     list-style: none;
     color: #444;
     display: none;
+    margin: 0;
 }
 
 [data-disqium-thread-id] .disqium-wrapper .disqium-discussion .disqium-post {
