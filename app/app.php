@@ -274,19 +274,25 @@ $app->get('/feed', function () use ($app, $prismic) {
     echo $feed;
 });
 
-$app->post('/disqus/threads/create', function () use ($app) {
 // URL to create a comment, only used if you decide to activate Disqus
+$app->post('/disqus/threads/create', function () use ($app) {
+
     $title = $_POST['title'];
     $identifier = $_POST['identifier'];
     $httpClient = \Prismic\Api::defaultHttpAdapter();
 
-    if ($app->config('disqus.forum') && $app->config('disqus.apikey')) { // OVERWRITTEN DISQUS CONFIGURATION
+    $apiKey = $app->config('disqus.apikey');
+    $apiSecret = $app->config('disqus.apisecret');
+    $accessToken = $app->config('disqus.accesstoken');
+    $forum = $app->config('disqus.forum');
+
+    if ($apiSecret && $apiSecret && $accessToken && $forum) {
 
         $data = array(
-            'api_key' => $app->config('disqus.apikey'),
-            'api_secret' => $app->config('disqus.apisecret'),
-            'access_token' => $app->config('disqus.accesstoken'),
-            'forum' => $app->config('disqus.forum'),
+            'api_key' => $apiKey,
+            'api_secret' => $apiSecret,
+            'access_token' => $accessToken,
+            'forum' => $forum,
             'title' => $title,
             'identifier' => $identifier,
         );
@@ -307,28 +313,8 @@ $app->post('/disqus/threads/create', function () use ($app) {
             $app->response->setStatus($e->getResponse()->getStatusCode());
             $app->response->setBody(array('code' => $json->code));
         }
-    } else { // DEFAULT DISQUS CONFIGURATION
-
-        $data = array(
-            'title' => $title,
-            'identifier' => $identifier,
-        );
-
-        $app->response->headers->set('Content-Type', 'application/json');
-
-        try {
-            $response = $httpClient->post('https://prismic.io/starterkit/disqus/threads/create', array(), $data);
-            $app->response->setStatus($response->getStatusCode());
-            $json = json_decode($response->getBody());
-            $body = array(
-                'code' => $json->code,
-                'id' => $json->id,
-            );
-            $app->response->setBody(json_encode($body));
-        } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
-            $app->response->setStatus($e->getResponse()->getStatusCode());
-            $app->response->setBody($e->getResponse()->getBody());
-        }
+    } else {
+        $app->response->setStatus(400);
     }
 });
 
