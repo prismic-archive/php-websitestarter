@@ -54,7 +54,7 @@
 
 ?>
 
-<div class="blog-header single" style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
+<div class="blog-header single" <?= the_wio_attributes(); ?> style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
 
     <div class="wrapper">
 
@@ -71,7 +71,7 @@
     </div>
 </div>
 
-<div class="blog-main single container" <?= the_wio_attributes(); ?>>
+<div class="blog-main single container">
 
     <?php the_content(); ?>
 
