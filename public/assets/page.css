@@ -138,6 +138,16 @@ li p {
     margin-bottom: 20px;
   }
 
+  .slides .arrow-prev::before {
+      font-family: 'StarterKit';
+      content: '\e007';
+  }
+
+  .slides .arrow-next::before {
+      font-family: 'StarterKit';
+      content: '\e008';
+  }
+
   .slides .slide-container > p {
     margin-bottom: 40px;
   }
@@ -586,21 +596,11 @@ li p {
   transform: translatey(-50%);
 }
 
-.slides .arrow-prev::before {
-  font-family: 'StarterKit';
-  content: '\e007';
-}
-
 .slides .arrow-next {
   background-size: 100%;
   -webkit-transform: translatey(-50%);
   -ms-transform: translatey(-50%);
   transform: translatey(-50%);
-}
-
-.slides .arrow-next::before {
-  font-family: 'StarterKit';
-  content: '\e008';
 }
 
 .slides p {
