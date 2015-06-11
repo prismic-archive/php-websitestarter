@@ -75,7 +75,7 @@ li p {
 
 @media (min-width: 768px) {
 
-  .flex-container {
+  html:not(.ie) .flex-container {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -88,6 +88,18 @@ li p {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+  }
+
+  html.ie .flex-container .col-1, .col-2, .col-3, .col-4 {
+    float: left;
+  }
+
+  html.ie .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
+    float: left;
+  }
+
+  html.ie .row-centered, .row-centered-aired {
+    overflow: hidden;
   }
 
   .col-1 {
