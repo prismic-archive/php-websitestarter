@@ -157,6 +157,22 @@ hr.separator.small {
   <?= $separatorSmallHeight ? 'height:'.$separatorSmallHeight->asText().'px' : ''; ?>;
 }
 
+@media (max-width: 767px) {
+
+    hr.separator {
+        <?= $separatorHeight ? 'height:'.($separatorHeight->asText() / 1.4).'px' : ''; ?>;
+    }
+
+    hr.separator.medium {
+        <?= $separatorMediumHeight ? 'height:'.($separatorMediumHeight->asText() / 1.4).'px' : ''; ?>;
+    }
+
+    hr.separator.small {
+        <?= $separatorSmallHeight ? 'height:'.($separatorSmallHeight->asText() / 1.4).'px' : ''; ?>;
+    }
+
+}
+
 </style>
 
 <?php endif ?>
