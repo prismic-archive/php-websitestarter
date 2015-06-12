@@ -274,19 +274,21 @@ $app->get('/feed', function () use ($app, $prismic) {
     echo $feed;
 });
 
-// URL to create a comment, only used if you decide to activate Disqus
+// --- DISQUS
+
 $app->post('/disqus/threads/create', function () use ($app) {
 
-    $title = $_POST['title'];
-    $identifier = $_POST['identifier'];
-    $httpClient = \Prismic\Api::defaultHttpAdapter();
+    $title = $app->request->post('title');
+    $identifier = $app->request->post('identifier');
 
     $apiKey = $app->config('disqus.apikey');
     $apiSecret = $app->config('disqus.apisecret');
     $accessToken = $app->config('disqus.accesstoken');
     $forum = $app->config('disqus.forum');
 
-    if ($apiSecret && $apiSecret && $accessToken && $forum) {
+    if ($apiKey && $apiSecret && $accessToken && $forum) {
+
+        $httpClient = \Prismic\Api::defaultHttpAdapter();
 
         $data = array(
             'api_key' => $apiKey,
@@ -294,7 +296,7 @@ $app->post('/disqus/threads/create', function () use ($app) {
             'access_token' => $accessToken,
             'forum' => $forum,
             'title' => $title,
-            'identifier' => $identifier,
+            'identifier' => $identifier
         );
 
         $app->response->headers->set('Content-Type', 'application/json');
@@ -311,10 +313,199 @@ $app->post('/disqus/threads/create', function () use ($app) {
         } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
             $json = json_decode($e->getResponse()->getBody());
             $app->response->setStatus($e->getResponse()->getStatusCode());
-            $app->response->setBody(array('code' => $json->code));
+            $app->response->setBody(json_encode(array('code' => $json->code)));
         }
+
     } else {
         $app->response->setStatus(400);
+    }
+});
+
+$app->get('/disqus/threads/list', function () use ($app) {
+
+    $threadIds = $app->request->get('thread');
+    $cursor = $app->request->get('cursor');
+    $limit = $app->request->get('limit');
+
+    $apiKey = $app->config('disqus.apikey');
+    $apiSecret = $app->config('disqus.apisecret');
+    $accessToken = $app->config('disqus.accesstoken');
+    $forum = $app->config('disqus.forum');
+
+    if ($apiKey && $apiSecret && $accessToken && $forum) {
+
+        $httpClient = \Prismic\Api::defaultHttpAdapter();
+
+        $param = array(
+                'api_key' => $apiKey,
+                'api_secret' => $apiSecret,
+                'access_token' => $accessToken,
+                'forum' => $forum,
+                'thread' => $threadIds,
+                'cursor' => $cursor,
+                'limit' => $limit
+        );
+
+        $queryString = http_build_query($param);
+
+        $url = 'https://disqus.com/api/3.0/threads/list.json?' . $queryString;
+
+        $url = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $url);
+
+        try {
+            $response = $httpClient->get($url);
+            $app->response->headers->set('Content-Type', 'application/json');
+            $json = json_decode($response->getBody());
+            $app->response->setStatus($response->getStatusCode());
+            $app->response->setBody(json_encode($json));
+
+        } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
+            $app->response->setStatus($e->getResponse()->getStatusCode());
+        }
+
+    } else {
+        $app->response->setStatus(400);
+    }
+});
+
+
+$app->get('/disqus/threads/details', function () use ($app) {
+
+    $threadIdent = $app->request->get('thread:ident');
+
+    $apiKey = $app->config('disqus.apikey');
+    $apiSecret = $app->config('disqus.apisecret');
+    $accessToken = $app->config('disqus.accesstoken');
+    $forum = $app->config('disqus.forum');
+
+    if ($apiKey && $apiSecret && $accessToken && $forum) {
+
+        $httpClient = \Prismic\Api::defaultHttpAdapter();
+
+        $param = array(
+                'api_key' => $apiKey,
+                'api_secret' => $apiSecret,
+                'access_token' => $accessToken,
+                'thread:ident' => $threadIdent,
+                'forum' => $forum
+        );
+
+        $queryString = http_build_query($param);
+
+        $url = 'https://disqus.com/api/3.0/threads/details.json?' . $queryString;
+        $url = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $url);
+
+        $app->response->headers->set('Content-Type', 'application/json');
+
+        try {
+            $response = $httpClient->get($url);
+            $json = json_decode($response->getBody());
+            $app->response->setStatus($response->getStatusCode());
+            $app->response->setBody(json_encode($json));
+
+        } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
+            $json = json_decode($e->getResponse()->getBody());
+            $app->response->setStatus($e->getResponse()->getStatusCode());
+            $app->response->setBody(json_encode(array('code' => $json->code)));
+        }
+
+    } else {
+        $app->response->setStatus(400);
+    }
+});
+
+$app->post('/disqus/posts/create', function () use ($app) {
+
+    $authorName = $app->request->get('author_name');
+    $authorEmail = $app->request->get('author_email');
+    $message = $app->request->get('message');
+    $threadId = $app->request->get('thread');
+
+    $apiKey = $app->config('disqus.apikey');
+    $apiSecret = $app->config('disqus.apisecret');
+    $accessToken = $app->config('disqus.accesstoken');
+
+    if ($apiKey && $apiSecret && $accessToken) {
+
+        $httpClient = \Prismic\Api::defaultHttpAdapter();
+
+        $param = array(
+            'api_key' => "E8Uh5l5fHZ6gD8U3KycjAIAk46f68Zw7C6eW8WSjZvCLXebZ7p0r1yrYDrLilk2F",
+            'author_name' => $authorName,
+            'author_email' => $authorEmail,
+            'message' => $message,
+            'thread' => $threadId
+        );
+
+        $queryString = http_build_query($param);
+
+        $url = 'https://disqus.com/api/3.0/posts/create.json?' . $queryString;
+        $app->response->headers->set('Content-Type', 'application/json');
+
+        try {
+            $response = $httpClient->post($url);
+            $json = json_decode($response->getBody());
+            $app->response->setStatus($response->getStatusCode());
+            $body = array(
+                'code' => $json->code,
+                'id' => $json->response->id,
+            );
+            $app->response->setBody(json_encode($body));
+
+        } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
+            $json = json_decode($e->getResponse()->getBody());
+            $app->response->setStatus($e->getResponse()->getStatusCode());
+            $app->response->setBody(json_encode(array('code' => $json->code)));
+        }
+
+    } else {
+        $app->response->setStatus(400);
+    }
+});
+
+$app->get('/disqus/posts/list', function () use ($app) {
+
+    $cursor = $app->request->get('cursor');
+    $limit = $app->request->get('limit');
+    $threadIds = $app->request->get('thread');
+    $order = $app->request->get('order');
+
+    $apiKey = $app->config('disqus.apikey');
+    $apiSecret = $app->config('disqus.apisecret');
+    $accessToken = $app->config('disqus.accesstoken');
+    $forum = $app->config('disqus.forum');
+
+    if ($apiKey && $apiSecret && $accessToken && $forum) {
+
+        $httpClient = \Prismic\Api::defaultHttpAdapter();
+
+        $param = array(
+            'api_key' => $apiKey,
+            'api_secret' => $apiSecret,
+            'access_token' => $accessToken,
+            'cursor' => $cursor,
+            'limit' => $limit,
+            'thread' => $threadIds,
+            'order' => $order,
+            'forum' => $forum
+        );
+
+        $queryString = http_build_query($param);
+
+        $url = 'https://disqus.com/api/3.0/posts/list.json?' . $queryString;
+        $url = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $url);
+
+        $app->response->headers->set('Content-Type', 'application/json');
+
+        try {
+            $response = $httpClient->get($url);
+            $json = json_decode($response->getBody());
+            $app->response->setStatus($response->getStatusCode());
+            $app->response->setBody(json_encode($json));
+
+        } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
+            $app->response->setStatus($e->getResponse()->getStatusCode());
+        }
     }
 });
 

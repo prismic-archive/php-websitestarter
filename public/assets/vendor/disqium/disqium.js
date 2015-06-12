@@ -1,23 +1,21 @@
-function Disqium(scope, disqus) {
+function Disqium(scope) {
     var $scope = $(scope);
 
     $scope.addClass('disqium-container');
 
     var DisqusAPI = (function() {
-        var endpoint = 'https://disqus.com/api/3.0';
+
         return {
             threads: {
                 list: function list(identifiers, cursor) {
                     var params = {
-                        forum: disqus.forum,
-                        api_key: disqus.apiKey,
                         cursor: cursor,
                         limit: 100,
                         thread: identifiers.map(function(identifier) {
                             return 'ident:' + identifier;
                         })
                     };
-                    var url = endpoint + '/threads/list.json?' + $.param(params);
+                    var url = '/disqus/threads/list?' + $.param(params);
                     return $.ajax({ url: url, type: 'GET' }).then(function(response) {
                         var threads = response.response;
                         if(response.cursor.hasNext) {
@@ -39,25 +37,22 @@ function Disqium(scope, disqus) {
                 },
                 details: function(identifier) {
                     var params = {
-                        api_key: disqus.apiKey,
-                        forum: disqus.forum,
                         'thread:ident': identifier
                     };
-                    var url = endpoint + '/threads/details.json?' + $.param(params);
+                    var url = '/disqus/threads/details?' + $.param(params);
                     return $.ajax({ url: url, type: 'GET' });
                 }
             },
             posts: {
                 list: function list(threadIds, cursor) {
                     var params = {
-                        forum: disqus.forum,
-                        api_key: disqus.apiKey,
                         cursor: cursor,
                         limit: 100,
                         thread: threadIds,
                         order: 'asc'
                     };
-                    var url = endpoint + '/posts/list.json?' + $.param(params);
+
+                    var url = '/disqus/posts/list?' + $.param(params);
                     return $.ajax({ url: url, type: 'GET' }).then(function(response) {
                         var posts = response.response;
                         if(response.cursor.hasNext) {
@@ -71,14 +66,13 @@ function Disqium(scope, disqus) {
                 },
                 create: function(authorName, authorEmail, message, threadId) {
                     var post = {
-                        api_key: disqus.apiKey,
                         author_name: authorName,
                         author_email: authorEmail,
                         message: message,
                         thread: threadId
                     };
-                    var url = endpoint + '/posts/create.json?' + $.param(post);
-                    return $.ajax({ url: url, type: 'POST'});
+                    var url = '/disqus/posts/create?' + $.param(post);
+                    return $.ajax({ url: url, type: 'POST', data: post});
                 }
             }
         };
@@ -250,7 +244,7 @@ function Disqium(scope, disqus) {
                     var threadId = response.response.id;
                     return createPost(threadId, text).then(incrementPostCounter).always(resetForm);
                 }).fail(function(response) {
-                    if(response.responseJSON.code === 2) {
+                    if(response.responseJSON && response.responseJSON.code === 2) {
                       var title = $paragraph.text().substring(0, 100);
                       return DisqusAPI.threads.create(title, identifier).then(function(response) {
                         var threadId = response.id;
