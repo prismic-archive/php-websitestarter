@@ -90,15 +90,15 @@ li p {
     flex-wrap: wrap;
   }
 
-  html.ie .flex-container .col-1, .col-2, .col-3, .col-4 {
+  html.ie .flex-container .col-1, html.ie .flex-container .col-2, html.ie .flex-container .col-3, html.ie .flex-container .col-4 {
     float: left;
   }
 
-  html.ie .alternated-highlights-full .col-text, .alternated-highlights-full .col-illustration {
+  html.ie .alternated-highlights-full .col-text, html.ie .flex-container .alternated-highlights-full .col-illustration {
     float: left;
   }
 
-  html.ie .row-centered, .row-centered-aired {
+  html.ie .row-centered, html.ie .flex-container .row-centered-aired {
     overflow: hidden;
   }
 
