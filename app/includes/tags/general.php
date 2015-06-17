@@ -166,8 +166,10 @@ function the_blankimage()
 function the_wio_attributes()
 {
     global $WPGLOBAL, $loop;
+    $bloghome = isset($WPGLOBAL['bloghome']) ? $WPGLOBAL['bloghome'] : NULL;
+    $currentPost = $loop->current_post();
     $page = single_post();
-    $doc = $page ? $page : $loop->current_post();
+    $doc = $page ? $page : ($currentPost ? $currentPost : $bloghome);
     if (!$doc) {
         return;
     }

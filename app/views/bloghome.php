@@ -6,7 +6,7 @@
 
 ?>
 
-<div class="blog-header home" style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
+<div class="blog-header home" <?= the_wio_attributes(); ?> style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
 
   <div class="wrapper">
 
