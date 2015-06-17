@@ -12,17 +12,18 @@
 
       <?= $item->get('summary') ? $item->get('summary')->asHtml() : ''; ?>
 
+
       <?php $readMore = $item->get('read-more'); ?>
 
       <?php $readMoreLabel = $item->get('read-more-label'); ?>
 
-      <?php if ($readMore): ?>
+      <?php if ($readMoreLabel): ?>
 
-      <?php $url = $linkResolver->resolve($readMore); ?>
+      <?php $url = $readMore ? $linkResolver->resolve($readMore) : null ?>
 
-      <a class="button" href="<?= $url ?>">
+      <a class="button" <?= $url ? 'href="'.$url.'"' : '' ?>>
 
-          <?= $readMoreLabel ? $readMoreLabel->asText() : 'learn more' ?>
+          <?= $readMoreLabel->asText() ?>
 
       </a>
 

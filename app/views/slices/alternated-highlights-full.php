@@ -10,7 +10,7 @@
 
 <div class="alternated-highlights-full flex-container">
 
-  <?php $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null; ?>
+  <?php $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null ?>
 
   <?php if(!$odd): ?>
 
@@ -26,9 +26,25 @@
 
      <div class="text-wrapper">
 
-       <h2><?= $item->get('title') ? $item->get('title')->asText() : ''; ?></h2>
+       <h2><?= $item->get('title') ? $item->get('title')->asText() : '' ?></h2>
 
-       <?= $item->get('summary') ? $item->get('summary')->asHtml() : ''; ?>
+       <?= $item->get('summary') ? $item->get('summary')->asHtml() : '' ?>
+
+       <?php $readMore = $item->get('read-more'); ?>
+
+       <?php $readMoreLabel = $item->get('read-more-label'); ?>
+
+       <?php if ($readMoreLabel): ?>
+
+       <?php $url = $readMore ? $linkResolver->resolve($readMore) : null ?>
+
+       <a class="button" <?= $url ? 'href="'.$url.'"' : '' ?>>
+
+           <?= $readMoreLabel->asText() ?>
+
+       </a>
+
+       <?php endif ?>
 
      </div>
   </div>

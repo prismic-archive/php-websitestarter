@@ -459,6 +459,7 @@ li p {
   width: 70%;
   background-size: cover;
   border-radius: 3px;
+  background: url(/assets/blank.png) no-repeat center center;
 }
 
 .alternated-items > div {
@@ -472,6 +473,7 @@ li p {
 .alternated-highlights-full .illustration {
   height: 100%;
   background-size: cover;
+  background: url(/assets/blank.png) no-repeat center center;
 }
 
 /* featured items simple */

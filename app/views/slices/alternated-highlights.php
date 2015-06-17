@@ -6,7 +6,7 @@
 
 <?php $odd = ($index % 2 != 0) ?>
 
-<?php $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null; ?>
+<?php $illustration = $item->get('illustration') ? $item->get('illustration')->getMain() : null ?>
 
 <div class="<?= $odd ? "alternate" : ""; ?>">
 
@@ -38,13 +38,13 @@
 
        <?php $readMoreLabel = $item->get('read-more-label'); ?>
 
-       <?php if ($readMore): ?>
+       <?php if ($readMoreLabel): ?>
 
-       <?php $url = $linkResolver->resolve($readMore); ?>
+       <?php $url = $readMore ? $linkResolver->resolve($readMore) : null ?>
 
-       <a class="button" href="<?= $url ?>">
+       <a class="button" <?= $url ? 'href="'.$url.'"' : '' ?>>
 
-           <?= $readMoreLabel ? $readMoreLabel->asText() : 'learn more' ?>
+           <?= $readMoreLabel->asText() ?>
 
        </a>
 

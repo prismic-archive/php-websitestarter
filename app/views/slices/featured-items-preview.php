@@ -29,9 +29,13 @@
     <?php foreach($slice->getValue()->getArray() as $i => $item) { ?>
 
       <?php $illustration = $item->get('illustration'); ?>
-      <?php if ($illustration) { ?>
+
+      <?php if ($illustration) : ?>
+
       <div class="preview-image" data-paneid="pane<?= $i ?>" style="background-image: url('<?= $illustration->getMain()->getUrl() ?>')">
-      <?php } ?>
+
+      <?php endif ?>
+
       </div>
 
     <?php } ?>

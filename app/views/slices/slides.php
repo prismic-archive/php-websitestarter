@@ -24,12 +24,14 @@
 
             <?= $item->get('summary') ? $item->get('summary')->asHtml() : ''; ?>
 
-            <?php if ($readMore && $readMoreLabel): ?>
+            <?php if ($readMoreLabel): ?>
 
-            <?php $url = $linkResolver->resolve($readMore); ?>
+            <?php $url = $readMore ? $linkResolver->resolve($readMore) : null ?>
 
-            <a class="button" href="<?= $url ?>">
-              <?= $readMoreLabel->asText() ?>
+            <a class="button" <?= $url ? 'href="'.$url.'"' : '' ?>>
+
+                <?= $readMoreLabel->asText() ?>
+
             </a>
 
             <?php endif ?>

@@ -14,7 +14,23 @@
 
       <?= $item->get('summary') ? $item->get('summary')->asHtml() : ''; ?>
 
-    </li>
+      <?php $readMore = $item->get('read-more'); ?>
+
+      <?php $readMoreLabel = $item->get('read-more-label'); ?>
+
+      <?php if ($readMoreLabel): ?>
+
+      <?php $url = $readMore ? $linkResolver->resolve($readMore) : null ?>
+
+      <a class="button" <?= $url ? 'href="'.$url.'"' : '' ?>>
+
+          <?= $readMoreLabel->asText() ?>
+
+      </a>
+
+      <?php endif ?>
+
+      </li>
 
     <?php } ?>
 
