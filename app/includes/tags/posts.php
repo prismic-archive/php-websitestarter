@@ -151,6 +151,8 @@ function the_content()
 {
     global $WPGLOBAL, $loop;
     $prismic = $WPGLOBAL['prismic'];
+    $app = $WPGLOBAL['app'];
+    $prismicEndpoint = $app->config("prismic.url");
     $doc = $loop->current_post();
     if (!$doc) {
         return;
@@ -158,9 +160,9 @@ function the_content()
     if ($loop->fullArticles) {
     $body = $doc->getStructuredText($doc->getType().'.body');
     if ($body) {
-        $htmlSerializer = function ($element, $content) use (&$doc) {
+        $htmlSerializer = function ($element, $content) use (&$doc, &$prismicEndpoint) {
             if ($element instanceof \Prismic\Fragment\Block\ParagraphBlock) {
-                $threadIdentifer = hash('md5', $doc->getId().'#'.$content);
+                $threadIdentifer = hash('md5', $prismicEndpoint.'#'.$doc->getId().'#'.$content);
                 $label = $element->getLabel();
                 if ($label == 'image-label') {
                     return;
