@@ -9,6 +9,12 @@
     var $footer = $('.blog-footer');
     var lastTransition = Date.now();
 
+    disqium.on('show', function() {
+      $footer.removeClass('fade-in');
+    }).on('close', function() {
+      onScroll();
+    });
+
     function update() {
       var previousY = previousScrollY;
       var y = latestKnownScrollY;

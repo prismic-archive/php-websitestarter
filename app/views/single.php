@@ -16,7 +16,7 @@
     <?php if(disqus_forum()): ?>
     <script type="application/javascript">
       $(document).ready(function() {
-          Disqium('.blog-main.single');
+          window.disqium = Disqium('.blog-main.single');
       });
     </script>
     <?php endif ?>

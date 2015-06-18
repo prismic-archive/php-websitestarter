@@ -170,9 +170,11 @@ function Disqium(scope) {
                 $button.addClass('fade-in');
                 $othersWrapper.addClass('hide-you');
                 $scope.addClass('shift');
+                onshow();
             } else {
                 $othersWrapper.removeClass('hide-you');
                 $scope.removeClass('shift');
+                onclose();
             }
             var profile = getProfile();
             if(profile.name) $form.find('[name=disqium-new-post-name]').val(profile.name);
@@ -309,4 +311,29 @@ function Disqium(scope) {
             }
         });
     });
+
+    var handlers = {};
+
+    function onshow() {
+        var h = handlers['show'] || [];
+        h.forEach(function(f) {
+            f && f();
+        });
+    }
+
+    function onclose() {
+        var h = handlers['close'] || [];
+        h.forEach(function(f) {
+            f && f();
+        });
+    }
+
+    return {
+
+        on: function(event, f) {
+            if(!handlers[event]) handlers[event] = [];
+            handlers[event].push(f);
+            return this;
+        }
+    };
 }
