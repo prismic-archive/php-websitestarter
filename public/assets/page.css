@@ -141,16 +141,6 @@ li p {
     margin-bottom: 20px;
   }
 
-  .slides .arrow-prev::before {
-      font-family: 'StarterKit';
-      content: '\e007';
-  }
-
-  .slides .arrow-next::before {
-      font-family: 'StarterKit';
-      content: '\e008';
-  }
-
   .slides .slide-container > p {
     margin-bottom: 40px;
   }
@@ -159,12 +149,11 @@ li p {
     padding: 27px 105px;
   }
 
-  .slides .arrow-prev {
-    left: 28px;
-  }
-
-  .slides .arrow-next {
-    right: 28px;
+  .slides .arrow-prev, .slides .arrow-next {
+    top: 50%;
+    -webkit-transform: translatey(-50%);
+    -ms-transform: translatey(-50%);
+    transform: translatey(-50%);
   }
 
   .slides .arrow-prev::before, .slides .arrow-next::before {
@@ -324,6 +313,10 @@ li p {
   .slides .button {
     padding: 20px;
     width: 100%;
+  }
+
+  .slides .arrow-prev, .slides .arrow-next {
+    bottom: 5%;
   }
 
   .contact-us .map {
@@ -523,14 +516,6 @@ li p {
   z-index: 1
 }
 
-.slides, .slides h1, .slide-arrows a {
-  color: white;
-}
-
-.slides .arrow-prev::before, .slides .arrow-next::before {
-  font-size: 30px;
-}
-
 .slides .slide {
   -webkit-transition: opacity 0.4s;
           transition: opacity 0.4s;
@@ -583,28 +568,39 @@ li p {
   border: none
 }
 
-
 .slides .arrow-prev, .slides .arrow-next {
   position: absolute;
   display: block;
   z-index: 2;
-  top: 50%;
   color: #FFF;
   cursor: pointer;
+  background-size: 100%;
+}
+
+.slides .arrow-prev::before {
+  font-family: 'StarterKit';
+  content: '\e007';
+}
+
+.slides .arrow-next::before {
+  font-family: 'StarterKit';
+  content: '\e008';
 }
 
 .slides .arrow-prev {
-  background-size: 100%;
-  -webkit-transform: translatey(-50%);
-  -ms-transform: translatey(-50%);
-  transform: translatey(-50%);
+  left: 28px;
 }
 
 .slides .arrow-next {
-  background-size: 100%;
-  -webkit-transform: translatey(-50%);
-  -ms-transform: translatey(-50%);
-  transform: translatey(-50%);
+  right: 28px;
+}
+
+.slides .arrow-prev::before, .slides .arrow-next::before {
+  font-size: 30px;
+}
+
+.slides, .slides h1, .slide-arrows a {
+  color: white;
 }
 
 .slides p {
