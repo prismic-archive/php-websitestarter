@@ -22,7 +22,7 @@ class StarterKitLinkResolver extends LinkResolver
     {
         if($link instanceof Prismic\Fragment\Link\DocumentLink) {
             foreach ($this->prismic->get_api()->bookmarks() as $name => $id) {
-                if ($link->getId() == $id && $name == 'home') {
+                if ($link->getId() == $id && ($name == 'home' || $name == 'skin')) {
                     return '/';
                 }
                 if ($link->getId() == $id && $name == 'bloghome') {
