@@ -22,11 +22,6 @@ body {
   box-sizing: border-box;
 }
 
-.main {
-  width: 100%;
-  overflow-x: hidden;
-}
-
 .main h1, .main h2, .main h3 {
   font-weight: normal;
 }

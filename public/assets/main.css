@@ -20,7 +20,7 @@ em {
     font-style: normal;
 }
 
-#main {
+.main {
   width: 100%;
   overflow-x: hidden;
 }
@@ -91,14 +91,14 @@ a {
     font-size: 18px;
   }
 
-  .blog-header .wio-link, .page .wio-link {
+  .main > .wio-link {
     width: 30px !important;
     height: 30px;
     top: 60px;
     right: 18px;
   }
 
-  .blog-header .wio-link img, .page > .main > .wio-link img {
+  .main > .wio-link img {
     width: 10px !important;
   }
 }
@@ -201,7 +201,7 @@ a {
     font-size: 22px;
   }
 
-  .blog-header .wio-link, .page > .main > .wio-link {
+  .main > .wio-link {
     width: 36px !important;
     height: 36px;
     top: 90px;
@@ -222,17 +222,17 @@ a {
   display: none;
 }
 
-.blog-header .wio-link, .page > .main > .wio-link {
+.main > .wio-link {
   display: block;
 }
 
-.blog-header .wio-link:hover, .page > .main > .wio-link:hover {
+.main > .wio-link:hover {
   -webkit-transform: scale(1.1);
       -ms-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-.blog-header .wio-link, .page > .main > .wio-link {
+.main > .wio-link {
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
           transition: transform 0.2s ease-in-out;
   z-index: 2;
@@ -241,11 +241,11 @@ a {
   box-shadow: 0 0 2px black;
 }
 
-.blog-header .wio-link img, .page > .main > .wio-link img {
+.main > .wio-link img {
   padding: 10px;
 }
 
-[data-wio-id]:hover .wio-link {
+.blog-post[data-wio-id]:hover .wio-link {
   display: block;
 }
 

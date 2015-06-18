@@ -26,5 +26,5 @@
         <?php get_sidebar() ?>
     </div>
 
-    <div id="main">
+    <div class="main" <?= the_wio_attributes(); ?>>
         <a id="menu-hamburger" href="#right-panel"></a>

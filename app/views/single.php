@@ -38,7 +38,7 @@
 
     </div>
 
-    <div id="main">
+    <div class="main" <?= the_wio_attributes(); ?>>
 
         <a id="menu-hamburger" href="#right-panel"></a>
 
@@ -51,7 +51,7 @@
 
 ?>
 
-<div class="blog-header single" <?= the_wio_attributes(); ?> style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
+<div class="blog-header single" style="<?= $headerImageUrl ? 'background-image: url('.$headerImageUrl.')' : '' ?>">
 
     <div class="wrapper">
 
