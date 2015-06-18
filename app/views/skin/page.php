@@ -42,6 +42,14 @@
 
 <style>
 
+a {
+  <?= $slideButtonBackgroundColor ? 'color:'.$slideButtonBackgroundColor->asText() : ''; ?>;
+}
+
+a:hover {
+  <?= $slideButtonHoverBackgroundColor ? 'color:'.$slideButtonHoverBackgroundColor->asText() : ''; ?>;
+}
+
 body {
   <?= $textFont ? 'font-family:'.$textFont : '' ?>;
   <?= $textColor ? 'color:'.$textColor->asText() : '' ?>;

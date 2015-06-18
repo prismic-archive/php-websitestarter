@@ -2,6 +2,14 @@ html {
   overflow-x: hidden;
 }
 
+a {
+  color: #5154aa
+}
+
+a:hover {
+  color: #41328a;
+}
+
 img {
   display: block;
 }
