@@ -130,7 +130,7 @@ function Disqium(scope) {
             var identifier = $el.data('disqium-thread-id');
             var thread = threads[identifier];
             var count = thread ? thread.posts.length : '+';
-            var $button = $('<button class="disqium-toggle-thread ' + (count == '+' ? 'empty' : '') +'">'+ count +'</button>');
+            var $button = $('<button class="disqium-toggle-thread ' + ((count == '+' || !count) ? 'empty' : '') +'">'+ (count ? count : '+') +'</button>');
             var $form = $('<form name="disqium-new-post">\
                             <input type="text" name="disqium-new-post-name" placeholder="Name" />\
                             <input type="email" name="disqium-new-post-email" placeholder="Email" />\
