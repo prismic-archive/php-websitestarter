@@ -8,7 +8,6 @@
  * we are in mobile context or not.
  *
 */
-
 (function($) {
   'use strict';
 
@@ -68,7 +67,6 @@
   }
 
   $.panelslider = function(element, options) {
-    console.log("Open stuff");
     var active = $('.ps-active-panel');
     var defaults = {
       side: 'left',     // panel side: left or right
@@ -129,7 +127,7 @@
   };
 
   // Bind click outside panel and ESC key to close panel if clickClose is true
-  $(document).bind('click keyup', function(e) {
+  $(document).bind('click keyup touchend', function(e) {
     var active = $('.ps-active-panel');
 
     if(e.type == 'keyup' && e.keyCode != 27) {
