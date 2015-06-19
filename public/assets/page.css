@@ -674,3 +674,74 @@ hr.separator.medium {
 hr.separator.small {
   height: 35px;
 }
+
+/* vh vw fallback for ios7 */
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+
+  .main .alternated-highlights .col-2, .main .alternated-highlights-full .col-text, .main .alternated-highlights-full .col-illustration {
+    height: 512px;
+  }
+
+  .main .alternated-highlights, .alternated-highlights-full {
+    height: 512px;
+  }
+
+  .main .slides {
+    height: 1024px;
+  }
+
+  .main .slides.medium {
+    height: 512px;
+  }
+
+  .main .slides.small {
+    height: 256px;
+  }
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+
+  .main .alternated-highlights .col-2, .main .alternated-highlights-full .col-text, .main .alternated-highlights-full .col-illustration {
+    height: 384px;
+  }
+
+  .main .alternated-highlights, .alternated-highlights-full {
+    height: 384px;
+  }
+
+  .main .slides {
+    height: 768px;
+  }
+
+  .main .slides.medium {
+    height: 384px;
+  }
+
+  .main .slides.small {
+    height: 192px;
+  }
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+
+  .main .alternated-highlights .col-2, .main .alternated-highlights-full .col-text, .main .alternated-highlights-full .col-illustration {
+    height: 265px;
+  }
+
+  .main .alternated-highlights, .alternated-highlights-full {
+    height: 265px;
+  }
+
+  .main .slides {
+    height: 530px;
+  }
+
+  .main .slides.medium {
+    height: 265px;
+  }
+
+  .main .slides.small {
+    height: 132px;
+  }
+}
