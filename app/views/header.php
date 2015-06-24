@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/assets/blog.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="/assets/vendor/modernizr.js"></script>
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
 
 
