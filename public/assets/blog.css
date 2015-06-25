@@ -552,8 +552,8 @@ pre, ul {
   }
 
   .slides .button {
-    padding: 1rem;
-    width: 80%;
+    padding: 1.5rem;
+    width: auto;
   }
 }
 
