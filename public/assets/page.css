@@ -316,9 +316,15 @@ li p {
     margin-bottom: 0.8rem;
   }
 
+  .slides .button {
+    width: 80%;
+    padding: 1rem;
+  }
+
   .slides.small .button {
     padding-top: 0.8rem!
-    padding-bottom: 0.8rem!;
+    padding-bottom: 0.8rem;
+    margin-left: 10%;
   }
 
   .slides.medium h1 {
@@ -574,9 +580,6 @@ li p {
   box-shadow: 0px 3px #412F8D;
   cursor: pointer;
   outline: none;
-  padding: 1rem;
-  width: 80%;
-  margin-left: 10%;
   font-size: 0.87rem!important;
 }
 

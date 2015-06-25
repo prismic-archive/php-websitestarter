@@ -550,6 +550,11 @@ pre, ul {
   .blog-header.search .description {
     display: none;
   }
+
+  .slides .button {
+    padding: 1rem;
+    width: 80%;
+  }
 }
 
 @media screen and (min-width: 768px) {
