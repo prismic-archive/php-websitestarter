@@ -31,20 +31,25 @@ body {
 }
 
 .main h1 {
-  font-size: 52px;
+  font-size: 3rem;
   font-weight: 300;
 }
 
+
+.slides h1 {
+  margin-bottom: 2rem;
+}
+
 .main h2 {
-  font-size: 26px;
+  font-size: 1.7rem;
   font-weight: 300;
-  margin-bottom: 15px
+  margin-bottom: 1rem;
 }
 
 .main h3 {
   margin: 0 0 16px 0;
-  line-height: 26px;
-  font-size: 16px;
+  line-height: 1.7rem;
+  font-size: 1rem;
 }
 
 .main h3.title {
@@ -55,13 +60,13 @@ body {
 
 .main p {
   line-height: 22px;
-  font-size: 14px;
+  font-size: 0.9rem;
   margin: 0 0 20px 0;
 }
 
 li.col-2, li.col-3 {
   border: none;
-  padding: 0 30px 30px 100px;
+  padding: 0 1rem 2rem 6rem;
 }
 
 li h3 {
@@ -130,15 +135,11 @@ li p {
   }
 
   .featured-items .col-3 {
-      padding: 0 10px;
+    padding: 0 10px;
   }
 
   .featured-items > div {
     position: relative;
-  }
-
-  .slides h1 {
-    margin-bottom: 20px;
   }
 
   .slides .slide-container > p {
@@ -278,7 +279,7 @@ li p {
   }
 
   .col-1, .col-2, .col-3, .col-4, .col-text, .col-illustration {
-    padding: 40px;
+    padding: 1.3rem;
   }
 
   .section-header {
@@ -310,9 +311,19 @@ li p {
     display: none;
   }
 
-  .slides .button {
-    padding: 20px;
-    width: 100%;
+  .slides.small h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .slides.small .button {
+    padding-top: 0.8rem!
+    padding-bottom: 0.8rem!;
+  }
+
+  .slides.medium h1 {
+    font-size: 2rem;
+    margin-bottom: 1.3rem;
   }
 
   .slides .arrow-prev, .slides .arrow-next {
@@ -337,7 +348,8 @@ li p {
 
 .row-centered-aired {
   max-width: 1100px;
-  margin: 20px auto;
+  margin: 1.2rem auto;
+  padding:  1rem;
 }
 
 .round-image {
@@ -359,7 +371,7 @@ li p {
  * Slices
  */
 
-.slice {
+ .slice {
   max-width: 1100px;
   padding: 26px;
   margin-right: auto;
@@ -376,7 +388,7 @@ li p {
 .featured-preview li {
   min-height: 120px;
   position: relative;
-  padding: 30px 50px 30px 120px;
+  padding: 1rem 1rem 1rem 6rem;
 }
 
 .featured-preview li:hover {
@@ -389,9 +401,9 @@ li p {
 
 .featured-preview .illustration {
   position: absolute;
-  left: 30px;
-  width: 60px;
-  height: 60px;
+  left: 1rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .featured-preview .preview-pane {
@@ -405,7 +417,7 @@ li p {
 
 .featured-preview .preview-pane .preview-image {
   -webkit-transition: opacity .3s ease-in-out;
-          transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -478,10 +490,10 @@ li p {
 }
 
 .featured-items-simple .illustration {
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   position: absolute;
-  left: 1em;
+  left: 1rem;
   background-color: #F3F3F9;
 }
 
@@ -492,14 +504,11 @@ li p {
   margin-top: 2em;
   padding-bottom: 1em;
 }
-.faq .col-2:nth-child(odd){
-  padding-right: 30px!important;
-}
 /*
  * Slides
  */
 
-.slides {
+ .slides {
   height: 100vh;
   position: relative;
 }
@@ -518,7 +527,7 @@ li p {
 
 .slides .slide {
   -webkit-transition: opacity 0.4s;
-          transition: opacity 0.4s;
+  transition: opacity 0.4s;
   background-size: cover;
   padding: 10px 20px;
   position: absolute;
@@ -542,6 +551,11 @@ li p {
   height: 25vh;
 }
 
+.slides.small h1 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
 .slides .slide h2 {
   font-size: 52px;
   font-weight: 300;
@@ -555,11 +569,15 @@ li p {
   color: #FFF;
   border: none;
   text-transform: uppercase;
-  font-size: 17px;
-  border-radius: 60px;
+  font-size: 1rem;
+  border-radius: 5rem;
   box-shadow: 0px 3px #412F8D;
   cursor: pointer;
   outline: none;
+  padding: 1rem;
+  width: 80%;
+  margin-left: 10%;
+  font-size: 0.87rem!important;
 }
 
 .slides .button:hover {
@@ -588,11 +606,11 @@ li p {
 }
 
 .slides .arrow-prev {
-  left: 28px;
+  left: 1.5rem;
 }
 
 .slides .arrow-next {
-  right: 28px;
+  right: 1.5rem;
 }
 
 .slides .arrow-prev::before, .slides .arrow-next::before {
@@ -605,8 +623,8 @@ li p {
 
 .slides p {
   font-family: 'Lato', sans-serif;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 1.2rem;
+  line-height: 1.9rem;
 }
 
 .slide-container {

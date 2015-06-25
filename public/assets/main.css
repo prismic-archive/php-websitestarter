@@ -27,7 +27,7 @@ em {
 
 body {
   font-family: 'PT Serif', serif;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   padding: 0;
