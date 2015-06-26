@@ -317,14 +317,14 @@ li p {
   }
 
   .slides .button {
-    width: 80%;
-    padding: 1rem;
+    width: auto;
+    padding: 1.2rem 3rem;
   }
 
   .slides.small .button {
-    padding-top: 0.8rem!
+    padding-top: 0.8rem; 
     padding-bottom: 0.8rem;
-    margin-left: 10%;
+    margin-left: 2rem;
   }
 
   .slides.medium h1 {
