@@ -128,6 +128,7 @@ $(function() {
         token = $form.find('[name=token]').val(),
         $sender = $form.find('[name=sender]'),
         $subject = $form.find('[name=subject]'),
+        $mailto = $form.find('[name=mailto]'),
         $message = $form.find('[name=message]'),
         $feedback = $form.find('.feedback'),
 
@@ -204,7 +205,8 @@ $(function() {
           'token': token,
           'sender': $sender.val(),
           'subject': $subject.val(),
-          'message': $message.val()
+          'message': $message.val(),
+          'mailto': $mailto.val()
         }
       }).then(function(res) {
         $feedback.addClass('success');

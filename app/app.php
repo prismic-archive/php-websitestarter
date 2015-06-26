@@ -560,7 +560,7 @@ $app->post('/contact', function() use ($app) {
 
   $message = array(
     'from' => $app->request->post('sender'),
-    'to' => $app->config('mailgun.email'),
+    'to' => $app->request->post('mailto'),
     'subject' => $app->request->post('subject'),
     'text' => $app->request->post('message'));
 

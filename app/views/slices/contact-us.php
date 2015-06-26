@@ -13,6 +13,8 @@
 
     <form name="contact-form" action="#">
 
+      <input type="hidden" name="mailto" value="<?= $contact->getText('mailto'); ?>"/>
+
       <div class="form-group">
 
         <label for="sender"><?= $contact->getText('email-label'); ?></label>
