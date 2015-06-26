@@ -165,11 +165,15 @@ $(function() {
 
     $message.on('change keyup', onChange);
 
+    var lastEmail;
+
     $sender.on('change keyup', function() {
 
       $feedback.text('');
 
       var email = $sender.val();
+
+      lastEmail = email;
 
       if (email.length < 7) { // quick client validation
         $sender.addClass("has-error");
@@ -180,12 +184,14 @@ $(function() {
       run_validator(email, {
         api_key: pubKey,
         success: function(res){
-          if (res.is_valid) {
-            $sender.removeClass("has-error");
-            validate();
-          } else {
-            $sender.addClass("has-error");
-            $submit.attr("disabled", "disabled");
+          if(res.address == lastEmail) {
+            if (res.is_valid) {
+              $sender.removeClass("has-error");
+              validate();
+            } else {
+              $sender.addClass("has-error");
+              $submit.attr("disabled", "disabled");
+            }
           }
         }
       });
