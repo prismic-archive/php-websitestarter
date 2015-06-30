@@ -150,6 +150,11 @@ li p {
     padding: 27px 105px;
   }
 
+  .faq [class*="col-"] {
+    width: 46%;
+    margin: 2%;
+  }
+
   .slides .arrow-prev, .slides .arrow-next {
     top: 50%;
     -webkit-transform: translatey(-50%);
