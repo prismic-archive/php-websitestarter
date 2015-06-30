@@ -11,18 +11,19 @@ function get_bloginfo($show = 'name')
 {
     global $WPGLOBAL;
     $app = $WPGLOBAL['app'];
+    $prismic = $WPGLOBAL['prismic'];
     switch ($show) {
         case 'atom_url':
         case 'rdf_url':
         case 'rss_url':
         case 'rss2_url': return '/feed';
-        case 'description': return $app->config('site.description');
+        case 'description': return $prismic->config('site.description');
         case 'wpurl':
         case 'url': return $app->request()->getUrl();
         case 'admin_email': return ADMIN_EMAIL;
         case 'charset': return 'UTF-8';
         case 'language': return 'en-US';
-        case 'name': return $app->config('site.title');
+        case 'name': return $prismic->config('site.title');
         default: return '';
     }
 }
@@ -35,9 +36,9 @@ function bloginfo($show = 'name')
 function site_title()
 {
     global $WPGLOBAL;
-    $app = $WPGLOBAL['app'];
+    $prismic = $WPGLOBAL['prismic'];
 
-    return $app->config('site.title');
+    return $prismic->config('site.title');
 }
 
 function home_url($path = '')
@@ -56,9 +57,9 @@ function wp_title()
 function site_description()
 {
     global $WPGLOBAL;
-    $app = $WPGLOBAL['app'];
+    $prismic = $WPGLOBAL['prismic'];
 
-    return $app->config('site.description');
+    return $prismic->config('site.description');
 }
 
 function the_feed_link($anchor)
@@ -211,9 +212,9 @@ function prismic_endpoint()
 function disqus_forum()
 {
     global $WPGLOBAL;
-    $app = $WPGLOBAL['app'];
+    $prismic = $WPGLOBAL['prismic'];
 
-    return $app->config('disqus.forum');
+    return $prismic->config('disqus.forum');
 }
 
 // Helpers (shouldn't be used in templates)

@@ -257,8 +257,8 @@ $app->get('/feed', function () use ($app, $prismic) {
     $feed = new Feed();
     $channel = new Channel();
     $channel
-        ->title($app->config('site.title'))
-        ->description($app->config('site.description'))
+        ->title($prismic->config('site.title'))
+        ->description($prismic->config('site.description'))
         ->url($blogUrl)
         ->appendTo($feed);
 
@@ -276,15 +276,15 @@ $app->get('/feed', function () use ($app, $prismic) {
 
 // --- DISQUS
 
-$app->post('/disqus/threads/create', function () use ($app) {
+$app->post('/disqus/threads/create', function () use ($app, $prismic) {
 
     $title = $app->request->post('title');
     $identifier = $app->request->post('identifier');
 
-    $apiKey = $app->config('disqus.apikey');
-    $apiSecret = $app->config('disqus.apisecret');
-    $accessToken = $app->config('disqus.accesstoken');
-    $forum = $app->config('disqus.forum');
+    $apiKey = $prismic->config('disqus.apikey');
+    $apiSecret = $prismic->config('disqus.apisecret');
+    $accessToken = $prismic->config('disqus.accesstoken');
+    $forum = $prismic->config('disqus.forum');
 
     if ($apiKey && $apiSecret && $accessToken && $forum) {
 
@@ -321,16 +321,16 @@ $app->post('/disqus/threads/create', function () use ($app) {
     }
 });
 
-$app->get('/disqus/threads/list', function () use ($app) {
+$app->get('/disqus/threads/list', function () use ($app, $prismic) {
 
     $threadIds = $app->request->get('thread');
     $cursor = $app->request->get('cursor');
     $limit = $app->request->get('limit');
 
-    $apiKey = $app->config('disqus.apikey');
-    $apiSecret = $app->config('disqus.apisecret');
-    $accessToken = $app->config('disqus.accesstoken');
-    $forum = $app->config('disqus.forum');
+    $apiKey = $prismic->config('disqus.apikey');
+    $apiSecret = $prismic->config('disqus.apisecret');
+    $accessToken = $prismic->config('disqus.accesstoken');
+    $forum = $prismic->config('disqus.forum');
 
     if ($apiKey && $apiSecret && $accessToken && $forum) {
 
@@ -369,14 +369,14 @@ $app->get('/disqus/threads/list', function () use ($app) {
 });
 
 
-$app->get('/disqus/threads/details', function () use ($app) {
+$app->get('/disqus/threads/details', function () use ($app, $prismic) {
 
     $threadIdent = $app->request->get('thread:ident');
 
-    $apiKey = $app->config('disqus.apikey');
-    $apiSecret = $app->config('disqus.apisecret');
-    $accessToken = $app->config('disqus.accesstoken');
-    $forum = $app->config('disqus.forum');
+    $apiKey = $prismic->config('disqus.apikey');
+    $apiSecret = $prismic->config('disqus.apisecret');
+    $accessToken = $prismic->config('disqus.accesstoken');
+    $forum = $prismic->config('disqus.forum');
 
     if ($apiKey && $apiSecret && $accessToken && $forum) {
 
@@ -414,16 +414,16 @@ $app->get('/disqus/threads/details', function () use ($app) {
     }
 });
 
-$app->post('/disqus/posts/create', function () use ($app) {
+$app->post('/disqus/posts/create', function () use ($app, $prismic) {
 
     $authorName = $app->request->get('author_name');
     $authorEmail = $app->request->get('author_email');
     $message = $app->request->get('message');
     $threadId = $app->request->get('thread');
 
-    $apiKey = $app->config('disqus.apikey');
-    $apiSecret = $app->config('disqus.apisecret');
-    $accessToken = $app->config('disqus.accesstoken');
+    $apiKey = $prismic->config('disqus.apikey');
+    $apiSecret = $prismic->config('disqus.apisecret');
+    $accessToken = $prismic->config('disqus.accesstoken');
 
     if ($apiKey && $apiSecret && $accessToken) {
 
@@ -463,17 +463,17 @@ $app->post('/disqus/posts/create', function () use ($app) {
     }
 });
 
-$app->get('/disqus/posts/list', function () use ($app) {
+$app->get('/disqus/posts/list', function () use ($app, $prismic) {
 
     $cursor = $app->request->get('cursor');
     $limit = $app->request->get('limit');
     $threadIds = $app->request->get('thread');
     $order = $app->request->get('order');
 
-    $apiKey = $app->config('disqus.apikey');
-    $apiSecret = $app->config('disqus.apisecret');
-    $accessToken = $app->config('disqus.accesstoken');
-    $forum = $app->config('disqus.forum');
+    $apiKey = $prismic->config('disqus.apikey');
+    $apiSecret = $prismic->config('disqus.apisecret');
+    $accessToken = $prismic->config('disqus.accesstoken');
+    $forum = $prismic->config('disqus.forum');
 
     if ($apiKey && $apiSecret && $accessToken && $forum) {
 
@@ -545,11 +545,11 @@ $app->get('/blog/:year/:month/:day/:uid', function ($year, $month, $day, $uid) u
 });
 
 // Contact
-$app->post('/contact', function() use ($app) {
+$app->post('/contact', function() use ($app, $prismic) {
   $resp = $app->response;
   $resp->headers->set('Content-Type', 'application/json');
 
-  $domain = $app->config('mailgun.domain');
+  $domain = $prismic->config('mailgun.domain');
 
   $token = $app->request->post('token');
 
@@ -564,7 +564,7 @@ $app->post('/contact', function() use ($app) {
     'subject' => $app->request->post('subject'),
     'text' => $app->request->post('message'));
 
-  $mailgun = new Mailgun($app->config('mailgun.apikey'));
+  $mailgun = new Mailgun($prismic->config('mailgun.apikey'));
 
   try {
       $res = $mailgun->sendMessage($domain, $message);

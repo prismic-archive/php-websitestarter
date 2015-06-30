@@ -23,6 +23,8 @@ class PrismicHelper
 
     private $api = null;
 
+    private $conf = null;
+
     public function pageSize()
     {
         return $this->app->config('page_size');
@@ -37,6 +39,27 @@ class PrismicHelper
         }
 
         return $this->api;
+    }
+
+    public function get_conf()
+    {
+        $url = $this->app->config('prismic.conf.url');
+        $token = $this->app->config('prismic.conf.token');
+        if ($this->conf == null) {
+            $httpClient = \Prismic\Api::defaultHttpAdapter();
+            $queryString = http_build_query(array("access_token" => $token));
+            $response = $httpClient->get($url.'?'.$queryString);
+            $conf = json_decode($response->getBody(), true);
+            $this->conf = $conf;
+        }
+
+        return $this->conf;
+    }
+
+    public function config($key)
+    {
+        $conf = $this->get_conf();
+        return isset($conf[$key]) ? $conf[$key] : $this->app->config($key);
     }
 
     /**
