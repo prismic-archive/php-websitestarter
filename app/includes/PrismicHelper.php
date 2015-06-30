@@ -44,13 +44,16 @@ class PrismicHelper
     public function get_conf()
     {
         $url = $this->app->config('prismic.conf.url');
-        $token = $this->app->config('prismic.conf.token');
-        if ($this->conf == null) {
-            $httpClient = \Prismic\Api::defaultHttpAdapter();
-            $queryString = http_build_query(array("access_token" => $token));
-            $response = $httpClient->get($url.'?'.$queryString);
-            $conf = json_decode($response->getBody(), true);
-            $this->conf = $conf;
+        $token = $this->app->config('prismic.token');
+        if ($token && $this->conf == null) {
+            try {
+                $httpClient = \Prismic\Api::defaultHttpAdapter();
+                $queryString = http_build_query(array("access_token" => $token));
+                $response = $httpClient->get($url.'?'.$queryString);
+                $conf = json_decode($response->getBody(), true);
+                $this->conf = $conf;
+            } catch (\Ivory\HttpAdapter\HttpAdapterException $e) {
+            }
         }
 
         return $this->conf;
@@ -59,7 +62,7 @@ class PrismicHelper
     public function config($key)
     {
         $conf = $this->get_conf();
-        return isset($conf[$key]) ? $conf[$key] : $this->app->config($key);
+        return ($conf && isset($conf[$key])) ? $conf[$key] : $this->app->config($key);
     }
 
     /**
