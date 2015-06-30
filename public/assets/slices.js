@@ -125,7 +125,6 @@ $(function() {
     var $form = $('form[name=contact-form]'),
         $submit = $form.find('button.send'),
         pubKey = $form.find('[name=pubkey]').val(),
-        token = $form.find('[name=token]').val(),
         $sender = $form.find('[name=sender]'),
         $subject = $form.find('[name=subject]'),
         $mailto = $form.find('[name=mailto]'),
@@ -208,7 +207,6 @@ $(function() {
         url: "/contact",
         dataType: "json",
         data: {
-          'token': token,
           'sender': $sender.val(),
           'subject': $subject.val(),
           'message': $message.val(),

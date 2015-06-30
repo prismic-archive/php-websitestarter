@@ -544,19 +544,11 @@ $app->get('/blog/:year/:month/:day/:uid', function ($year, $month, $day, $uid) u
     render($app, 'single', array('single_post' => $doc, 'skin' => $skin));
 });
 
-// Contact
 $app->post('/contact', function() use ($app, $prismic) {
   $resp = $app->response;
   $resp->headers->set('Content-Type', 'application/json');
 
   $domain = $prismic->config('mailgun.domain');
-
-  $token = $app->request->post('token');
-
-  if ($token != sha1($domain)) {
-      $resp->setBody(json_encode(array("error" => "Unauthorized contact token")));
-      return;
-  }
 
   $message = array(
     'from' => $app->request->post('sender'),

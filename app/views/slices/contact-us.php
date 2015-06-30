@@ -39,8 +39,6 @@
 
       </div>
 
-      <input type="hidden" name="token" value="<?=  mailgun_domain_sha1() ?>" />
-
       <input type="hidden" name="pubkey" value="<?= mailgun_pubkey() ?>" />
 
       <button class="send button" disabled="disabled">Send</button>
