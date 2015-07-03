@@ -82,9 +82,9 @@ li p {
 }
 
 
-.slides .inline-link p {
-  color: white;
-  font-size: 0.9rem;
+.slides .inline-link a {
+  color: #9497EF;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -161,7 +161,7 @@ li p {
     padding: 27px 105px;
   }
 
-  .slides .inline-link p {
+  .slides .inline-link {
     padding: 1rem 5rem;
   }
 
@@ -346,10 +346,9 @@ li p {
     padding: 1.2rem 3rem;
   }
 
-  .slides .inline-link p{
+  .slides .inline-link {
     padding: 1rem;
     width: 100%;
-    text-align: center;
   }
 
   .slides.small .button {

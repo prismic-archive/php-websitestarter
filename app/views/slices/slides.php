@@ -16,7 +16,6 @@
       $readMoreLabel = $item->get('read-more-label');
       $optionalLink = $item->get('optional-link');
       $optionalLinkLabel = $item->get('optional-link-label');
-
     ?>
 
     <div data-illustration="<?= $illustrationUrl ? $illustrationUrl : '' ?>" class="slide <?= $index == 0 ? 'active' : '' ?>" style="<?= $illustrationUrl ? 'background-image: url('.$illustrationUrl.')' : '' ?>">
@@ -39,11 +38,26 @@
 
             <?php endif ?>
 
-              <?php if ($optionalLinkLabel): ?>
+            <?php if ($optionalLinkLabel): ?>
 
-            <a class="inline-link" href="<?= $optionalLink->asText() ?>">
-            <?= $optionalLinkLabel->asHtml() ?>
-            </a>
+            <p class="inline-link">
+
+              <a href="<?= $optionalLink->asText() ?>">
+
+                <?php
+                  $serializer =  function ($element, $content) {
+                      if ($element instanceof \Prismic\Fragment\Block\ParagraphBlock) {
+                          return $content;
+                      }
+                      return;
+                  }
+                ?>
+
+                <?= $optionalLinkLabel->asHtml(null, $serializer) ?>
+
+              </a>
+
+            </p>
 
             <?php endif ?>
 
