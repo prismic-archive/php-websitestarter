@@ -165,7 +165,7 @@ li p {
     padding: 1rem 5rem;
   }
 
-  .faq [class*="col-"] {
+  .faq .col-2{
     width: 46%;
     margin: 2%;
   }
@@ -302,6 +302,11 @@ li p {
     padding: 1.3rem;
   }
 
+  .featured-preview .col-2 {
+    padding: 0;
+  }
+
+
   .section-header {
     text-align: center;
     padding: 20px !important;
@@ -381,7 +386,6 @@ li p {
 .row-centered-aired {
   max-width: 1100px;
   margin: 1.2rem auto;
-  padding:  1rem;
 }
 
 .round-image {
