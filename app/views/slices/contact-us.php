@@ -13,6 +13,8 @@
 
     <form name="contact-form" action="#">
 
+      <input type="hidden" name="mailto" value="<?= $contact->getText('mailto'); ?>"/>
+
       <div class="form-group">
 
         <label for="sender"><?= $contact->getText('email-label'); ?></label>
@@ -36,8 +38,6 @@
         <textarea name="message"></textarea>
 
       </div>
-
-      <input type="hidden" name="token" value="<?=  mailgun_domain_sha1() ?>" />
 
       <input type="hidden" name="pubkey" value="<?= mailgun_pubkey() ?>" />
 

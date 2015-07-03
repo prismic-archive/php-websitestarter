@@ -125,9 +125,9 @@ $(function() {
     var $form = $('form[name=contact-form]'),
         $submit = $form.find('button.send'),
         pubKey = $form.find('[name=pubkey]').val(),
-        token = $form.find('[name=token]').val(),
         $sender = $form.find('[name=sender]'),
         $subject = $form.find('[name=subject]'),
+        $mailto = $form.find('[name=mailto]'),
         $message = $form.find('[name=message]'),
         $feedback = $form.find('.feedback'),
 
@@ -164,11 +164,15 @@ $(function() {
 
     $message.on('change keyup', onChange);
 
+    var lastEmail;
+
     $sender.on('change keyup', function() {
 
       $feedback.text('');
 
       var email = $sender.val();
+
+      lastEmail = email;
 
       if (email.length < 7) { // quick client validation
         $sender.addClass("has-error");
@@ -179,12 +183,14 @@ $(function() {
       run_validator(email, {
         api_key: pubKey,
         success: function(res){
-          if (res.is_valid) {
-            $sender.removeClass("has-error");
-            validate();
-          } else {
-            $sender.addClass("has-error");
-            $submit.attr("disabled", "disabled");
+          if(res.address == lastEmail) {
+            if (res.is_valid) {
+              $sender.removeClass("has-error");
+              validate();
+            } else {
+              $sender.addClass("has-error");
+              $submit.attr("disabled", "disabled");
+            }
           }
         }
       });
@@ -201,10 +207,10 @@ $(function() {
         url: "/contact",
         dataType: "json",
         data: {
-          'token': token,
           'sender': $sender.val(),
           'subject': $subject.val(),
-          'message': $message.val()
+          'message': $message.val(),
+          'mailto': $mailto.val()
         }
       }).then(function(res) {
         $feedback.addClass('success');
