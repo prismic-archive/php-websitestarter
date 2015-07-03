@@ -14,6 +14,9 @@
       $illustrationUrl = $illustration ? $illustration->getUrl() : ($blankImage ? $blankImage->getUrl() : '');
       $readMore = $item->get('read-more');
       $readMoreLabel = $item->get('read-more-label');
+      $optionalLink = $item->get('optional-link');
+      $optionalLinkLabel = $item->get('optional-link-label');
+
     ?>
 
     <div data-illustration="<?= $illustrationUrl ? $illustrationUrl : '' ?>" class="slide <?= $index == 0 ? 'active' : '' ?>" style="<?= $illustrationUrl ? 'background-image: url('.$illustrationUrl.')' : '' ?>">
@@ -32,6 +35,14 @@
 
                 <?= $readMoreLabel->asText() ?>
 
+            </a>
+
+            <?php endif ?>
+
+              <?php if ($optionalLinkLabel): ?>
+
+            <a class="inline-link" href="<?= $optionalLink->asText() ?>">
+            <?= $optionalLinkLabel->asHtml() ?>
             </a>
 
             <?php endif ?>

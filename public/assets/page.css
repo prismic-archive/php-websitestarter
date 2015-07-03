@@ -81,6 +81,17 @@ li p {
   text-align: center;
 }
 
+
+.slides .inline-link p {
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.slides .inline-link strong {
+  font-size: 1rem;
+}
+
 @media (min-width: 768px) {
 
   html:not(.ie) .flex-container {
@@ -148,6 +159,10 @@ li p {
 
   .slides .button {
     padding: 27px 105px;
+  }
+
+  .slides .inline-link p {
+    padding: 1rem 5rem;
   }
 
   .faq [class*="col-"] {
@@ -324,6 +339,12 @@ li p {
   .slides .button {
     width: auto;
     padding: 1.2rem 3rem;
+  }
+
+  .slides .inline-link p{
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
   }
 
   .slides.small .button {
