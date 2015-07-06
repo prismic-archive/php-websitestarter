@@ -8,7 +8,7 @@ function page_url()
     if (!$doc) {
         return;
     }
-    $scheme = $_SERVER["HTTPS"] == "on" ? "https://" : "http://";
+    $scheme = "http://";
     $serverName = $_SERVER['HTTP_HOST'];
     return $scheme . $serverName . document_url($doc);
 }
