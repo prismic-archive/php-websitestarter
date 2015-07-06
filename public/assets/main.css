@@ -80,6 +80,36 @@ a {
   color: #fff;
 }
 
+.icon-facebook::before {
+  font-family: 'StarterKit';
+  content: '\e00B';
+}
+
+.icon-twitter::before {
+  font-family: 'StarterKit';
+  content: '\e00E';
+}
+
+.icon-linkedin::before {
+  font-family: 'StarterKit';
+  content: '\e00D';
+}
+
+.icon-google-plus::before {
+  font-family: 'StarterKit';
+  content: '\e00C';
+}
+
+.icon-email::before {
+  font-family: 'StarterKit';
+  content: '\e00F';
+}
+
+.icon-pinterest::before {
+  font-family: 'StarterKit';
+  content: '\e011';
+}
+
 /*
  * Masthead for nav
  */

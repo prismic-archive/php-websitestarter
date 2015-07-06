@@ -70,3 +70,4 @@ function get_pages()
         return array();
     }
 }
+?>

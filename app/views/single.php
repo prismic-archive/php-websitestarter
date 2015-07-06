@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="/assets/common.css">
     <link rel="stylesheet" href="/assets/main.css">
     <link rel="stylesheet" href="/assets/blog.css">
+    <link rel="stylesheet" href="/assets/social.css">
+    <link rel="stylesheet" href="/assets/font.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php while ( have_posts() ) : the_post(); ?>
+      <?php include('social-meta.php'); ?> 
+    <?php endwhile; ?>
 
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
 
@@ -43,6 +49,7 @@
         <a id="menu-hamburger" href="#right-panel"></a>
 
 <?php full_articles(true) ?>
+<?php rewind_posts(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php
@@ -71,6 +78,8 @@
 <div class="blog-main single container">
 
     <?php the_content(); ?>
+
+    <?php include('social.php'); ?> 
 
 </div>
 

@@ -8,9 +8,14 @@
     <link rel="stylesheet" href="/assets/common.css">
     <link rel="stylesheet" href="/assets/main.css">
     <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="/assets/starterkit.css">
+    <link rel="stylesheet" href="/assets/hopscotch.css">
+    <link rel="stylesheet" href="/assets/social.css">
     <link rel="stylesheet" href="/assets/font.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <?php while (have_posts()) : the_post(); ?>
+    <?php include('social-meta.php'); ?>
+    <?php endwhile; // end of the loop. ?>
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
     <script src="/assets/slices.js"></script>
 
@@ -21,26 +26,25 @@
 </head>
 
 <body class="page <?= is_home() ? "home" : "" ?>">
-
     <div id="right-panel">
 
         <?php get_sidebar() ?>
 
     </div>
-
     <div class="main" <?= the_wio_attributes(); ?>>
-
         <a id="menu-hamburger" href="#right-panel"></a>
-
-        <?php while (have_posts()) : the_post(); ?>
 
         <div id="page-content">
 
+            <?php rewind_posts(); ?>
+            <?php while (have_posts()) : the_post(); ?>
+
             <?php page_content() ?>
 
+            <?php include('social.php') ?>
+
+        <?php endwhile; // end of the loop. ?>
+
         </div>
-
-
-<?php endwhile; // end of the loop. ?>
 
 <?php get_footer() ?>
