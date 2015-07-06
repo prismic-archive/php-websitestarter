@@ -1,7 +1,7 @@
 ### Prismic.io Website Starter for PHP
 [![alt text](https://travis-ci.org/prismicio/php-websitestarter.png?branch=master "Travis build")](https://travis-ci.org/prismicio/php-websitestarter)
 
-This application is a "batteries included", ready to use blog engine. It is designed with document types similar to existing CMS like Wordpress, **blog posts** and **pages**.
+This application is a "batteries included", ready to use website and blog engine. It is designed with document types similar to existing CMS like Wordpress, **blog posts** and **pages**.
 
 #### Getting started
 
@@ -17,7 +17,7 @@ To run it on your local machine, 2 possibilities:
 
 Some remarks:
 
-* Your repository must be a clone of http://blogtemplate.prismic.io/. You can modify the default document masks, but that may require adapting the php source code.
+* Your repository must be a clone of http://prismicwebsite.me. You can modify the default document masks, but that may require adapting the php source code.
 * For the best performances, it is strongly recommended to enable APC to activate the cache. You can also use another caching system such as [memcached](http://memcached.org/), see the Prismic [Developer's Manual](https://developers.prismic.io/documentation/VBgeDDYAADMAz2Rw/developers-manual#cache) for more details.
 * If you cloned the github repository instead of downloading the zip, you need to install dependencies using [composer](https://getcomposer.org/): `composer install`.*
 
