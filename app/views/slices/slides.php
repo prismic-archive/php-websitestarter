@@ -39,7 +39,7 @@
 
             <?php endif ?>
 
-              <?php if ($optionalLinkLabel): ?>
+            <?php if ($optionalLinkLabel): ?>
 
             <a class="inline-link" href="<?= $optionalLink->asText() ?>">
             <?= $optionalLinkLabel->asHtml() ?>

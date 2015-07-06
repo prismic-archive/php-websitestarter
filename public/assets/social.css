@@ -1,0 +1,31 @@
+ .social-share-widgets {
+  width : auto;
+  height : auto;
+  text-align: center;
+  border-bottom: 1px solid #FEFEFE;
+  margin: 2rem 0;
+}
+
+.social-share-button i {
+  line-height: 1.8rem;
+}
+
+.social-share-button {
+  cursor : pointer ;
+  color: white;
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  color: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin: 0 0.2rem;
+}
+
+.social-share-button:hover, .social-share-button:focus {
+  color: #666666;
+  border: 1px solid #666666;
+}

@@ -30,6 +30,7 @@ require_once 'includes/http.php';
 
 // Template tags
 require_once 'includes/tags/general.php';
+require_once 'includes/tags/social.php';
 require_once 'includes/tags/navigation.php';
 require_once 'includes/tags/posts.php';
 require_once 'includes/tags/pages.php';
