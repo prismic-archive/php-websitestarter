@@ -1,4 +1,6 @@
+<?php while (have_posts()) : the_post(); ?>
 <?php get_header() ?>
+<?php endwhile; ?>
 
 <?php
 
@@ -20,9 +22,12 @@
 
 <div class="container blog-main">
 
+<?php rewind_posts(); ?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
     <?php get_template_part('content'); ?>
+
+    <?php include('social.php'); ?>
 
 <?php endwhile; else : ?>
 

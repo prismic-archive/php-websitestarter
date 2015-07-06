@@ -28,6 +28,19 @@ function page_link($page)
     return '<a href="'.$page['url'].'" class="'.implode(' ', $classes).'">'.$page['label'].'</a>';
 }
 
+function page_url()
+{
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
+    }
+    $scheme = $_SERVER["HTTPS"] == "on" ? "https://" : "http://";
+    $serverName = $_SERVER['HTTP_HOST'];
+return $scheme . $serverName . document_url($doc);
+}
+
 function slice_content($slice, $linkResolver)
 {
     global $WPGLOBAL;
@@ -70,3 +83,4 @@ function get_pages()
         return array();
     }
 }
+?>
