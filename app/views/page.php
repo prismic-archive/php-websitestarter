@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php while (have_posts()) : the_post(); ?>
-    <?php include('social-meta.php') ?>
+    <?php include('social-meta.php'); ?>
     <?php endwhile; // end of the loop. ?>
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
     <script src="/assets/slices.js"></script>
