@@ -108,8 +108,7 @@ function open_graph() {
         }
     }
 }
-function open_graph_title() { return open_graph()->getArray()[0]['card_title']->getValue(); 
-}
+function open_graph_title() { return open_graph()->getArray()[0]['card_title']->getValue(); }
 function open_graph_description() { return open_graph()->getArray()[0]['card_description']->getValue(); }
 function open_graph_image() { return open_graph()->getArray()[0]['card_image']->getMain()->getUrl(); }
 
@@ -123,11 +122,11 @@ function email() {
 }
 function email_title() { 
     $emailTitle = email()->getArray()[0]['card_title']->getValue();
-    return $emailTitle || open_graph_title(); 
+    return $emailTitle ? $emailTitle : open_graph_title(); 
 }
 function email_description() { 
     $emailDescription = email()->getArray()[0]['card_description']->getValue(); 
-    return $emailDescription || open_graph_description();
+    return $emailDescription ? $emailDescription : open_graph_description();
 }
 
 function page_social_cards_image()
