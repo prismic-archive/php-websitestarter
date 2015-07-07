@@ -1,4 +1,16 @@
 <?php
+function page_url()
+{
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
+    }
+    $scheme = $_SERVER["HTTPS"] == "on" ? "https://" : "http://";
+    $serverName = $_SERVER['HTTP_HOST'];
+    return $scheme . $serverName . document_url($doc);
+}
 
 function social() {
     global $WPGLOBAL, $loop;
@@ -7,105 +19,115 @@ function social() {
     if(!$doc) {
         return;
     }
-    $socialData = $doc->getSliceZone($doc->getType.'.social');
+    $socialData = $doc->getSliceZone($doc->getType().'.social');
     if($socialData) {
-        foreach ($$socialData.getSlices() as $socialSlice) {
-         return $socialSlice->getValue();
+        return $socialData->getSlices();
+    }
+}
+
+function twitter_card_exist() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if(is_twitter_card($slice->getSliceType())) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function is_twitter_card($sliceType) {
+    if($sliceType == 'twitter_app' || $sliceType == 'twitter_summary' || $sliceType == 'twitter_summary_large') {
+        return true;
+    }
+}
+
+function twitter_card_type() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        $sliceType = $slice->getSliceType();
+        if(is_twitter_card($sliceType)) {
+            return $sliceType;
         }
     }
 }
 
-function cards_data_by_social_service($socialSlice) {
-    switch ($socialSlice->getSliceType()) {
-        case 'general_card':
-            get_general_data($socialSlice);
-        break;
-
-        case 'twitter':
-           get_twitter_data($socialSlice);
-        break;
-        case 'open_graph':
-            get_open_graph_data($socialSlice);
-        break;
-
-        case 'email':
-            get_email_data($socialSlice);
-        break;
-        
-        default:
-            return;
-    }
-}
-
-function twitter() {
-    $social Data()
-}
-
-
-function page_social_data_twitter()
-{
-    global $WPGLOBAL, $loop;
-    $prismic = $WPGLOBAL['prismic'];
-    $doc = $loop->current_post();
-    if (!$doc) {
-        return;
-    }
-    $social = $doc->getSliceZone($doc->getType().'.social');
-    if ($social) {
-        foreach ($social->getSlices() as $slice) {
-            if($slice->getSliceType() == 'twitter') {
-                return $slice->getValue();
-            }
+function twitter_app() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'twitter_app') {
+            return $slice->getValue();
         }
     }
 }
+function twitter_app_site() { return twitter_app()->getArray()[0]['twitter_site']->getValue(); }
+function twitter_app_creator() { return twitter_app()->getArray()[0]['twitter_creator']->getValue(); }
+function twitter_app_country() { return twitter_app()->getArray()[0]['app_country']->getValue(); }
+function twitter_app_iphone_name() { return twitter_app()->getArray()[0]['iphone_name']->getValue(); }
+function twitter_app_iphone_id() { return twitter_app()->getArray()[0]['iphone_id']->getValue(); }
+function twitter_app_iphone_url() { return twitter_app()->getArray()[0]['iphone_url']->getValue(); }
+function twitter_app_ipad_name() { return twitter_app()->getArray()[0]['ipad_name']->getValue(); }
+function twitter_app_ipad_id() { return twitter_app()->getArray()[0]['ipad_id']->getValue(); }
+function twitter_app_ipad_url() { return twitter_app()->getArray()[0]['ipad_url']->getValue(); }
+function twitter_app_android_name() { return twitter_app()->getArray()[0]['android_name']->getValue(); }
+function twitter_app_android_id() { return twitter_app()->getArray()[0]['android_id']->getValue(); }
+function twitter_app_android_url() { return twitter_app()->getArray()[0]['android_url']->getValue(); }
 
-function page_social_twitter_card() {
-    $twitterData = page_social_data_twitter();
-    return $twitterData->getArray()[0]['twitter_card']->getValue();
-}
-
-function page_social_twitter_creator() {
-    $twitterData = page_social_data_twitter();
-    return $twitterData->getArray()[0]['twitter_creator']->getValue();
-}
-
-function page_social_twitter_site() {
-    $twitterData = page_social_data_twitter();
-    return $twitterData->getArray()[0]->GetFragments()['twitter_site']->getValue();
-}
-
-function page_social_twitter_images_gallery() {
-    $twitterData = page_social_data_twitter();
-    $arrayImage = [];
-    foreach ($twitterData->getArray()[0]->GetFragments() as $elem) {
-        if($elem instanceof Prismic\Fragment\Image) {
-            $arrayImage[] = $elem->getMain()->getUrl();
+function twitter_summary() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'twitter_summary') {
+            return $slice->getValue();
         }
     }
-    return $arrayImage;
 }
+function twitter_summary_title() { return twitter_summary()->getArray()[0]['card_title']->getValue(); }
+function twitter_summary_description() { return twitter_summary()->getArray()[0]['card_description']->getValue(); }
+function twitter_summary_image() { return twitter_summary()->getArray()[0]['card_image']->getMain()->getUrl(); }
+function twitter_summary_site() { return twitter_summary()->getArray()[0]['twitter_site']->getValue(); }
+function twitter_summary_creator() { return twitter_summary()->getArray()[0]['twitter_creator']->getValue(); }
 
-function page_social_cards_description()
-{
-    global $WPGLOBAL, $loop;
-    $prismic = $WPGLOBAL['prismic'];
-    $doc = $loop->current_post();
-    if (!$doc) {
-        return;
+function twitter_summary_large() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'twitter_summary_large') {
+            return $slice->getValue();
+        }
     }
-    return $doc->getText($doc->getType().'.cards_description');
 }
+function twitter_summary_large_title() { return twitter_summary_large()->getArray()[0]['card_title']->getValue(); }
+function twitter_summary_large_description() { return twitter_summary_large()->getArray()[0]['card_description']->getValue(); }
+function twitter_summary_large_image() { return twitter_summary_large()->getArray()[0]['card_image']->getMain()->getUrl(); }
+function twitter_summary_large_site() { return twitter_summary_large()->getArray()[0]['twitter_site']->getValue(); }
+function twitter_summary_large_creator() { return twitter_summary_large()->getArray()[0]['twitter_creator']->getValue(); }
 
-function page_social_cards_title()
-{
-    global $WPGLOBAL, $loop;
-    $prismic = $WPGLOBAL['prismic'];
-    $doc = $loop->current_post();
-    if (!$doc) {
-        return;
+function open_graph() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'open_graph') {
+            return $slice->getValue();
+        }
     }
-    return $doc->getText($doc->getType().'.cards_title');
+}
+function open_graph_title() { return open_graph()->getArray()[0]['card_title']->getValue(); 
+}
+function open_graph_description() { return open_graph()->getArray()[0]['card_description']->getValue(); }
+function open_graph_image() { return open_graph()->getArray()[0]['card_image']->getMain()->getUrl(); }
+
+function email() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'email') {
+            return $slice->getValue();
+        }
+    }
+}
+function email_title() { 
+    $emailTitle = email()->getArray()[0]['card_title']->getValue();
+    return $emailTitle || open_graph_title(); 
+}
+function email_description() { 
+    $emailDescription = email()->getArray()[0]['card_description']->getValue(); 
+    return $emailDescription || open_graph_description();
 }
 
 function page_social_cards_image()
