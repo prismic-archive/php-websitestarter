@@ -1,17 +1,21 @@
-.social-share-widgets {
+ .social-share-widgets {
   width : auto;
   height : auto;
-  padding: 2rem;
   text-align: right;
-  vertical-align: middle;
   border-bottom: 1px solid #FEFEFE;
+}
+
+.page .social-share-widgets {
+    margin: 0 2rem 2rem 0;
+}
+
+.social-share-button i {
+    vertical-align: middle;
 }
 
 .social-share-button {
   cursor : pointer ;
   color: white;
-Add a comment to this line
-  text-align: center;
   text-align: center;
   width: 2rem;
   height: 2rem;
@@ -19,11 +23,9 @@ Add a comment to this line
   color: #AAAAAA;
   border: 1px solid #AAAAAA;
   border-radius: 50%;
-  padding: 0.4rem;
+  box-sizing: border-box;
   font-size: 1rem;
-  text-align: center;
 }
-
 
   .social-share-button:hover, .social-share-button:focus {
     color: #666666;

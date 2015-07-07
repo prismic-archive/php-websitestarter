@@ -25,6 +25,10 @@ function social() {
     }
 }
 
+function isShareReady() {
+    return social() ? true : false;
+}
+
 function twitter_card_exist() {
     $socialSlices = social();
     foreach($socialSlices as $slice) {

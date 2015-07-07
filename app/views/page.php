@@ -40,7 +40,7 @@
 
             <?php page_content() ?>
 
-            <?php include('social.php') ?>
+        <?php if(isShareReady()) { include('social.php'); } ?>
 
         <?php endwhile; // end of the loop. ?>
 
