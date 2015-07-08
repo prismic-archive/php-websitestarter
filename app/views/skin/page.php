@@ -32,6 +32,9 @@
   $separatorHeight = $skin->getNumber('skin.page-separator-height');
   $separatorMediumHeight = $skin->getNumber('skin.page-separator-height-medium');
   $separatorSmallHeight = $skin->getNumber('skin.page-separator-height-small');
+
+  $blankColor = $skin->getColor('skin.blank-color');
+
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
@@ -61,6 +64,10 @@ body {
   <?= $sidebarBackgroundColor ? 'background-color:'.$sidebarBackgroundColor->asText() : '' ?>;
 }
 
+.featured-preview .preview-pane, .illustration, .slides .slide {
+  <?= $blankColor ? 'background-color:'.$blankColor->asText() : ''; ?>;
+}
+
 .main h1, .main h2, .main h3 {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>
 }
@@ -85,10 +92,6 @@ body {
   <?= $faqSeparationColor ? 'border-bottom-color:'.$faqSeparationColor->asText() : ''; ?>;
 }
 
-.slides .slide {
-  <?= $backgroundColor ? 'background-color:'.$backgroundColor->asText() : ''; ?>;
-}
-
 .slides .button {
   <?= $slideTextColor ? 'color:'.$slideTextColor->asText() : ''; ?>;
   <?= $slideButtonBackgroundColor ? 'background-color:'.$slideButtonBackgroundColor->asText() : ''; ?>;
@@ -98,10 +101,6 @@ body {
 .slides .button:hover {
   <?= $slideButtonHoverBackgroundColor ? 'background-color:'.$slideButtonHoverBackgroundColor->asText() : ''; ?>;
   <?= $slideButtonHoverBorderColor ? 'box-shadow: 0 3px '.$slideButtonHoverBorderColor->asText() : ''; ?>;
-}
-
-.round-image {
-  <?= $skinColor ? 'background-color:'.$skinColor->asText() : ''; ?>;
 }
 
 .featured-preview {
@@ -114,10 +113,6 @@ body {
 
 .alternated-items .alternate {
   <?= $skinAlternateColor ? 'background-color: '.$skinAlternateColor->asText() : ''; ?>;
-}
-
-.featured-items-simple .illustration {
-  <?= $skinColor ? 'background-color: '.$skinColor->asText() : ''; ?>;
 }
 
 .featured-preview li:hover {

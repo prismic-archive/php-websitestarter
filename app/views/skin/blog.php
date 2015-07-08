@@ -33,6 +33,8 @@
 
   $imageLabelTextColor = $skin->getColor('skin.blog-imagelabel-text-color');
 
+  $blankColor = $skin->getColor('skin.blank-color');
+
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
@@ -82,7 +84,7 @@ h6, .h6 {
 
 .blog-header {
   <?= $titleFont ? 'font-family:'.$titleFont : '' ?>;
-  <?= $backgroundColor ? 'background-color:'.$backgroundColor->asText() : ''; ?>;
+    <?= $blankColor ? 'background-color:'.$blankColor->asText() : ''; ?>;
 }
 
 .blog-header h1, .blog-header .date, .blog-header .shortlede, .blog-header .author {
