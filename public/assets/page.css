@@ -427,7 +427,7 @@ li p {
   bottom: 0;
   right: 0;
   padding: 0;
-  background: url(/assets/blank.png) no-repeat center center;
+  background-color: white;
 }
 
 .featured-preview .preview-pane .preview-image {
@@ -481,7 +481,6 @@ li p {
   width: 70%;
   background-size: cover;
   border-radius: 3px;
-  background: url(/assets/blank.png) no-repeat center center;
 }
 
 .alternated-items > div {
@@ -495,7 +494,6 @@ li p {
 .alternated-highlights-full .illustration {
   height: 100%;
   background-size: cover;
-  background: url(/assets/blank.png) no-repeat center center;
 }
 
 /* featured items simple */
@@ -509,7 +507,6 @@ li p {
   height: 4rem;
   position: absolute;
   left: 1rem;
-  background-color: #F3F3F9;
 }
 
 /* faq */
@@ -549,7 +546,6 @@ li p {
   height: 100%;
   width: 100%;
   background-color: #201145;
-  background: url(/assets/blank.png);
   background-size: cover;
   opacity: 0;
 }
