@@ -26,7 +26,7 @@ function social() {
 }
 
 function isShareReady() {
-    return social() ? true : false;
+    return social() ? false : false;
 }
 
 function open_graph_card_exist() {
@@ -44,7 +44,6 @@ function is_open_graph_card($sliceType) {
         return true;
     }
 }
-
 
 function general_card() {
     $socialSlices = social();

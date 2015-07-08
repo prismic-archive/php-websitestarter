@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/assets/font.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <?php if(isShareReady()) { include('social-meta.php'); } ?> 
+
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
 
     <!-- disqus integration -->
@@ -74,7 +76,7 @@
 
     <?php the_content(); ?>
 
-        <?php if(isShareReady()) { include('social.php'); } ?> 
+    <?php if(isShareReady()) { include('social.php'); } ?> 
 
 </div>
 
