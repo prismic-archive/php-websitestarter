@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/assets/blog.css">
     <link rel="stylesheet" href="/assets/social.css">
     <link rel="stylesheet" href="/assets/font.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
@@ -75,7 +74,7 @@
 
     <?php the_content(); ?>
 
-        <?php include('social.php'); ?>
+        <?php if(isShareReady()) { include('social.php'); } ?> 
 
 </div>
 

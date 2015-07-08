@@ -29,6 +29,36 @@ function isShareReady() {
     return social() ? true : false;
 }
 
+function open_graph_card_exist() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if(is_open_graph_card($slice->getSliceType())) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function is_open_graph_card($sliceType) {
+    if($sliceType == 'general_card' || $sliceType == 'product_card' || $sliceType == 'recipe_card') {
+        return true;
+    }
+}
+
+
+function general_card() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'general_card') {
+            return $slice->getValue();
+        }
+    }
+}
+function open_graph_title() { return general_card()->getArray()[0]['card_title']->getValue(); }
+function open_graph_description() { return general_card()->getArray()[0]['card_description']->getValue(); }
+function open_graph_image() { return general_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
+
+
 function twitter_card_exist() {
     $socialSlices = social();
     foreach($socialSlices as $slice) {
@@ -103,18 +133,6 @@ function twitter_summary_large_description() { return twitter_summary_large()->g
 function twitter_summary_large_image() { return twitter_summary_large()->getArray()[0]['card_image']->getMain()->getUrl(); }
 function twitter_summary_large_site() { return twitter_summary_large()->getArray()[0]['twitter_site']->getValue(); }
 function twitter_summary_large_creator() { return twitter_summary_large()->getArray()[0]['twitter_creator']->getValue(); }
-
-function open_graph() {
-    $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'open_graph') {
-            return $slice->getValue();
-        }
-    }
-}
-function open_graph_title() { return open_graph()->getArray()[0]['card_title']->getValue(); }
-function open_graph_description() { return open_graph()->getArray()[0]['card_description']->getValue(); }
-function open_graph_image() { return open_graph()->getArray()[0]['card_image']->getMain()->getUrl(); }
 
 function email() {
     $socialSlices = social();

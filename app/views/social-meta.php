@@ -11,6 +11,15 @@
    <meta property="og:description" content="<?= open_graph_description() ?>">
    <meta property="article:section" content="Article Section">
 
+
+
+<meta property="og:title" content="Name of your product" />
+<meta property="og:type" content="product" />
+<meta property="og:price:amount" content="1.00" />
+<meta property="og:price:currency" content="USD" />
+
+
+
    <!-- Twitter Card data -->
    <?php
    if(twitter_card_exist()) {

@@ -27,8 +27,6 @@
 
     <?php get_template_part('content'); ?>
 
-    <?php include('social.php'); ?>
-
 <?php endwhile; else : ?>
 
     <p>Sorry, no posts matched your criteria.</p>
