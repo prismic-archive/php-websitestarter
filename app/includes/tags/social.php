@@ -12,6 +12,29 @@ function page_url()
     return $scheme . $serverName . document_url($doc);
 }
 
+function page_title()
+{
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
+    }
+    $title = $doc->getStructuredText($doc->getType().'.title');
+    if ($title) {
+        return $title->asText();
+    }
+}
+
+function blank_image() {
+    if(the_skin() && the_skin()->getImage('skin.blank-image')) {
+        return the_skin()->getImage('skin.blank-image')->getMain()->getUrl();
+    }  else {
+        return '';
+    }
+}
+
+
 function social() {
     global $WPGLOBAL, $loop;
     $prismic = $WPGLOBAL['prismic'];
@@ -26,7 +49,22 @@ function social() {
 }
 
 function isShareReady() {
-    return social() ? false : false;
+    return social() ? true : false;
+}
+
+function socialPluginActivated() {
+        global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if(!$doc) {
+        return;
+    }
+    $socialEnabled = $doc->getText($doc->getType().'.social_cards_enabled');
+    if($socialEnabled == 'Enabled') {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function open_graph_card_exist() {
@@ -40,8 +78,18 @@ function open_graph_card_exist() {
 }
 
 function is_open_graph_card($sliceType) {
-    if($sliceType == 'general_card' || $sliceType == 'product_card' || $sliceType == 'recipe_card') {
+    if($sliceType == 'general_card' || $sliceType == 'product_card' || $sliceType == 'place_card') {
         return true;
+    }
+}
+
+function open_graph_card_type() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        $sliceType = $slice->getSliceType();
+        if(is_open_graph_card($sliceType)) {
+            return $sliceType;
+        }
     }
 }
 
@@ -53,10 +101,47 @@ function general_card() {
         }
     }
 }
-function open_graph_title() { return general_card()->getArray()[0]['card_title']->getValue(); }
-function open_graph_description() { return general_card()->getArray()[0]['card_description']->getValue(); }
-function open_graph_image() { return general_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
+function general_card_title() { return general_card()->getArray()[0]['card_title']->getValue(); }
+function general_card_description() { return general_card()->getArray()[0]['card_description']->getValue(); }
+function general_card_image() { return general_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
 
+
+function product_card() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'product_card') {
+            return $slice->getValue();
+        }
+    }
+}
+function product_card_title() { return product_card()->getArray()[0]['card_title']->getValue(); }
+function product_card_description() { return product_card()->getArray()[0]['card_description']->getValue(); }
+function product_card_amount() { return product_card()->getArray()[0]['card_amount']->getValue(); }
+function product_card_currency() { return product_card()->getArray()[0]['card_currency']->getValue(); }
+function product_card_single_image() {return product_card()->getArray()[0]['card_image0']->getMain()->getUrl(); }
+function product_card_images() { 
+    $imagesUrls =[];
+    foreach(product_card()->getArray()[0]->getFragments() as $sliceItem) {
+        if($sliceItem instanceof \Prismic\Fragment\Image) {
+            array_push($imagesUrls, $sliceItem->getMain()->getUrl());
+        }
+    }
+    return '['. implode(',', $imagesUrls) . ']';
+}
+
+function place_card() {
+    $socialSlices = social();
+    foreach($socialSlices as $slice) {
+        if($slice->getSliceType() == 'place_card') {
+            return $slice->getValue();
+        }
+    }
+}
+function place_card_title() { return place_card()->getArray()[0]['card_title']->getValue(); }
+function place_card_description() { return place_card()->getArray()[0]['card_description']->getValue(); }
+function place_card_latitude() { return place_card()->getArray()[0]['card_latitude']->getValue(); }
+function place_card_longitude() { return place_card()->getArray()[0]['card_longitude']->getValue(); }
+function place_card_image() { return place_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
 
 function twitter_card_exist() {
     $socialSlices = social();
@@ -142,10 +227,12 @@ function email() {
     }
 }
 function email_title() { 
+    return 'hello';
     $emailTitle = email()->getArray()[0]['card_title']->getValue();
     return $emailTitle ? $emailTitle : open_graph_title(); 
 }
 function email_description() { 
+    return 'hello';
     $emailDescription = email()->getArray()[0]['card_description']->getValue(); 
     return $emailDescription ? $emailDescription : open_graph_description();
 }

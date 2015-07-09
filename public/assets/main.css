@@ -105,6 +105,11 @@ a {
   content: '\e00F';
 }
 
+.icon-pinterest::before {
+  font-family: 'StarterKit';
+  content: '\e011';
+}
+
 /*
  * Masthead for nav
  */
