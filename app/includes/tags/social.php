@@ -1,4 +1,5 @@
 <?php
+
 function page_url()
 {
     global $WPGLOBAL, $loop;
@@ -26,14 +27,65 @@ function page_title()
     }
 }
 
-function blank_image() {
-    if(the_skin() && the_skin()->getImage('skin.blank-image')) {
-        return the_skin()->getImage('skin.blank-image')->getMain()->getUrl();
-    }  else {
-        return '';
+function default_title() {
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
     }
+    $body = $doc->getSliceZone($doc->getType().'.body');
+    foreach($body->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof \Prismic\Fragment\StructuredText) {
+                    if($sliceItem->getFirstHeading()) return $sliceItem->getFirstHeading()->getText();
+                }
+            }
+        }
+    }
+    return;
 }
 
+function default_description() {
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
+    }
+    $body = $doc->getSliceZone($doc->getType().'.body');
+    foreach($body->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof \Prismic\Fragment\StructuredText) {
+                    if($sliceItem->getFirstParagraph()) return $sliceItem->getFirstParagraph()->getText();
+                }
+            }
+        }
+    }
+    return;
+}
+
+function default_image() {
+    global $WPGLOBAL, $loop;
+    $prismic = $WPGLOBAL['prismic'];
+    $doc = $loop->current_post();
+    if (!$doc) {
+        return;
+    }
+    $body = $doc->getSliceZone($doc->getType().'.body');
+    foreach($body->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof \Prismic\Fragment\Image) {
+                    if($sliceItem->getMain()) return $sliceItem->getMain()->getUrl();
+                }
+            }
+        }
+    }
+    return;
+}
 
 function social() {
     global $WPGLOBAL, $loop;
