@@ -96,11 +96,10 @@
    }
 } else {
    ?>
-   <meta property="og:title" content="<?= page_title() ? page_title() : default_title() ?>">
-   <meta property="og:description" content="<?= default_description() ?>">
+   <meta property="og:title" content="<?= page_title() ?>">
    <meta property="og:type" content="article">
    <meta property="og:url" content="<?= page_url() ?>">
-   <meta property="og:image" content="<?= default_image() ?>">
+   <meta property="og:image" content="<?= blank_image() ?>">
    <?php
 }
 ?>

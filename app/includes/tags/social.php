@@ -153,9 +153,9 @@ function general_card() {
         }
     }
 }
-function general_card_title() { return general_card()->getArray()[0]['card_title']->getValue(); }
-function general_card_description() { return general_card()->getArray()[0]['card_description']->getValue(); }
-function general_card_image() { return general_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
+function general_card_title() { return general_card()->getArray()[0]['card_title'] ? general_card()->getArray()[0]['card_title']->getValue() : default_title(); }
+function general_card_description() { return general_card()->getArray()[0]['card_description'] ? general_card()->getArray()[0]['card_description']->getValue() : default_description(); }
+function general_card_image() { return general_card()->getArray()[0]['card_image'] && general_card()->getArray()[0]['card_image']->getMain() ? general_card()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
 
 
 function product_card() {
@@ -166,11 +166,11 @@ function product_card() {
         }
     }
 }
-function product_card_title() { return product_card()->getArray()[0]['card_title']->getValue(); }
-function product_card_description() { return product_card()->getArray()[0]['card_description']->getValue(); }
-function product_card_amount() { return product_card()->getArray()[0]['card_amount']->getValue(); }
-function product_card_currency() { return product_card()->getArray()[0]['card_currency']->getValue(); }
-function product_card_single_image() {return product_card()->getArray()[0]['card_image0']->getMain()->getUrl(); }
+function product_card_title() { return product_card()->getArray()[0]['card_title'] ? product_card()->getArray()[0]['card_title']->getValue() : default_title(); }
+function product_card_description() { return product_card()->getArray()[0]['card_description'] ? product_card()->getArray()[0]['card_description']->getValue() : default_description(); }
+function product_card_amount() { return product_card()->getArray()[0]['card_amount'] ? product_card()->getArray()[0]['card_amount']->getValue() : ''; }
+function product_card_currency() { return product_card()->getArray()[0]['card_currency'] ? product_card()->getArray()[0]['card_currency']->getValue() : ''; }
+function product_card_single_image() {return product_card()->getArray()[0]['card_image0'] && product_card()->getArray()[0]['card_image0']->getMain() ? product_card()->getArray()[0]['card_image0']->getMain()->getUrl() : default_image(); }
 function product_card_images() { 
     $imagesUrls =[];
     foreach(product_card()->getArray()[0]->getFragments() as $sliceItem) {
@@ -189,11 +189,11 @@ function place_card() {
         }
     }
 }
-function place_card_title() { return place_card()->getArray()[0]['card_title']->getValue(); }
-function place_card_description() { return place_card()->getArray()[0]['card_description']->getValue(); }
-function place_card_latitude() { return place_card()->getArray()[0]['card_latitude']->getValue(); }
-function place_card_longitude() { return place_card()->getArray()[0]['card_longitude']->getValue(); }
-function place_card_image() { return place_card()->getArray()[0]['card_image']->getMain()->getUrl(); }
+function place_card_title() { return place_card()->getArray()[0]['card_title'] ? place_card()->getArray()[0]['card_title']->getValue() : default_title(); }
+function place_card_description() { return place_card()->getArray()[0]['card_description'] ? place_card()->getArray()[0]['card_description']->getValue() : default_description(); }
+function place_card_latitude() { return place_card()->getArray()[0]['card_latitude'] ? place_card()->getArray()[0]['card_latitude']->getValue() : ''; }
+function place_card_longitude() { return place_card()->getArray()[0]['card_longitude'] ? place_card()->getArray()[0]['card_longitude']->getValue() : ''; }
+function place_card_image() { return place_card()->getArray()[0]['card_image'] ? place_card()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
 
 function twitter_card_exist() {
     $socialSlices = social();
@@ -229,18 +229,20 @@ function twitter_app() {
         }
     }
 }
-function twitter_app_site() { return twitter_app()->getArray()[0]['twitter_site']->getValue(); }
-function twitter_app_creator() { return twitter_app()->getArray()[0]['twitter_creator']->getValue(); }
-function twitter_app_country() { return twitter_app()->getArray()[0]['app_country']->getValue(); }
-function twitter_app_iphone_name() { return twitter_app()->getArray()[0]['iphone_name']->getValue(); }
-function twitter_app_iphone_id() { return twitter_app()->getArray()[0]['iphone_id']->getValue(); }
-function twitter_app_iphone_url() { return twitter_app()->getArray()[0]['iphone_url']->getValue(); }
-function twitter_app_ipad_name() { return twitter_app()->getArray()[0]['ipad_name']->getValue(); }
-function twitter_app_ipad_id() { return twitter_app()->getArray()[0]['ipad_id']->getValue(); }
-function twitter_app_ipad_url() { return twitter_app()->getArray()[0]['ipad_url']->getValue(); }
-function twitter_app_android_name() { return twitter_app()->getArray()[0]['android_name']->getValue(); }
-function twitter_app_android_id() { return twitter_app()->getArray()[0]['android_id']->getValue(); }
-function twitter_app_android_url() { return twitter_app()->getArray()[0]['android_url']->getValue(); }
+function twitter_app_site() { return twitter_app()->getArray()[0]['twitter_site'] ? twitter_app()->getArray()[0]['twitter_site']->getValue() : ''; }
+function twitter_app_creator() { return twitter_app()->getArray()[0]['twitter_creator'] ? twitter_app()->getArray()[0]['twitter_creator']->getValue() : ''; }
+function twitter_app_country() { return twitter_app()->getArray()[0]['app_country'] ? twitter_app()->getArray()[0]['app_country']->getValue() : ''; }
+function twitter_app_iphone_name() { return twitter_app()->getArray()[0]['iphone_name'] ? twitter_app()->getArray()[0]['iphone_name']->getValue() : ''; }
+function twitter_app_iphone_id() { return twitter_app()->getArray()[0]['iphone_id'] ? twitter_app()->getArray()[0]['iphone_id']->getValue() : ''; }
+function twitter_app_iphone_url() { return twitter_app()->getArray()[0]['iphone_url'] ? twitter_app()->getArray()[0]['iphone_url']->getValue() : ''; }
+
+function twitter_app_ipad_name() { return twitter_app()->getArray()[0]['ipad_name'] ? twitter_app()->getArray()[0]['ipad_name']->getValue() : ''; }
+function twitter_app_ipad_id() { return twitter_app()->getArray()[0]['ipad_id'] ? twitter_app()->getArray()[0]['ipad_id']->getValue() : ''; }
+function twitter_app_ipad_url() { return twitter_app()->getArray()[0]['ipad_url'] ? twitter_app()->getArray()[0]['ipad_url']->getValue() : ''; }
+
+function twitter_app_android_name() { return twitter_app()->getArray()[0]['android_name'] ? twitter_app()->getArray()[0]['android_name']->getValue() : ''; }
+function twitter_app_android_id() { return twitter_app()->getArray()[0]['android_id'] ? twitter_app()->getArray()[0]['android_id']->getValue() : ''; }
+function twitter_app_android_url() { return twitter_app()->getArray()[0]['android_url'] ? twitter_app()->getArray()[0]['android_url']->getValue() : ''; }
 
 function twitter_summary() {
     $socialSlices = social();
@@ -250,11 +252,11 @@ function twitter_summary() {
         }
     }
 }
-function twitter_summary_title() { return twitter_summary()->getArray()[0]['card_title']->getValue(); }
-function twitter_summary_description() { return twitter_summary()->getArray()[0]['card_description']->getValue(); }
-function twitter_summary_image() { return twitter_summary()->getArray()[0]['card_image']->getMain()->getUrl(); }
-function twitter_summary_site() { return twitter_summary()->getArray()[0]['twitter_site']->getValue(); }
-function twitter_summary_creator() { return twitter_summary()->getArray()[0]['twitter_creator']->getValue(); }
+function twitter_summary_title() { return twitter_summary()->getArray()[0]['card_title'] ? twitter_summary()->getArray()[0]['card_title']->getValue() : default_title(); }
+function twitter_summary_description() { return twitter_summary()->getArray()[0]['card_description'] ? twitter_summary()->getArray()[0]['card_description']->getValue() : default_description(); }
+function twitter_summary_image() { return twitter_summary()->getArray()[0]['card_image'] ? twitter_summary()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
+function twitter_summary_site() { return twitter_summary()->getArray()[0]['twitter_site'] ? twitter_summary()->getArray()[0]['twitter_site']->getValue() : ''; }
+function twitter_summary_creator() { return twitter_summary()->getArray()[0]['twitter_creator'] ? twitter_summary()->getArray()[0]['twitter_creator']->getValue() : ''; }
 
 function twitter_summary_large() {
     $socialSlices = social();
@@ -264,11 +266,11 @@ function twitter_summary_large() {
         }
     }
 }
-function twitter_summary_large_title() { return twitter_summary_large()->getArray()[0]['card_title']->getValue(); }
-function twitter_summary_large_description() { return twitter_summary_large()->getArray()[0]['card_description']->getValue(); }
-function twitter_summary_large_image() { return twitter_summary_large()->getArray()[0]['card_image']->getMain()->getUrl(); }
-function twitter_summary_large_site() { return twitter_summary_large()->getArray()[0]['twitter_site']->getValue(); }
-function twitter_summary_large_creator() { return twitter_summary_large()->getArray()[0]['twitter_creator']->getValue(); }
+function twitter_summary_large_title() { return twitter_summary_large()->getArray()[0]['card_title'] ? twitter_summary_large()->getArray()[0]['card_title']->getValue() : default_title(); }
+function twitter_summary_large_description() { return twitter_summary_large()->getArray()[0]['card_description'] ? twitter_summary_large()->getArray()[0]['card_description']->getValue() : default_description(); }
+function twitter_summary_large_image() { return twitter_summary_large()->getArray()[0]['card_image'] ? twitter_summary_large()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
+function twitter_summary_large_site() { return twitter_summary_large()->getArray()[0]['twitter_site'] ? twitter_summary_large()->getArray()[0]['twitter_site']->getValue() : ''; }
+function twitter_summary_large_creator() { return twitter_summary_large()->getArray()[0]['twitter_creator'] ? twitter_summary_large()->getArray()[0]['twitter_creator']->getValue() : ''; }
 
 function email() {
     $socialSlices = social();
