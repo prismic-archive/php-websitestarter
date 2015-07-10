@@ -1,6 +1,5 @@
 <?php if(isShareReady()) { ?>
-
-   <?php if(open_graph_card_exist()) {
+   <?php if(open_graph_card_exists()) {
       switch(open_graph_card_type()) { 
          case 'general_card' :
          ?>
@@ -46,16 +45,14 @@
    }
    ?>
 
-
-   <!-- Twitter Card data -->
    <?php
-   if(twitter_card_exist()) {
+   if(twitter_card_exists()) {
      switch(twitter_card_type()){
        case 'twitter_summary' :
        ?>
+   <!-- Twitter Card data -->
        <meta name="twitter:card" content="summary" />
        <meta name="twitter:site" content="<?= twitter_summary_site() ?>" />
-       <meta name="twitter:creator" content="<?= twitter_summary_creator() ?>" />
        <meta name="twitter:title" content="<?= twitter_summary_title() ?>">
        <meta name="twitter:description" content="<?= twitter_summary_description() ?>">
        <meta name="twitter:image:src" content="<?= twitter_summary_image() ?>">
@@ -96,10 +93,11 @@
    }
 } else {
    ?>
-   <meta property="og:title" content="<?= page_title() ?>">
+   <meta property="og:title" content="<?= default_title() ?>">
    <meta property="og:type" content="article">
    <meta property="og:url" content="<?= page_url() ?>">
-   <meta property="og:image" content="<?= blank_image() ?>">
+   <meta property="og:image" content="<?= default_image() ?>">
+   <meta property="og:description" content="<?= default_description() ?>">
    <?php
 }
 ?>

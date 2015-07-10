@@ -27,6 +27,81 @@ function page_title()
     }
 }
 
+function get_StructuredText_with_title_from_SliceZone($sliceZone) {
+    foreach($sliceZone->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof Prismic\Fragment\StructuredText) {
+                 if($sliceItem->getFirstHeading()) return $sliceItem;
+                }  
+            }
+        }
+    }
+}
+
+function get_StructuredText_with_description_from_SliceZone($sliceZone) {
+    foreach($sliceZone->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof Prismic\Fragment\StructuredText) {
+                 if($sliceItem->getFirstParagraph()) return $sliceItem;
+                }  
+            }
+        }
+    }
+}
+
+function get_Image_from_SliceZone($sliceZone) {
+    foreach($sliceZone->getSlices() as $slice) {
+       foreach($slice->getValue()->getArray() as $group) {
+            foreach($group->getFragments() as $sliceItem) {
+                if($sliceItem instanceof Prismic\Fragment\Image) {
+                 if($sliceItem->getMain()) return $sliceItem;
+                }  
+            }
+        }
+    }
+}
+
+function get_StructuredText_with_title_from_Fragment($fragment) {
+    if($fragment instanceof Prismic\Fragment\SliceZone) {
+        return get_StructuredText_with_title_from_SliceZone($fragment);
+    }
+    elseif($fragment instanceof Prismic\Fragment\StructuredText) {
+        if($fragment->getFirstHeading()) return $fragment;
+    }
+}
+
+function get_StructuredText_with_description_from_Fragment($fragment) {
+    if($fragment instanceof Prismic\Fragment\SliceZone) {
+        return get_StructuredText_with_description_from_SliceZone($fragment);
+    }
+    elseif($fragment instanceof Prismic\Fragment\StructuredText) {
+        if($fragment->getFirstParagraph()) return $fragment;
+    }
+}
+
+function get_Image_from_fragment($fragment) {
+    if($fragment instanceof Prismic\Fragment\SliceZone) {
+        return get_Image_from_SliceZone($fragment);
+    }
+    elseif($fragment instanceof Prismic\Fragment\Image) {
+        if($fragment->getMain()) return $fragment;
+    }
+}
+
+function get_title_from_StructuredText($structuredText) {
+    if($structuredText) return $structuredText->getFirstHeading()->getText();
+}
+
+function get_description_from_StructuredText($structuredText) {
+    if($structuredText) return $structuredText->getFirstParagraph()->getText();
+}
+
+function get_image_from_fragment_image($image) {
+    if($image) return $image->getMain()->getUrl();
+}
+
 function default_title() {
     global $WPGLOBAL, $loop;
     $prismic = $WPGLOBAL['prismic'];
@@ -34,17 +109,13 @@ function default_title() {
     if (!$doc) {
         return;
     }
-    $body = $doc->getSliceZone($doc->getType().'.body');
-    foreach($body->getSlices() as $slice) {
-       foreach($slice->getValue()->getArray() as $group) {
-            foreach($group->getFragments() as $sliceItem) {
-                if($sliceItem instanceof \Prismic\Fragment\StructuredText) {
-                    if($sliceItem->getFirstHeading()) return $sliceItem->getFirstHeading()->getText();
-                }
-            }
-        }
+    $fragments = $doc->getFragments();
+    foreach($fragments as $fragment) {
+        $text = get_StructuredText_with_title_from_Fragment($fragment);
+        $title = get_title_from_StructuredText($text);
+        if($title) return $title;
     }
-    return;
+    return '';
 }
 
 function default_description() {
@@ -54,17 +125,13 @@ function default_description() {
     if (!$doc) {
         return;
     }
-    $body = $doc->getSliceZone($doc->getType().'.body');
-    foreach($body->getSlices() as $slice) {
-       foreach($slice->getValue()->getArray() as $group) {
-            foreach($group->getFragments() as $sliceItem) {
-                if($sliceItem instanceof \Prismic\Fragment\StructuredText) {
-                    if($sliceItem->getFirstParagraph()) return $sliceItem->getFirstParagraph()->getText();
-                }
-            }
-        }
+    $fragments = $doc->getFragments();
+    foreach($fragments as $fragment) {
+        $text = get_StructuredText_with_description_from_Fragment($fragment);
+        $description = get_description_from_StructuredText($text);
+        if($description) return $description;
     }
-    return;
+    return '';
 }
 
 function default_image() {
@@ -74,17 +141,12 @@ function default_image() {
     if (!$doc) {
         return;
     }
-    $body = $doc->getSliceZone($doc->getType().'.body');
-    foreach($body->getSlices() as $slice) {
-       foreach($slice->getValue()->getArray() as $group) {
-            foreach($group->getFragments() as $sliceItem) {
-                if($sliceItem instanceof \Prismic\Fragment\Image) {
-                    if($sliceItem->getMain()) return $sliceItem->getMain()->getUrl();
-                }
-            }
-        }
+    $fragments = $doc->getFragments();
+    foreach($fragments as $fragment) {
+        $image = get_Image_from_fragment($fragment);
+        $imageUrl = get_image_from_fragment_image($image);
+        if($imageUrl) return $imageUrl;
     }
-    return;
 }
 
 function social() {
@@ -101,25 +163,21 @@ function social() {
 }
 
 function isShareReady() {
-    return social() ? true : false;
+    return !is_null(social()) && !empty(social());
 }
 
-function socialPluginActivated() {
-        global $WPGLOBAL, $loop;
+function socialPluginEnabled() {
+    global $WPGLOBAL, $loop;
     $prismic = $WPGLOBAL['prismic'];
     $doc = $loop->current_post();
     if(!$doc) {
         return;
     }
     $socialEnabled = $doc->getText($doc->getType().'.social_cards_enabled');
-    if($socialEnabled == 'Enabled') {
-        return true;
-    } else {
-        return false;
-    }
+    return ($socialEnabled == 'Enabled');
 }
 
-function open_graph_card_exist() {
+function open_graph_card_exists() {
     $socialSlices = social();
     foreach($socialSlices as $slice) {
         if(is_open_graph_card($slice->getSliceType())) {
@@ -130,9 +188,7 @@ function open_graph_card_exist() {
 }
 
 function is_open_graph_card($sliceType) {
-    if($sliceType == 'general_card' || $sliceType == 'product_card' || $sliceType == 'place_card') {
-        return true;
-    }
+    return ($sliceType == 'general_card' || $sliceType == 'product_card' || $sliceType == 'place_card');
 }
 
 function open_graph_card_type() {
@@ -191,11 +247,11 @@ function place_card() {
 }
 function place_card_title() { return place_card()->getArray()[0]['card_title'] ? place_card()->getArray()[0]['card_title']->getValue() : default_title(); }
 function place_card_description() { return place_card()->getArray()[0]['card_description'] ? place_card()->getArray()[0]['card_description']->getValue() : default_description(); }
-function place_card_latitude() { return place_card()->getArray()[0]['card_latitude'] ? place_card()->getArray()[0]['card_latitude']->getValue() : ''; }
-function place_card_longitude() { return place_card()->getArray()[0]['card_longitude'] ? place_card()->getArray()[0]['card_longitude']->getValue() : ''; }
+function place_card_latitude() { return place_card()->getArray()[0]['coordinates'] ? place_card()->getArray()[0]['coordinates']->getLatitude() : ''; }
+function place_card_longitude() { return place_card()->getArray()[0]['coordinates'] ? place_card()->getArray()[0]['coordinates']->getLongitude() : ''; }
 function place_card_image() { return place_card()->getArray()[0]['card_image'] ? place_card()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
 
-function twitter_card_exist() {
+function twitter_card_exists() {
     $socialSlices = social();
     foreach($socialSlices as $slice) {
         if(is_twitter_card($slice->getSliceType())) {
@@ -206,9 +262,7 @@ function twitter_card_exist() {
 }
 
 function is_twitter_card($sliceType) {
-    if($sliceType == 'twitter_app' || $sliceType == 'twitter_summary' || $sliceType == 'twitter_summary_large') {
-        return true;
-    }
+    return ($sliceType == 'twitter_app' || $sliceType == 'twitter_summary' || $sliceType == 'twitter_summary_large');
 }
 
 function twitter_card_type() {
@@ -256,7 +310,6 @@ function twitter_summary_title() { return twitter_summary()->getArray()[0]['card
 function twitter_summary_description() { return twitter_summary()->getArray()[0]['card_description'] ? twitter_summary()->getArray()[0]['card_description']->getValue() : default_description(); }
 function twitter_summary_image() { return twitter_summary()->getArray()[0]['card_image'] ? twitter_summary()->getArray()[0]['card_image']->getMain()->getUrl() : default_image(); }
 function twitter_summary_site() { return twitter_summary()->getArray()[0]['twitter_site'] ? twitter_summary()->getArray()[0]['twitter_site']->getValue() : ''; }
-function twitter_summary_creator() { return twitter_summary()->getArray()[0]['twitter_creator'] ? twitter_summary()->getArray()[0]['twitter_creator']->getValue() : ''; }
 
 function twitter_summary_large() {
     $socialSlices = social();
@@ -280,16 +333,8 @@ function email() {
         }
     }
 }
-function email_title() { 
-    return 'hello';
-    $emailTitle = email()->getArray()[0]['card_title']->getValue();
-    return $emailTitle ? $emailTitle : open_graph_title(); 
-}
-function email_description() { 
-    return 'hello';
-    $emailDescription = email()->getArray()[0]['card_description']->getValue(); 
-    return $emailDescription ? $emailDescription : open_graph_description();
-}
+function email_title() { return email() && email()->getArray()[0]['card_title'] ? email()->getArray()[0]['card_title']->getValue() : default_title(); }
+function email_description() { return email() && email()->getArray()[0]['card_description'] ? email()->getArray()[0]['card_description']->getValue() : default_description(); }
 
 function page_social_cards_image()
 {

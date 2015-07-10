@@ -1,4 +1,4 @@
-<?php if(socialPluginActivated()) { ?>
+<?php if(socialPluginEnabled()) { ?>
 
 <div class="social-share-widgets">
     <span class="social-share-button" onclick="popUp=window.open('https://www.facebook.com/sharer/sharer.php?u=<?= page_url() ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">

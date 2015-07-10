@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/assets/font.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <?php if(isShareReady()) { include('social-meta.php'); } ?> 
+    <?php while ( have_posts() ) : the_post(); ?>
+      <?php include('social-meta.php'); ?> 
+    <?php endwhile; ?>
 
     <script src="/assets/vendor/jquery-1.11.2.min.js"></script>
 
@@ -47,6 +49,7 @@
         <a id="menu-hamburger" href="#right-panel"></a>
 
 <?php full_articles(true) ?>
+<?php rewind_posts(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php
@@ -76,7 +79,7 @@
 
     <?php the_content(); ?>
 
-    <?php if(isShareReady()) { include('social.php'); } ?> 
+    <?php include('social.php'); ?> 
 
 </div>
 
