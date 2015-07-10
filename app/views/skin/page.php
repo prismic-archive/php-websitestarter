@@ -42,6 +42,9 @@
 <?php else: ?>
   <link rel="icon" type="image/png" href="/app/static/favicon.png">
 <?php endif ?>
+<?php if ($titleColor) : ?>
+  <meta name="theme-color" content="<?= $titleColor->asText() ?>" />
+<?php endif ?>
 
 <style>
 

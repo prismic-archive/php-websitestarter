@@ -47,6 +47,12 @@
 
 <?php endif ?>
 
+<?php if ($titleColor) : ?>
+
+  <meta name="theme-color" content="<?= $titleColor->asText() ?>" />
+
+<?php endif ?>
+
 <style>
 
 body {
