@@ -1,16 +1,13 @@
  .social-share-widgets {
   width : auto;
   height : auto;
-  text-align: right;
+  text-align: center;
   border-bottom: 1px solid #FEFEFE;
-}
-
-.page .social-share-widgets {
-    margin: 0 2rem 2rem 0;
+  margin: 2rem 0;
 }
 
 .social-share-button i {
-    line-height: 1.8rem;
+  line-height: 1.8rem;
 }
 
 .social-share-button {
@@ -25,9 +22,10 @@
   border-radius: 50%;
   box-sizing: border-box;
   font-size: 1rem;
+  margin: 0 0.2rem;
 }
 
-  .social-share-button:hover, .social-share-button:focus {
-    color: #666666;
-    border: 1px solid #666666;
-  }
+.social-share-button:hover, .social-share-button:focus {
+  color: #666666;
+  border: 1px solid #666666;
+}
