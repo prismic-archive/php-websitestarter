@@ -179,9 +179,11 @@ function socialPluginEnabled() {
 
 function open_graph_card_exists() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if(is_open_graph_card($slice->getSliceType())) {
-            return true;
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if(is_open_graph_card($slice->getSliceType())) {
+                return true;
+            }
         }
     }
     return false;
@@ -193,19 +195,23 @@ function is_open_graph_card($sliceType) {
 
 function open_graph_card_type() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        $sliceType = $slice->getSliceType();
-        if(is_open_graph_card($sliceType)) {
-            return $sliceType;
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            $sliceType = $slice->getSliceType();
+            if(is_open_graph_card($sliceType)) {
+                return $sliceType;
+            }
         }
     }
 }
 
 function general_card() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'general_card') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'general_card') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -216,9 +222,11 @@ function general_card_image() { return general_card()->getArray()[0]['card_image
 
 function product_card() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'product_card') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'product_card') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -239,9 +247,11 @@ function product_card_images() {
 
 function place_card() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'place_card') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'place_card') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -253,9 +263,11 @@ function place_card_image() { return place_card()->getArray()[0]['card_image'] ?
 
 function twitter_card_exists() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if(is_twitter_card($slice->getSliceType())) {
-            return true;
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if(is_twitter_card($slice->getSliceType())) {
+                return true;
+            }
         }
     }
     return false;
@@ -267,19 +279,23 @@ function is_twitter_card($sliceType) {
 
 function twitter_card_type() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        $sliceType = $slice->getSliceType();
-        if(is_twitter_card($sliceType)) {
-            return $sliceType;
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            $sliceType = $slice->getSliceType();
+            if(is_twitter_card($sliceType)) {
+                return $sliceType;
+            }
         }
     }
 }
 
 function twitter_app() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'twitter_app') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'twitter_app') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -300,9 +316,11 @@ function twitter_app_android_url() { return twitter_app()->getArray()[0]['androi
 
 function twitter_summary() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'twitter_summary') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'twitter_summary') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -313,9 +331,11 @@ function twitter_summary_site() { return twitter_summary()->getArray()[0]['twitt
 
 function twitter_summary_large() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'twitter_summary_large') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'twitter_summary_large') {
+                return $slice->getValue();
+            }
         }
     }
 }
@@ -327,14 +347,16 @@ function twitter_summary_large_creator() { return twitter_summary_large()->getAr
 
 function email() {
     $socialSlices = social();
-    foreach($socialSlices as $slice) {
-        if($slice->getSliceType() == 'email') {
-            return $slice->getValue();
+    if($socialSlices) {
+        foreach($socialSlices as $slice) {
+            if($slice->getSliceType() == 'email') {
+                return $slice->getValue();
+            }
         }
     }
 }
-function email_title() { return email() && email()->getArray()[0]['card_title'] ? email()->getArray()[0]['card_title']->getValue() : default_title(); }
-function email_description() { return email() && email()->getArray()[0]['card_description'] ? email()->getArray()[0]['card_description']->getValue() : default_description(); }
+function email_title() { return (email() && email()->getArray()[0]['card_title']) ? email()->getArray()[0]['card_title']->getValue() : default_title(); }
+function email_description() { return (email() && email()->getArray()[0]['card_description']) ? email()->getArray()[0]['card_description']->getValue() : default_description(); }
 
 function page_social_cards_image()
 {
