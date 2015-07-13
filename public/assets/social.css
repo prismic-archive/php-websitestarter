@@ -10,6 +10,10 @@
   line-height: 1.8rem;
 }
 
+.social-share-button mail {
+    background-size: 0;
+}
+
 .social-share-button {
   cursor : pointer ;
   color: white;
@@ -23,6 +27,10 @@
   box-sizing: border-box;
   font-size: 1rem;
   margin: 0 0.2rem;
+
+  a {
+
+  }
 }
 
 .social-share-button:hover, .social-share-button:focus {

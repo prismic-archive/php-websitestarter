@@ -324,6 +324,7 @@ pre, ul {
 }
 
 .blog-footer.single {
+  min-height: 4rem;
   position: fixed;
   bottom: -64px;
   overflow: hidden;
