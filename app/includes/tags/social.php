@@ -166,7 +166,8 @@ function social() {
 }
 
 function isShareReady() {
-    return !is_null(social()) && !empty(social());
+    $social = social();
+    return !is_null($social) && !empty($social);
 }
 
 function socialPluginEnabled() {
