@@ -56,7 +56,7 @@ function get_Image_from_SliceZone($sliceZone) {
        foreach($slice->getValue()->getArray() as $group) {
             foreach($group->getFragments() as $sliceItem) {
                 if($sliceItem instanceof Prismic\Fragment\Image) {
-                 if($sliceItem->getMain()) return $sliceItem;
+                 if($sliceItem->getMain()) return $sliceItem->getMain();
                 }  
             }
         }
@@ -86,7 +86,10 @@ function get_Image_from_fragment($fragment) {
         return get_Image_from_SliceZone($fragment);
     }
     elseif($fragment instanceof Prismic\Fragment\Image) {
-        if($fragment->getMain()) return $fragment;
+        if($fragment->getMain()) return $fragment->getMain();
+    }
+    elseif($fragment instanceof Prismic\Fragment\StructuredText) {
+        if($fragment->getFirstImage() && $fragment->getFirstImage()->getView()) return $fragment->getFirstImage()->getView();
     }
 }
 
@@ -99,7 +102,7 @@ function get_description_from_StructuredText($structuredText) {
 }
 
 function get_image_from_fragment_image($image) {
-    if($image) return $image->getMain()->getUrl();
+    if($image) return $image->getUrl();
 }
 
 function default_title() {
