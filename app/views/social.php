@@ -13,7 +13,7 @@
     <span class="social-share-button" onclick="popUp=window.open('https://www.linkedin.com/shareArticle?mini=true&url=<?= page_url() ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">
         <i class="icon-linkedin"></i>
     </span>
-    <span class="social-share-button" onclick="popUp=window.open('http://pinterest.com/pin/create/link/?url=<?= page_url() ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">
+    <span class="social-share-button" onclick="popUp=window.open('http://pinterest.com/pin/create/link/?url=<?= page_url() ?>&media=<?=default_image()?>&description=<?= urlencode(default_description()) ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">
     <i class="icon-pinterest"></i>
     </span>
 
