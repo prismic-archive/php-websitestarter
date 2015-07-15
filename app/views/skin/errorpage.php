@@ -37,7 +37,7 @@
   <?= $textColor ? 'color:'.$textColor->asText() : ''; ?>;
 }
 
-.error-page .container {
+.error-page {
   <?= $blankColor ? 'background-color:'.$blankColor->asText() : var_dump($skin); ?>;
 }
 
