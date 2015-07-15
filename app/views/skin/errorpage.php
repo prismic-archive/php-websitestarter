@@ -11,7 +11,8 @@
   $textColor = $skin->getColor('skin.errorpage-text-color');
 
   $titleColor = $skin->getColor('skin.errorpage-title-color');
-
+  
+  $blankColor = $skin->getColor('skin.blank-color');
 ?>
 
 <?php if ($faviconImage && $faviconImage->getMain()) : ?>
@@ -34,6 +35,10 @@
 .error-page p {
 
   <?= $textColor ? 'color:'.$textColor->asText() : ''; ?>;
+}
+
+.error-page .container {
+  <?= $blankColor ? 'background-color:'.$blankColor->asText() : var_dump($skin); ?>;
 }
 
 </style>
