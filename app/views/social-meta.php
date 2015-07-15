@@ -61,7 +61,7 @@
 
        case 'twitter_summary_large' :
        ?>
-       <meta name="twitter:card" content="summary_large" />
+       <meta name="twitter:card" content="summary_large_image" />
        <meta name="twitter:site" content="<?= twitter_summary_large_site() ?>" />
        <meta name="twitter:creator" content="<?= twitter_summary_large_creator() ?>" />
        <meta name="twitter:title" content="<?= twitter_summary_large_title() ?>">
