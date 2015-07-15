@@ -9,7 +9,7 @@ function page_url()
         return;
     }
     $scheme = "http://";
-    $serverName = $_SERVER['HTTP_HOST'];
+    $serverName = array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : '';
     return $scheme . $serverName . document_url($doc);
 }
 
