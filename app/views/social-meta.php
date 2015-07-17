@@ -1,3 +1,4 @@
+<meta name="p:domain_verify" content="48ae95a94ba8fd30f31a003069eeff53"/>
 <?php if(isShareReady()) { ?>
    <?php if(open_graph_card_exists()) {
       switch(open_graph_card_type()) { 
