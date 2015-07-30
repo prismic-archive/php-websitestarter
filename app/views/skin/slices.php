@@ -110,7 +110,7 @@
 
 
 
-  .video-banner.video-banner-dark .video * {
+  .video-banner.video-banner-dark .video .play {
     <?php if($videoBannerButtonText) { ?>
       color: <?= $videoBannerButtonText->asText()?>;
     <?php } ?>
