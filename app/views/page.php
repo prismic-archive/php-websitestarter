@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/common.css">
     <link rel="stylesheet" href="/assets/main.css">
     <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="/assets/video_banner.css">
     <link rel="stylesheet" href="/assets/starterkit.css">
     <link rel="stylesheet" href="/assets/hopscotch.css">
     <link rel="stylesheet" href="/assets/social.css">
@@ -22,6 +23,7 @@
     <?php include('prismic.php') ?>
 
     <?php include('skin/page.php') ?>
+    <?php include('skin/slices.php') ?>
 
 </head>
 

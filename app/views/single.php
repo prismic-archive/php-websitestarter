@@ -33,6 +33,7 @@
     <?php include('prismic.php') ?>
 
     <?php include('skin/blog.php') ?>
+    <?php include('skin/slices.php') ?>
 
 </head>
 
