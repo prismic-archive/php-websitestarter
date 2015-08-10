@@ -13,9 +13,7 @@
 
     ?>
 			<div class="video">
-				<video width="100%" <?= $autoplay && $autoplay->asText() == "Enabled" ? 'autoplay' : '' ?> <?= $loop && $loop->asText() == "Enabled" ? 'loop=1' : '' ?> preload="none" poster="<?= $illustrationUrl ?>" onclick="this.play();">  
-					<source src="<?= $videoLink ? $linkResolver->resolve($videoLink) : '' ?>" width="auto" type="video/mp4" /> 
-					Your browser does not support html5 video. 
+				<video muted width="100%" src="<?= $videoLink ? $linkResolver->resolve($videoLink) : '' ?>"  <?= $autoplay && $autoplay->asText() == "Enabled" ? 'autoplay' : '' ?> <?= $loop && $loop->asText() == "Enabled" ? 'loop=1' : '' ?> preload="none" poster="<?= $illustrationUrl ?>" onclick="this.play();">  
 				</video>
 				
 				<div class="video-container">
