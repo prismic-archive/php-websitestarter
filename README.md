@@ -19,7 +19,7 @@ Some remarks:
 
 * Your repository must be a clone of http://prismicwebsite.me. You can modify the default document masks, but that may require adapting the php source code.
 * For the best performances, it is strongly recommended to enable APC to activate the cache. You can also use another caching system such as [memcached](http://memcached.org/), see the Prismic [Developer's Manual](https://developers.prismic.io/documentation/VBgeDDYAADMAz2Rw/developers-manual#cache) for more details.
-* If you cloned the github repository instead of downloading the zip, you need to install dependencies using [composer](https://getcomposer.org/): `composer install`.*
+* If you cloned the github repository instead of downloading the zip, you need to install dependencies using [composer](https://getcomposer.org/): `php composer.phar install`
 
 #### Configuring the theme
 
