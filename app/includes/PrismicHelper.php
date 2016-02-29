@@ -65,51 +65,12 @@ class PrismicHelper
         return ($conf && isset($conf[$key])) ? $conf[$key] : $this->app->config($key);
     }
 
-    /**
-     * Get the reference that should be used, in this order:
-     *  - from the experiment cookies if present (A/B testing)
-     *  - from the preview cookie if present (a writer clicked the "preview" button in the writing room)
-     *  - defaults to the master release
-     */
-    public function get_ref()
-    {
-        $api = $this->get_api();
-        $experimentCookie = $this->app->request()->cookies[Prismic\EXPERIMENTS_COOKIE];
-        $previewCookie = $this->app->request()->cookies[Prismic\PREVIEW_COOKIE];
-        if ($experimentCookie) {
-            $experiments = $api->getExperiments();
-            $experimentCookie = str_replace(' ', '%20', $experimentCookie);
-
-            return $experiments->refFromCookie($experimentCookie);
-        } elseif ($previewCookie != null) {
-            return $previewCookie;
-        } else {
-            return $this->get_api()->master();
-        }
-    }
-
-    public function form($pageSize = null)
-    {
-        if (!$pageSize) {
-            $pageSize = $this->pageSize();
-        }
-
-        return $this->get_api()->forms()->everything
-            ->pageSize($pageSize)
-            ->ref($this->get_ref());
-    }
-
     public function by_uid($type, $uid, $fetch = array())
     {
-        $results =
-          $this->form()
-            ->fetchLinks($fetch)
-            ->query(array(
-                Predicates::at('my.'.$type.'.uid', $uid),
-            ))
-            ->submit()
-            ->getResults();
-
+        $results = $this->get_api()
+                 ->query(array(Predicates::at('my.'.$type.'.uid', $uid)),
+                         array('fetchLinks' => $fetch)
+                 )->getResults();
         if (count($results) > 0) {
             return $results[0];
         }
@@ -120,13 +81,14 @@ class PrismicHelper
     public function get_prev_post($id)
     {
         $results =
-            $this->form()
-                 ->query(Predicates::at('document.type', 'post'))
-                 ->set('after', $id)
-                 ->pageSize(1)
-                 ->orderings('[my.post.date desc, document.id desc]')
-                 ->submit()
-                 ->getResults();
+             $this->get_api()
+                 ->query(Predicates::at('document.type', 'post'),
+                         array(
+                             'after' => $id,
+                             'pageSize' => 1,
+                             'orderings' => '[my.post.date desc, document.id desc]'
+                         )
+                 )->getResults();
         if (count($results) > 0) {
             return $results[0];
         }
@@ -135,13 +97,14 @@ class PrismicHelper
     public function get_next_post($id)
     {
         $results =
-            $this->form()
-                 ->query(Predicates::at('document.type', 'post'))
-                 ->set('after', $id)
-                 ->pageSize(1)
-                 ->orderings('[my.post.date, document.id]')
-                 ->submit()
-                 ->getResults();
+            $this->get_api()
+                 ->query(Predicates::at('document.type', 'post'),
+                         array(
+                             'after' => $id,
+                             'pageSize' => 1,
+                             'orderings' => '[my.post.date, document.id]'
+                         )
+                 )->getResults();
         if (count($results) > 0) {
             return $results[0];
         }
@@ -149,22 +112,13 @@ class PrismicHelper
 
     public function get_document($id)
     {
-        $results = $this->form()
-            ->query(array(Predicates::at('document.id', $id)))
-            ->submit()
-            ->getResults();
-        if (count($results) > 0) {
-            return $results[0];
-        }
-
-        return;
+        return $this->get_api()->getByID($id);
     }
 
     public function from_ids(array $documentIds)
     {
-        return $this->form()
-            ->query(array(Predicates::any('document.id', $documentIds)))
-            ->submit();
+        return $this->get_api()
+            ->query(array(Predicates::any('document.id', $documentIds)));
     }
 
     public function refresh_path($path)
@@ -241,15 +195,15 @@ class PrismicHelper
             $lowerBound->modify('-1 day');
         }
 
-        return $this->form()
+        return $this->get_api()
             ->query(array(
                 Predicates::at('document.type', 'post'),
                 Predicates::dateAfter('my.post.date', $lowerBound),
                 Predicates::dateBefore('my.post.date', $upperBound),
-            ))
-            ->orderings('[my.post.date desc]')
-            ->page($page)
-            ->submit();
+            ), array(
+                'orderings' => '[my.post.date desc]',
+                'page' => $page
+            ));
     }
 
     public function get_bookmarks()
@@ -263,11 +217,10 @@ class PrismicHelper
             return array();
         }
 
-        return $this->form()
-            ->query(Predicates::any('document.id', $bkIds))
-            ->orderings('[my.page.priority desc]')
-            ->submit()
-            ->getResults();
+        return $this->get_api()
+            ->query(Predicates::any('document.id', $bkIds),
+                    array('orderings' => '[my.page.priority desc]')
+            ).getResults();
     }
 
     public function archive_link($year, $month = null, $day = null)
@@ -288,12 +241,14 @@ class PrismicHelper
         $calendar = array();
         $page = 1;
         do {
-            $posts = $this->form()
-                ->page($page)
-                ->query(Predicates::at('document.type', 'post'))
-                ->fetch('post.date')
-                ->orderings('my.post.date desc')
-                ->submit();
+            $posts = $this->get_api()
+                   ->query(Predicates::at('document.type', 'post'),
+                           array(
+                               'page' => $page,
+                               'fetch' => 'post.date',
+                               'orderings' => '[my.post.date desc]'
+                           )
+                   );
             foreach ($posts->getResults() as $post) {
                 if (!$post->getDate('post.date')) {
                     continue;
@@ -343,10 +298,9 @@ class PrismicHelper
             $this->allPages = array();
             $p = 0;
             while ($has_more) {
-                $response = $this->form(20)
-                          ->query(Predicates::any('document.type', array('page', 'bloghome')))
-                          ->page($p++)
-                          ->submit();
+                $response = $this->get_api()
+                          ->query(Predicates::any('document.type', array('page', 'bloghome')),
+                                  array('pageSize' => 20, 'page' => $p++));
                 foreach ($response->getResults() as $page) {
                     $this->allPages[$page->getId()] = $page;
                 }

@@ -59,19 +59,19 @@ $app->get('/', function () use ($app, $prismic) {
         render($app, 'page', array('single_post' => $home, 'skin' => $skin));
     } else if ($home && $home->getType() == 'bloghome') {
         $skin = $prismic->get_skin();
-        $posts = $prismic->form()
-               ->query(Predicates::at('document.type', 'post'))
-               ->fetchLinks(
-                   'post.date',
-                   'category.name',
-                   'author.full_name',
-                   'author.first_name',
-                   'author.surname',
-                   'author.company'
-               )
-               ->page(current_page($app))
-               ->orderings('[my.post.date desc]')
-               ->submit();
+        $posts = $prismic->get_api()
+               ->query(Predicates::at('document.type', 'post'), array(
+                   'fetchLinks' => array(
+                       'post.date',
+                       'category.name',
+                       'author.full_name',
+                       'author.first_name',
+                       'author.surname',
+                       'author.company'
+                   ),
+                   'page' => current_page($app),
+                   'orderings' => '[my.post.date desc]'
+               ));
 
         render($app, 'bloghome', array('bloghome' => $home, 'posts' => $posts, 'skin' => $skin));
     } else {
@@ -89,21 +89,23 @@ $app->get('/author/:id/:slug', function ($id, $slug) use ($app,$prismic) {
         return;
     }
 
-    $posts = $prismic->form()
-        ->query(
-            Predicates::at('document.type', 'post'),
-            Predicates::at('my.post.author', $id))
-        ->fetchLinks(
-            'post.date',
-            'category.name',
-            'author.full_name',
-            'author.first_name',
-            'author.surname',
-            'author.company'
-        )
-        ->orderings('my.post.date desc')
-        ->page(current_page($app))
-        ->submit();
+    $posts = $prismic->get_api()
+           ->query(array(
+               Predicates::at('document.type', 'post'),
+               Predicates::at('my.post.author', $id),
+           ), array(
+                'fetchLinks' => array(
+                    'post.date',
+                    'category.name',
+                    'author.full_name',
+                    'author.first_name',
+                    'author.surname',
+                    'author.company'
+                ),
+                'orderings' => '[my.post.date desc]',
+                'page' => current_page($app)
+            )
+        );
 
     $skin = $prismic->get_skin();
 
@@ -114,24 +116,23 @@ $app->get('/author/:id/:slug', function ($id, $slug) use ($app,$prismic) {
 $app->get('/search', function () use ($app,$prismic) {
     $q = $app->request()->params('q');
 
-    $posts = $prismic->form()
-        ->query(
-            Predicates::at('document.type', 'post'),
-            Predicates::fulltext('document', $q))
-        ->fetchLinks(
-            'post.date',
-            'category.name',
-            'author.full_name',
-            'author.first_name',
-            'author.surname',
-            'author.company'
-        )
-        ->orderings('my.post.date desc')
-        ->page(current_page($app))
-        ->submit();
-
+    $posts = $prismic->get_api()
+           ->query(array(
+               Predicates::at('document.type', 'post'),
+               Predicates::fulltext('document', $q)
+           ), array(
+               'fetchLinks' => array(
+                   'post.date',
+                   'category.name',
+                   'author.full_name',
+                   'author.first_name',
+                   'author.surname',
+                   'author.company'
+               ),
+               'orderings' => '[my.post.date desc]',
+               'page' => current_page($app)
+           ));
     $skin = $prismic->get_skin();
-
     render($app, 'search', array('posts' => $posts, 'skin' => $skin));
 });
 
@@ -145,21 +146,22 @@ $app->get('/category/:uid', function ($uid) use ($app,$prismic) {
         return;
     }
 
-    $posts = $prismic->form()
-        ->query(
-            Predicates::at('document.type', 'post'),
-            Predicates::any('my.post.categories.link', array($cat->getId())))
-        ->fetchLinks(
-            'post.date',
-            'category.name',
-            'author.full_name',
-            'author.first_name',
-            'author.surname',
-            'author.company'
-        )
-        ->orderings('my.post.date desc')
-        ->page(current_page($app))
-        ->submit();
+    $posts = $prismic->get_api()
+           ->query(array(
+               Predicates::at('document.type', 'post'),
+               Predicates::any('my.post.categories.link', array($cat->getId()))
+           ), array(
+               'fetchLinks' => array(
+                   'post.date',
+                   'category.name',
+                   'author.full_name',
+                   'author.first_name',
+                   'author.surname',
+                   'author.company'
+               ),
+               'orderings' => '[my.post.date desc]',
+               'page' => current_page($app)
+           ));
 
     $skin = $prismic->get_skin();
 
@@ -168,21 +170,22 @@ $app->get('/category/:uid', function ($uid) use ($app,$prismic) {
 
 // Tag
 $app->get('/tag/:tag', function ($tag) use ($app,$prismic) {
-    $posts = $prismic->form()
-        ->query(
-            Predicates::at('document.type', 'post'),
-            Predicates::any('document.tags', array($tag)))
-        ->fetchLinks(
-            'post.date',
-            'category.name',
-            'author.full_name',
-            'author.first_name',
-            'author.surname',
-            'author.company'
-        )
-        ->orderings('my.post.date desc')
-        ->page(current_page($app))
-        ->submit();
+    $posts = $prismic->get_api()
+           ->query(array(
+               Predicates::at('document.type', 'post'),
+               Predicates::any('document.tags', array($tag))
+           ), array(
+               'fetchLinks' => array(
+                   'post.date',
+                   'category.name',
+                   'author.full_name',
+                   'author.first_name',
+                   'author.surname',
+                   'author.company'
+               ),
+               'orderings' => '[my.post.date desc]',
+               'page' => current_page($app)
+           ));
 
     $skin = $prismic->get_skin();
 
@@ -207,19 +210,21 @@ $app->get('/blog', function () use ($app, $prismic) {
         return;
     }
 
-    $posts = $prismic->form()
-           ->query(Predicates::at('document.type', 'post'))
-           ->fetchLinks(
-               'post.date',
-               'category.name',
-               'author.full_name',
-               'author.first_name',
-               'author.surname',
-               'author.company'
-           )
-           ->page(current_page($app))
-           ->orderings('[my.post.date desc]')
-           ->submit();
+    $posts = $prismic->get_api()
+           ->query(Predicates::at('document.type', 'post'),
+                   array(
+                       'fetchLinks' => array(
+                           'post.date',
+                           'category.name',
+                           'author.full_name',
+                           'author.first_name',
+                           'author.surname',
+                           'author.company'
+                       ),
+                       'page' => current_page($app),
+                       'orderings' => '[my.post.date desc]'
+                   )
+           );
     $skin = $prismic->get_skin();
 
     render($app, 'bloghome', array('bloghome' => $blogHome, 'posts' => $posts, 'skin' => $skin));
